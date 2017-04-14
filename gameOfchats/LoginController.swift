@@ -146,6 +146,9 @@ class LoginController: UIViewController {
         setUpProfileImageView()
         setUpLoginRegisterControl()
         
+        //Setup password and textfield logic
+        //setupPasswordTextfieldsAndLoginRegisterButtonLogic()
+        
     }
     // MARK: - Height Manipulation
     var inputsContainerViewHeightAnchor : NSLayoutConstraint? // hold a reference to the anchor
@@ -277,6 +280,9 @@ class LoginController: UIViewController {
     //
     //hhandle loginREgister.
     func handleLoginRegister(){
+        
+        
+        
         // find out whether to login or reghidter the user.
         // if the toggle is selected as 0
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
@@ -291,7 +297,9 @@ class LoginController: UIViewController {
     func handleLogIn (){
         // Sign in the user with firebase
         guard  let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Form is not valid")
+           // print("Form is not valid")
+           
+            
             return
         }
        
@@ -299,6 +307,8 @@ class LoginController: UIViewController {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
                 print(error ?? "There is a login error")
+                
+                
                 return // print the error and get out
             }
             // IF THERE IS SUCCESS
@@ -312,6 +322,14 @@ class LoginController: UIViewController {
     
     //MARK : - Hndle login register change
     func handleLoginRegistorChange(){
+        if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
+            nameTextField.isHidden = true
+        } else {
+            nameTextField.isHidden = false
+        }
+        
+        
+        
      //   print(loginRegisterSegmentedController.titleForSegment(at: loginRegisterSegmentedController.selectedSegmentIndex) ?? <#default value#>) // to get the title. SegmetedControl Check.
         let title = loginRegisterSegmentedController.titleForSegment(at: loginRegisterSegmentedController.selectedSegmentIndex)
             
@@ -340,13 +358,21 @@ class LoginController: UIViewController {
         
         // Nametextfield title label
         nameTextField.placeholder = loginRegisterSegmentedController.selectedSegmentIndex == 0 ? "" : "Name"
+        
+    
     }
     
     // Change the stausbar to a white colr.
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    /*
+    func setupPasswordTextfieldsAndLoginRegisterButtonLogic(){
+        nameTextField.becomeFirstResponder()
+        
+    }
+ */
 
     
 }
