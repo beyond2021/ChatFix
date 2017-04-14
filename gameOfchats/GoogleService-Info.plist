@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>249563013620-5nm3r606p05q8sv6c1d903j9vrnjr2lu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.249563013620-5nm3r606p05q8sv6c1d903j9vrnjr2lu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAkyT8waVEnk-rN2GSiw2cgzkFGuAVU4mg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>249563013620</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.beyond2021.gameOfchats</string>
+	<key>PROJECT_ID</key>
+	<string>peephole-6f487</string>
+	<key>STORAGE_BUCKET</key>
+	<string>peephole-6f487.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:249563013620:ios:b4f81df3d85af2c3</string>
+	<key>DATABASE_URL</key>
+	<string>https://peephole-6f487.firebaseio.com</string>
+</dict>
+</plist>
