@@ -15,6 +15,12 @@ class NewMessageController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+        
+        navigationController?.navigationBar.tintColor = .white
+        
         //adding the cancel button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         //REGISTERING THE CUSTOM CELL

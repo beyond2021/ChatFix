@@ -15,6 +15,12 @@ class MessagesController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+        
+        
         // How to save Data into fireBase
         // 1: allocate Reference
         //    let reference = FIRDatabase.database().reference(fromURL: "https://peephole-6f487.firebaseio.com/")
@@ -22,13 +28,14 @@ class MessagesController: UITableViewController {
         
         // left nav button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.leftBarButtonItem?.tintColor = .white
         // checking and forcing the user to log in if they are not.
         // When user is not logged in
         
         // Right navbar button
         let image = UIImage(named: "Contacts-50")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
-        
+        navigationItem.rightBarButtonItem?.tintColor = .white
         checkIfUserIsLoggedIn()
         //
         //REGISTERING THE CUSTOM CELL
@@ -44,6 +51,15 @@ class MessagesController: UITableViewController {
         // observeUserMessages() // moved to setupnavbarwithuser
         
         tableView.allowsMultipleSelectionDuringEditing = true //swipe to delete 1
+        
+        // [START get_iid_token]
+       // let token = FIRInstanceID.instanceID().token()!
+       // print("The token is:", token)
+        
+        FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
+        
+       // NSString *token = [[FIRInstanceID instanceID] token];
+        
         
         
     }

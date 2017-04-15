@@ -73,6 +73,11 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+        navigationController?.navigationBar.tintColor = .white
+        
         // make it draggable
         collectionView?.alwaysBounceVertical = true
         //space ontop AND BOTTOM SPACE of the collectionview

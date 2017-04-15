@@ -73,6 +73,7 @@ class ChatMessageCell: UICollectionViewCell {
         playerLayer?.removeFromSuperlayer()
         player?.pause()
         spinner.stopAnimating()
+        
     }
     
     
