@@ -24,10 +24,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PusherSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>52A89676FC7369FE5C6AAEE540C65C95</key>
+		<key>2421A2231A4766E2A1BD1E572E6C5BDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A30453EC86FB393A2AF10B8953C0AF09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6181321AF72C5DA40B5AE593FD677DF</key>
+		<key>D33BF8ADCEDD271AFA188D3004CD34DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
