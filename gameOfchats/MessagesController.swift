@@ -60,9 +60,30 @@ class MessagesController: UITableViewController {
         
        // NSString *token = [[FIRInstanceID instanceID] token];
         
+        //MENUBAR
+        //setupMenuBar()
+        
+    }
+    
+    
+    let menuBar : MenuBar = {
+        let mb = MenuBar()
+        
+        return mb
+         }()
+    
+    //Private because no other class need to access this
+    private func setupMenuBar(){
+        view.addSubview(menuBar)
+        view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar) //horizontal constraints
+        view.addContraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar) //Vertical constraints
+        
         
         
     }
+    
+    
+    
     //swipe to delete 2
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -399,7 +420,8 @@ class MessagesController: UITableViewController {
         //to make the label stretch out.
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor.yellow
+       // containerView.backgroundColor = UIColor.yellow
+        containerView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         // add profilImageView and label into this view
         titleView.addSubview(containerView)
         
@@ -411,6 +433,9 @@ class MessagesController: UITableViewController {
         
         //lets put an imageview and a label in this container
         let profileImageView = UIImageView()
+        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         //set aspect ratio
         profileImageView.contentMode = .scaleAspectFill
@@ -443,6 +468,7 @@ class MessagesController: UITableViewController {
         let nameLabel = UILabel()
         //MUST ADD IN THE VIEW AFTER YOU CREATE IT!!!! OR YOU WILL GET A VIEW HIARCHY CRASH
         containerView.addSubview(nameLabel)
+        nameLabel.textColor = .white
         nameLabel.text = user.name
         //nameLabel.text = "oin  i iiririiiimfg"
         

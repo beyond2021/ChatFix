@@ -110,6 +110,9 @@ class ChatMessageCell: UICollectionViewCell {
         // round the corner
         view.layer.cornerRadius = 16 //needed
         view.layer.masksToBounds = true //needed
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.black.cgColor
+
         
         return view
         
@@ -122,6 +125,10 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.black.cgColor
+
+        
         imageView.contentMode = .scaleAspectFill //makes sure that the aspect ratio is maintained whenever we render the image
         
         return imageView

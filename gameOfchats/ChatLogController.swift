@@ -17,6 +17,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     var user: User? {
         didSet{
             navigationItem.title = user?.name
+            
             //fetch the messages by some kind of observation
             observerMessages()
         }

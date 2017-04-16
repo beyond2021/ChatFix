@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NotificationExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>gameOfchats.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>531199151E9160E600070A81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5341BF101EA3023A00342221</key>
 		<dict>
 			<key>primary</key>
 			<true/>

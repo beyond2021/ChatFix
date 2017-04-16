@@ -65,6 +65,9 @@ class UserCell: UITableViewCell {
         //Make it round by modifing the corner erasius
         imageView.layer.cornerRadius = 24 // 24 comes from half of the constraint
         imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.black.cgColor
+        
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

@@ -59,6 +59,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                object: nil)
         // [END add_token_refresh_observer]
         
+//        UINavigationBar.appearance().tintColor = UIColor(r: 230, g: 32, b: 31)
+       application.statusBarStyle = .lightContent //This and infoplist makes status white
+        
+        
+        // Make the nav bar look deeper
+        let statusBarbackgroundView = UIView()
+        statusBarbackgroundView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        window?.addSubview(statusBarbackgroundView)
+        
+        //Constraints
+        window?.addContraintsWithFormat(format: "H:|[v0]|", views: statusBarbackgroundView)
+        window?.addContraintsWithFormat(format: "V:|[v0(20)]", views: statusBarbackgroundView)
+        
+        
+        
         return true
     }
     

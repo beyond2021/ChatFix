@@ -13,6 +13,12 @@
 		531199211E9160E700070A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 531199201E9160E700070A81 /* Assets.xcassets */; };
 		531199241E9160E700070A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 531199221E9160E700070A81 /* LaunchScreen.storyboard */; };
 		5311992D1E9166B400070A81 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311992C1E9166B400070A81 /* LoginController.swift */; };
+		5341BF131EA3023A00342221 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5341BF121EA3023A00342221 /* UserNotifications.framework */; };
+		5341BF151EA3023A00342221 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5341BF141EA3023A00342221 /* UserNotificationsUI.framework */; };
+		5341BF181EA3023A00342221 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5341BF171EA3023A00342221 /* NotificationViewController.swift */; };
+		5341BF1B1EA3023A00342221 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5341BF191EA3023A00342221 /* MainInterface.storyboard */; };
+		5341BF1F1EA3023A00342221 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5341BF111EA3023A00342221 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5341BF251EA344EF00342221 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5341BF241EA344EF00342221 /* MenuBar.swift */; };
 		5357F7791EA283B50048999D /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357F7781EA283B50048999D /* Messages.framework */; };
 		5357F77B1EA283C20048999D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357F77A1EA283C20048999D /* MessageUI.framework */; };
 		539C736E1E93EA83009CEB85 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C736D1E93EA83009CEB85 /* NewMessageController.swift */; };
@@ -28,6 +34,30 @@
 		D3CF1B67E0A80577864F69DD /* Pods_gameOfchats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5341BF1D1EA3023A00342221 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5311990E1E9160E600070A81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5341BF101EA3023A00342221;
+			remoteInfo = NotificationExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5341BF231EA3023A00342221 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5341BF1F1EA3023A00342221 /* NotificationExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		531199161E9160E600070A81 /* gameOfchats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameOfchats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		531199191E9160E600070A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +67,13 @@
 		531199231E9160E700070A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		531199251E9160E700070A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5311992C1E9166B400070A81 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5341BF111EA3023A00342221 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5341BF121EA3023A00342221 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5341BF141EA3023A00342221 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		5341BF171EA3023A00342221 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		5341BF1A1EA3023A00342221 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5341BF1C1EA3023A00342221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5341BF241EA344EF00342221 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		5357F7771EA1D2AB0048999D /* gameOfchats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gameOfchats.entitlements; sourceTree = "<group>"; };
 		5357F7781EA283B50048999D /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		5357F77A1EA283C20048999D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -66,6 +103,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5341BF0E1EA3023A00342221 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5341BF151EA3023A00342221 /* UserNotificationsUI.framework in Frameworks */,
+				5341BF131EA3023A00342221 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -75,6 +121,8 @@
 				5357F77A1EA283C20048999D /* MessageUI.framework */,
 				5357F7781EA283B50048999D /* Messages.framework */,
 				9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */,
+				5341BF121EA3023A00342221 /* UserNotifications.framework */,
+				5341BF141EA3023A00342221 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				531199181E9160E600070A81 /* gameOfchats */,
+				5341BF161EA3023A00342221 /* NotificationExtension */,
 				531199171E9160E600070A81 /* Products */,
 				4024E444E7526475666B4398 /* Pods */,
 				1C9E033606D51DB0A47F19A6 /* Frameworks */,
@@ -102,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				531199161E9160E600070A81 /* gameOfchats.app */,
+				5341BF111EA3023A00342221 /* NotificationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +186,16 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		5341BF161EA3023A00342221 /* NotificationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5341BF171EA3023A00342221 /* NotificationViewController.swift */,
+				5341BF191EA3023A00342221 /* MainInterface.storyboard */,
+				5341BF1C1EA3023A00342221 /* Info.plist */,
+			);
+			path = NotificationExtension;
+			sourceTree = "<group>";
+		};
 		539C736F1E93F859009CEB85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +211,7 @@
 				539C73731E9400ED009CEB85 /* UserCell.swift */,
 				53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */,
 				53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */,
+				5341BF241EA344EF00342221 /* MenuBar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -176,15 +237,34 @@
 				531199141E9160E600070A81 /* Resources */,
 				C8DD38933C25DDD0225D049A /* [CP] Embed Pods Frameworks */,
 				206A21158639842F539A69A6 /* [CP] Copy Pods Resources */,
+				5341BF231EA3023A00342221 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5341BF1E1EA3023A00342221 /* PBXTargetDependency */,
 			);
 			name = gameOfchats;
 			productName = gameOfchats;
 			productReference = 531199161E9160E600070A81 /* gameOfchats.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5341BF101EA3023A00342221 /* NotificationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5341BF221EA3023A00342221 /* Build configuration list for PBXNativeTarget "NotificationExtension" */;
+			buildPhases = (
+				5341BF0D1EA3023A00342221 /* Sources */,
+				5341BF0E1EA3023A00342221 /* Frameworks */,
+				5341BF0F1EA3023A00342221 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationExtension;
+			productName = NotificationExtension;
+			productReference = 5341BF111EA3023A00342221 /* NotificationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -209,6 +289,11 @@
 							};
 						};
 					};
+					5341BF101EA3023A00342221 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = SC6R6MV2N8;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 531199111E9160E600070A81 /* Build configuration list for PBXProject "gameOfchats" */;
@@ -225,6 +310,7 @@
 			projectRoot = "";
 			targets = (
 				531199151E9160E600070A81 /* gameOfchats */,
+				5341BF101EA3023A00342221 /* NotificationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -238,6 +324,14 @@
 				53A9B3A41E927F8100D271A9 /* GoogleService-Info.plist in Resources */,
 				531199211E9160E700070A81 /* Assets.xcassets in Resources */,
 				5311991F1E9160E600070A81 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5341BF0F1EA3023A00342221 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5341BF1B1EA3023A00342221 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +396,7 @@
 				5311991C1E9160E600070A81 /* MessagesController.swift in Sources */,
 				539C73741E9400ED009CEB85 /* UserCell.swift in Sources */,
 				539C73791E956678009CEB85 /* Extensions.swift in Sources */,
+				5341BF251EA344EF00342221 /* MenuBar.swift in Sources */,
 				5311992D1E9166B400070A81 /* LoginController.swift in Sources */,
 				539C73761E948C04009CEB85 /* LoginController+handlers.swift in Sources */,
 				53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */,
@@ -311,7 +406,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5341BF0D1EA3023A00342221 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5341BF181EA3023A00342221 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5341BF1E1EA3023A00342221 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5341BF101EA3023A00342221 /* NotificationExtension */;
+			targetProxy = 5341BF1D1EA3023A00342221 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5311991D1E9160E600070A81 /* Main.storyboard */ = {
@@ -328,6 +439,14 @@
 				531199231E9160E700070A81 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5341BF191EA3023A00342221 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5341BF1A1EA3023A00342221 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -432,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B57E4F9216D8059E473550E /* Pods-gameOfchats.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gameOfchats/gameOfchats.entitlements;
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
@@ -448,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D73CEF21CEAE67C3A4F966B5 /* Pods-gameOfchats.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = gameOfchats/gameOfchats.entitlements;
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
@@ -456,6 +577,32 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5341BF201EA3023A00342221 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SC6R6MV2N8;
+				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats.NotificationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5341BF211EA3023A00342221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SC6R6MV2N8;
+				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats.NotificationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -480,6 +627,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5341BF221EA3023A00342221 /* Build configuration list for PBXNativeTarget "NotificationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5341BF201EA3023A00342221 /* Debug */,
+				5341BF211EA3023A00342221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
