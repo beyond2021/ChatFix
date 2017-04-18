@@ -129,6 +129,21 @@ class LoginController: UIViewController {
         
     }()
     
+    
+    //MARK:- pickImageLabel
+    let pickImageLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please choose a profile pic you Super Star"
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+      return label
+    }()
+    
     //MARK: - View life Cycle
     // ViewDidLoad
     override func viewDidLoad() {
@@ -144,12 +159,17 @@ class LoginController: UIViewController {
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedController)
+        view.addSubview(pickImageLabel)
         
         // set up the views
         setUpInputContainer()
         setUpLoginRegisterButton()
         setUpProfileImageView()
         setUpLoginRegisterControl()
+        
+        
+        
+        
         
         //Setup password and textfield logic
         //setupPasswordTextfieldsAndLoginRegisterButtonLogic()
@@ -237,6 +257,15 @@ class LoginController: UIViewController {
         passwordTextFieldHeightAnchor?.isActive = true
         
         //
+        
+        // x to the edge of the container
+        pickImageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true        // y starts at the bottom of the textfield
+        pickImageLabel.bottomAnchor.constraint(equalTo: profileImageView.topAnchor, constant: -20).isActive = true        // width is the total width of the container view
+        pickImageLabel.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+        pickImageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        
+        
         
     }
     

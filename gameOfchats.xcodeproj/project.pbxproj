@@ -588,6 +588,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
 				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats.NotificationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,6 +602,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
 				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats.NotificationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
