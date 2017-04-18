@@ -24,6 +24,9 @@ class LoginController: UIViewController {
         // round the corner of the view
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.white.cgColor
+        
         return view
   }() // () executes this block to get our view. means give me back the entire block.
     
@@ -101,6 +104,8 @@ class LoginController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.white.cgColor
         
         // lets add a gesture to my imageView
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
