@@ -73,6 +73,12 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             print("Form is not valid")
             return
         }
+        
+        // Validate sign up
+        signUpValidation(name: name, email: email, password: password)
+        
+        
+        /*
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user : FIRUser?, error) in
             
             if error != nil {
@@ -115,8 +121,121 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             }
          
         })
+ */
         
     }
+    
+    func signUpValidation(name:String, email:String, password:String) {
+        
+        // Validate the text fields
+        if (name.characters.count) < 5 {
+            
+            let alertc = UIAlertController(title: "Invalid", message: "Username must be greater than 5 characters", preferredStyle: .alert)
+            alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            // perhaps use action.title here
+            self.present(alertc, animated: true)
+        } else if isValidEmail(testStr: email) == false{
+            
+            
+            let alertc = UIAlertController(title: "Invalid", message: "Please enter a valid email address", preferredStyle: .alert)
+            alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            // perhaps use action.title here
+            
+            self.present(alertc, animated: true)
+            
+            
+        } else if (password.characters.count) < 6 {
+            let alertc = UIAlertController(title: "Invalid", message: "Password must be greater than 8 characters", preferredStyle: .alert)
+            alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            // perhaps use action.title here
+            
+            self.present(alertc, animated: true)
+            
+            
+        }
+            
+            
+            
+        else {
+            
+            spinner.startAnimating()
+            //
+            
+            
+            
+             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user : FIRUser?, error) in
+             
+             if error != nil {
+             print(error ?? "There was an error Creating a user")
+             // if there is an error print it and jump out
+             return
+             }
+             
+             // verify userID
+             guard let uid = user?.uid else {
+             return
+             }
+             
+             //create a unique id for profile image
+             let imageName = NSUUID().uuidString // timestamp
+             //HERE WE WANT TO UPLOAD A FILE TO THE DATABASE// PROFILE IMAGE
+             let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg") // get ref to the storage
+             // compress the image because they r taking too long to load
+             if let uploadData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.1) {
+             
+             //if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+             // upload
+             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+             if error != nil {
+             print(error ?? "There is an upload Profile image error")
+             return
+             }
+             
+             //SUCCESS
+             if let profileImageUrl =    metadata?.downloadURL()?.absoluteString {
+             let values = ["name": name, "email": email, "profileImageUrl" : profileImageUrl]
+             
+             self.registerUserIntoDatabaseWithUid(uid: uid, values: values as [String : AnyObject])
+             //print(metadata ?? "SUCCESS")
+             
+             
+             }
+             
+             // SEND Email
+                FIRAuth.auth()?.currentUser?.sendEmailVerification(completion: { (error) in
+                    if error != nil {
+                        print("Email Error:", error ?? "there was an email error")
+                    } else {
+                        print("Email sent")
+                    }
+                })
+                
+                
+                
+             
+             })
+             }
+                
+             })
+            
+        }
+    }
+    
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    
+    
+
+    
+    
+    
     
     private func registerUserIntoDatabaseWithUid(uid: String, values:[String : AnyObject]){
         // If no errors we have success

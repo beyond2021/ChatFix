@@ -13,6 +13,15 @@ class LoginController: UIViewController {
     
     var messagesController : MessagesController?
     
+    //MARK:- Spinner
+    lazy var spinner : UIActivityIndicatorView = {
+        let sp = UIActivityIndicatorView()
+        sp.color = .white
+        sp.translatesAutoresizingMaskIntoConstraints = false
+        return sp
+    }()
+
+    
     
    //MARK: - MAKING THE INPUT CONTAINER
     
@@ -147,10 +156,6 @@ class LoginController: UIViewController {
     //MARK: - View life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        heading.center.x  -= view.bounds.width
-//        username.center.x -= view.bounds.width
-//        password.center.x -= view.bounds.width
-        //inputsContainerViewCenterAnchor = inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:-200)
     }
     
     
@@ -169,30 +174,30 @@ class LoginController: UIViewController {
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedController)
         view.addSubview(pickImageLabel)
+        view.addSubview(spinner)
+        
         
         // set up the views
         setUpInputContainer()
         setUpLoginRegisterButton()
         setUpProfileImageView()
         setUpLoginRegisterControl()
-        
-        
-        
-        
+        setupSpinner()
         
         //Setup password and textfield logic
         //setupPasswordTextfieldsAndLoginRegisterButtonLogic()
         
     }
-    enum loginRegisterState {
-        case notRegistered
-        case notLoggedIn
+    
+    func setupSpinner() {
+        //x, y, width, height
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 40).isActive = true
+        spinner.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        spinner.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
     }
-    
-    
-    
-    
-    
+
     
     
     
@@ -216,21 +221,7 @@ class LoginController: UIViewController {
         // x, y, width and height constraint we need
         // x is in the middle of the view
         inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
-//        UIView.animate(withDuration: 0.5) {
-//            self.inputsContainerViewCenterAnchor = self.inputContainerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-//            self.inputsContainerViewCenterAnchor?.isActive = true
-//            
-//        }
-        
-//        inputsContainerViewCenterAnchor = inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//        inputsContainerViewCenterAnchor?.isActive = true
-        
-        
-        
-        
-        // y is in the middle of the view
+          // y is in the middle of the view
         inputContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true        // width the entire width of the scree minus 12 on each side
         inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true        // height 150
    //     inputContainerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -352,10 +343,7 @@ class LoginController: UIViewController {
     //
     //hhandle loginREgister.
     func handleLoginRegister(){
-        
-        
-        
-        // find out whether to login or reghidter the user.
+                // find out whether to login or reghidter the user.
         // if the toggle is selected as 0
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
             handleLogIn()
@@ -370,11 +358,12 @@ class LoginController: UIViewController {
         // Sign in the user with firebase
         guard  let email = emailTextField.text, let password = passwordTextField.text else {
            // print("Form is not valid")
-           
-            
-            return
+                       return
         }
-       
+        
+        loginValidation(email: email, password: password)
+        
+        /*
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
@@ -387,25 +376,8 @@ class LoginController: UIViewController {
             self.messagesController?.fetchUserAndSetUpNavBarTitle() // nav bar title
             self.dismiss(animated: true, completion: nil)
         })
+ */
             
-    }
-    
-    enum AppState {
-        case LoginState
-        case RegisterState
-    }
-    
-    enum LoginState {
-        case enterEmail
-        case enterPassword
-        case readyForLogin
-    }
-    
-    enum RegisterState {
-        case enterName
-        case enterEmail
-        case enterPassword
-        case readyForLogin
     }
     
     
@@ -414,34 +386,6 @@ class LoginController: UIViewController {
     func handleLoginRegistorChange(){
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
             nameTextField.isHidden = true
-            /*
-            var aState = LoginState.enterEmail
-            switch aState {
-            case .enterEmail : print("Time to enter email")
-            emailTextField.isEnabled = true
-            passwordTextField.isEnabled = false
-            loginRegisterButton.isEnabled = false
-            aState = LoginState.enterPassword
-                
-            case .enterPassword : print("Time to enter password")
-            emailTextField.isEnabled = true
-            passwordTextField.isEnabled = true
-            loginRegisterButton.isEnabled = false
-            aState = LoginState.readyForLogin
-                
-            case .readyForLogin : print("Time to log in")
-            emailTextField.isEnabled = true
-            passwordTextField.isEnabled = true
-            loginRegisterButton.isEnabled = true
-            //aState = LoginState.readyForLogin
-    
-                
-                
-                
-            default: break
-                aState = LoginState.enterEmail
-            }
- */
             
         } else {
             nameTextField.isHidden = false
@@ -449,27 +393,7 @@ class LoginController: UIViewController {
             
         }
         
-        
-        
-        
-        /*
-        //
-        guard let text = nameTextField.text, !text.isEmpty else {
-            return
-        }
-        text.characters.count  //do something if it's not empty
-        
-        //
-        func isValidEmail(testStr:String) -> Bool {
-            // print("validate calendar: \(testStr)")
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-            
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            return emailTest.evaluate(with: testStr)
-        }
- */
-        
-        
+         
         
      //   print(loginRegisterSegmentedController.titleForSegment(at: loginRegisterSegmentedController.selectedSegmentIndex) ?? <#default value#>) // to get the title. SegmetedControl Check.
         let title = loginRegisterSegmentedController.titleForSegment(at: loginRegisterSegmentedController.selectedSegmentIndex)
@@ -499,7 +423,7 @@ class LoginController: UIViewController {
         
         // Nametextfield title label
         nameTextField.placeholder = loginRegisterSegmentedController.selectedSegmentIndex == 0 ? "" : "Name"
-        
+     //  */
     
     }
     
@@ -508,12 +432,54 @@ class LoginController: UIViewController {
         return .lightContent
     }
     
-    /*
-    func setupPasswordTextfieldsAndLoginRegisterButtonLogic(){
-        nameTextField.becomeFirstResponder()
+    //LOGIN VALIDATION
+    
+    func loginValidation(email:String, password:String) {
         
+        
+        // Validate the text fields
+        if isValidEmail(testStr: email) == false{
+            let alertc = UIAlertController(title: "Invalid", message: "Please enter a valid email address", preferredStyle: .alert)
+            alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            // perhaps use action.title here
+            
+            self.present(alertc, animated: true)
+            
+        } else if (password.characters.count) < 6 {
+            let alertc = UIAlertController(title: "Invalid", message: "Password must be greater than 8 characters", preferredStyle: .alert)
+            alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+            // perhaps use action.title here
+            
+            self.present(alertc, animated: true)
+            
+            
+        }
+            
+            
+            
+        else {
+            
+            spinner.startAnimating()
+            //
+            
+           // /*
+             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+             if error != nil {
+             print(error ?? "There is a login error")
+             
+             
+             return // print the error and get out
+             }
+             // IF THERE IS SUCCESS
+             self.messagesController?.fetchUserAndSetUpNavBarTitle() // nav bar title
+             self.dismiss(animated: true, completion: nil)
+             })
+           //  */
+            
+            
+            
+        }
     }
- */
 
     
 }
