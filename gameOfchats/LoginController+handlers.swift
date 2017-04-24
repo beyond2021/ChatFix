@@ -30,15 +30,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
      //   print(info)
         //lets get the edited image
          var selectedImageFromPicker: UIImage?
-        
-        
-        if let editedImage = info["UIImagePickerControllerEditedImage"]{
+                if let editedImage = info["UIImagePickerControllerEditedImage"]{
            // print((editedImage as AnyObject).size)
             //get the selected image
             selectedImageFromPicker = editedImage as? UIImage
-           
-            
-            
+                    
         } else if let originaImage = info["UIImagePickerControllerOriginalImage"] {
             
             // print the original image size
@@ -115,12 +111,9 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                         
                     }
                     
-                   
-                    
                                     })
             }
-           
-            
+         
         })
         
     }
@@ -161,10 +154,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             
         })
         
-        
-        
     }
     
-
     
 }

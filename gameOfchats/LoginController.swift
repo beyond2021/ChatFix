@@ -145,6 +145,15 @@ class LoginController: UIViewController {
     }()
     
     //MARK: - View life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+//        heading.center.x  -= view.bounds.width
+//        username.center.x -= view.bounds.width
+//        password.center.x -= view.bounds.width
+        //inputsContainerViewCenterAnchor = inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant:-200)
+    }
+    
+    
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,8 +184,23 @@ class LoginController: UIViewController {
         //setupPasswordTextfieldsAndLoginRegisterButtonLogic()
         
     }
+    enum loginRegisterState {
+        case notRegistered
+        case notLoggedIn
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     // MARK: - Height Manipulation
-    var inputsContainerViewHeightAnchor : NSLayoutConstraint? // hold a reference to the anchor
+    var inputsContainerViewHeightAnchor : NSLayoutConstraint? // hold a reference to the 
+    //anchor
+    var inputsContainerViewCenterAnchor : NSLayoutConstraint?
+    
     // TextField Height anchor
     var nametextFieldHeightAnchor : NSLayoutConstraint? // hold a reference to the anchor
     // email
@@ -192,6 +216,20 @@ class LoginController: UIViewController {
         // x, y, width and height constraint we need
         // x is in the middle of the view
         inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        
+//        UIView.animate(withDuration: 0.5) {
+//            self.inputsContainerViewCenterAnchor = self.inputContainerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+//            self.inputsContainerViewCenterAnchor?.isActive = true
+//            
+//        }
+        
+//        inputsContainerViewCenterAnchor = inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//        inputsContainerViewCenterAnchor?.isActive = true
+        
+        
+        
+        
         // y is in the middle of the view
         inputContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true        // width the entire width of the scree minus 12 on each side
         inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true        // height 150
@@ -352,15 +390,84 @@ class LoginController: UIViewController {
             
     }
     
+    enum AppState {
+        case LoginState
+        case RegisterState
+    }
+    
+    enum LoginState {
+        case enterEmail
+        case enterPassword
+        case readyForLogin
+    }
+    
+    enum RegisterState {
+        case enterName
+        case enterEmail
+        case enterPassword
+        case readyForLogin
+    }
     
     
-    //MARK : - Hndle login register change
+    
+       //MARK : - Hndle login register change
     func handleLoginRegistorChange(){
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
             nameTextField.isHidden = true
+            /*
+            var aState = LoginState.enterEmail
+            switch aState {
+            case .enterEmail : print("Time to enter email")
+            emailTextField.isEnabled = true
+            passwordTextField.isEnabled = false
+            loginRegisterButton.isEnabled = false
+            aState = LoginState.enterPassword
+                
+            case .enterPassword : print("Time to enter password")
+            emailTextField.isEnabled = true
+            passwordTextField.isEnabled = true
+            loginRegisterButton.isEnabled = false
+            aState = LoginState.readyForLogin
+                
+            case .readyForLogin : print("Time to log in")
+            emailTextField.isEnabled = true
+            passwordTextField.isEnabled = true
+            loginRegisterButton.isEnabled = true
+            //aState = LoginState.readyForLogin
+    
+                
+                
+                
+            default: break
+                aState = LoginState.enterEmail
+            }
+ */
+            
         } else {
             nameTextField.isHidden = false
+          //  let aState = AppState.RegisterState
+            
         }
+        
+        
+        
+        
+        /*
+        //
+        guard let text = nameTextField.text, !text.isEmpty else {
+            return
+        }
+        text.characters.count  //do something if it's not empty
+        
+        //
+        func isValidEmail(testStr:String) -> Bool {
+            // print("validate calendar: \(testStr)")
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+            
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            return emailTest.evaluate(with: testStr)
+        }
+ */
         
         
         
