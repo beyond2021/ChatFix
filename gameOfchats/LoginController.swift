@@ -107,15 +107,17 @@ class LoginController: UIViewController {
     //MARK: - ProfileImageView Construction
     lazy var profileImageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "compass")
+        imageView.image = UIImage(named: "AdobeStock_44190609")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         // image is squished so lets fix the aspect ratio
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 5
+        imageView.layer.cornerRadius = 75
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.white.cgColor
-        
+        //
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.white.cgColor
         // lets add a gesture to my imageView
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         // change default interaction to on for imageView

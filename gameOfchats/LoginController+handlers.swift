@@ -14,6 +14,13 @@ import Firebase
 extension LoginController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     // ProfileImageView handler
     func handleSelectProfileImageView() {
+        // Effect
+        let pulse = Pulsing(numberOfPulses: 1, radius: 110, position: profileImageView.center)
+        pulse.animationDuration = 0.8
+        pulse.backgroundColor = UIColor.white.cgColor
+        self.view.layer.insertSublayer(pulse, below: profileImageView.layer)
+        
+        
         // print(123)
         //lets bring up our image picker
         let picker = UIImagePickerController() // get a ref to picker controller
@@ -23,6 +30,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         picker.delegate = self
         //editing phase of the picker
         picker.allowsEditing = true // adds a crop and zoom functionality
+        
         
     }
     //Handle Pick

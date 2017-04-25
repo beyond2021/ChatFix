@@ -108,6 +108,17 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     }()
     
     func handleUploadTap(){
+        /*
+        // Effect
+        let pulse = Pulsing(numberOfPulses: 1, radius: 110, position: inputContainerView.center)
+        pulse.animationDuration = 0.8
+        pulse.backgroundColor = UIColor.white.cgColor
+        self.view.layer.insertSublayer(pulse, below: inputContainerView.layer)
+ */
+        
+
+        
+               
         //Bring up the picker
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true

@@ -262,7 +262,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
          //   print("Message ID: \(messageID)")
             //This method is called when the rootViewController is set and the view.
             // And the View controller is ready to get touches or events.
-            var alert = UIAlertController(title: "Alert", message: messageID as! String, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Alert", message: messageID as? String, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
             

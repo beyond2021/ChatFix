@@ -21,6 +21,7 @@
 		5341BF251EA344EF00342221 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5341BF241EA344EF00342221 /* MenuBar.swift */; };
 		5357F7791EA283B50048999D /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357F7781EA283B50048999D /* Messages.framework */; };
 		5357F77B1EA283C20048999D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5357F77A1EA283C20048999D /* MessageUI.framework */; };
+		538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CD8E81EAF0E0E008C4A16 /* Pulsing.swift */; };
 		539C736E1E93EA83009CEB85 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C736D1E93EA83009CEB85 /* NewMessageController.swift */; };
 		539C73711E93F8B7009CEB85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C73701E93F8B7009CEB85 /* User.swift */; };
 		539C73741E9400ED009CEB85 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C73731E9400ED009CEB85 /* UserCell.swift */; };
@@ -77,6 +78,7 @@
 		5357F7771EA1D2AB0048999D /* gameOfchats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gameOfchats.entitlements; sourceTree = "<group>"; };
 		5357F7781EA283B50048999D /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		5357F77A1EA283C20048999D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		538CD8E81EAF0E0E008C4A16 /* Pulsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsing.swift; sourceTree = "<group>"; };
 		539C736D1E93EA83009CEB85 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		539C73701E93F8B7009CEB85 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		539C73731E9400ED009CEB85 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		531199181E9160E600070A81 /* gameOfchats */ = {
 			isa = PBXGroup;
 			children = (
+				538CD8E71EAF0DA5008C4A16 /* Animations */,
 				5357F7771EA1D2AB0048999D /* gameOfchats.entitlements */,
 				539C73771E956647009CEB85 /* Helpers */,
 				539C73751E948C04009CEB85 /* LoginController+handlers.swift */,
@@ -194,6 +197,14 @@
 				5341BF1C1EA3023A00342221 /* Info.plist */,
 			);
 			path = NotificationExtension;
+			sourceTree = "<group>";
+		};
+		538CD8E71EAF0DA5008C4A16 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				538CD8E81EAF0E0E008C4A16 /* Pulsing.swift */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		539C736F1E93F859009CEB85 /* Model */ = {
@@ -390,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */,
 				539C737B1E97B868009CEB85 /* ChatLogController.swift in Sources */,
 				53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */,
 				539C736E1E93EA83009CEB85 /* NewMessageController.swift in Sources */,
