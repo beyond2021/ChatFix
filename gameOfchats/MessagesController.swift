@@ -9,12 +9,40 @@
 import UIKit
 import Firebase
 
-class MessagesController: UITableViewController {
+class MessagesController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let cellId = "cellId"
     
+    lazy var tableView : UITableView = {
+        let tv = UITableView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+       return tv
+    }()
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        //
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        view.addSubview(tableView)
+        // 
+        //tableView.backgroundColor = .blue
+        //x,y,width height
+        tableView.centerXAnchor .constraint(equalTo: view.centerXAnchor).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
+        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -60).isActive = true
+        
+        
+        
+        //
         
         self.navigationController?.navigationBar.isTranslucent = true
         
@@ -39,7 +67,12 @@ class MessagesController: UITableViewController {
         checkIfUserIsLoggedIn()
         //
         //REGISTERING THE CUSTOM CELL
-        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)// register user cell
+        // tableView.register(UserCell.self, forCellReuseIdentifier: cellId)// register user cell
+        
+        self.tableView.register(UserCell.self, forCellReuseIdentifier: "cellId")
+        
+//        let nib = UINib(nibName: "UserCell", bundle: nil)
+//        tableView.register(nib, forCellReuseIdentifier: "cellId")
         //FETCHING FROM THE DATABASE
         // 2 TYPES OF FETCH  SINGLE FETCH AND FETCH ALL
         // SINGLE FETCH FOR NAVIGATION BAR TITLE
@@ -64,6 +97,12 @@ class MessagesController: UITableViewController {
         //setupMenuBar()
         
     }
+    //
+    func viewWillAppear() {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     
     
     let menuBar : MenuBar = {
@@ -85,12 +124,12 @@ class MessagesController: UITableViewController {
     
     
     //swipe to delete 2
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     //swipe to delete 3
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         //print(indexPath.row)
         //handle delete
         
@@ -281,10 +320,10 @@ class MessagesController: UITableViewController {
      
      */
     //cell height
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let message = messages[indexPath.row]
         // print(message.text, message.toId, message.fromId)
         // to get the correct id use the usercell logic
@@ -314,23 +353,39 @@ class MessagesController: UITableViewController {
     //
     
     //MARK: - set up the number of cells
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create a dummy cell
-        //  let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "messageCellId") remove hack
+         // let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "messageCellId")
+        //remove hack
         
         //we need to deque our cell from the tableview instead
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        //let cell = dequeueReusableCellWithIdentifier:forIndexPath:.
+        //let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        let cell: UserCell = self.tableView.dequeueReusableCell(withIdentifier: "cellId") as! UserCell
+        //let cell = tableView.dequeueReusableCellWithIdentifier("customcell", forIndexPath: indexPath) as! UITableViewCell
+        
+        
         ////
         let message = messages[indexPath.row]//get the message for the proper row
         
         cell.message = message //THIS IS WHERE THE MESSAGE VAR IN USERCELL IS SET
         
+        if message.imageUrl != nil {
+           cell.textLabel?.text = "Smiley \u{1F603}"
+        } else if message.videoUrl != nil {
+           cell.textLabel?.text = "Smiley \u{1F603}"
+        } else {
+           cell.textLabel?.text = message.toId //Put the name instead og the toId 
+            
+        }
         
         
-        cell.textLabel?.text = message.toId //Put the name instead og the toId
+        
+        //cell.textLabel?.text = message.toId //Put the name instead og the toId
         
         /*
          if let toId = message.toId {
@@ -434,7 +489,8 @@ class MessagesController: UITableViewController {
         //lets put an imageview and a label in this container
         let profileImageView = UIImageView()
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = UIColor.white.cgColor
+        //profileImageView.layer.borderColor = UIColor.white.cgColor
+        profileImageView.layer.borderColor = UIColor(r: 61, g: 91, b: 151).cgColor
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         //set aspect ratio
@@ -469,6 +525,7 @@ class MessagesController: UITableViewController {
         //MUST ADD IN THE VIEW AFTER YOU CREATE IT!!!! OR YOU WILL GET A VIEW HIARCHY CRASH
         containerView.addSubview(nameLabel)
         nameLabel.textColor = .white
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         nameLabel.text = user.name
         //nameLabel.text = "oin  i iiririiiimfg"
         

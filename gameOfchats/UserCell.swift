@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 
 class UserCell: UITableViewCell {
+    
+    
     var message : Message? {
         
-        //came from cellForRow in MessagesController
+              //came from cellForRow in MessagesController
         didSet{
             
             setupNameAndAvatar()
@@ -60,13 +62,13 @@ class UserCell: UITableViewCell {
     //Create an imageView
     let proileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "compass")
+        imageView.image = UIImage(named: "Contacts-51")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         //Make it round by modifing the corner erasius
         imageView.layer.cornerRadius = 24 // 24 comes from half of the constraint
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderColor = UIColor.white.cgColor
         
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -80,7 +82,7 @@ class UserCell: UITableViewCell {
         
       //  label.text = "HH:MM:SS"
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.lightGray
         return label
         
     }()
@@ -88,6 +90,9 @@ class UserCell: UITableViewCell {
   
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        //
+        textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        detailTextLabel?.textColor = .lightGray
         //Add the imageView as a SubView
         addSubview(proileImageView)
         addSubview(timeLabel)
@@ -125,6 +130,8 @@ class UserCell: UITableViewCell {
     // change position of the labels
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        
         // change the frame of textlabel
         textLabel?.frame = CGRect(x: 64, y:textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height) // move the textlabel to the right
         

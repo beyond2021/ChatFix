@@ -12,5 +12,7 @@ target 'gameOfchats' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'PusherSwift'
-
+    
+   
+    
 end
