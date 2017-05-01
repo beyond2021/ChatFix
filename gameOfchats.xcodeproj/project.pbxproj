@@ -28,6 +28,8 @@
 		538DAFDF1EB7271B00EE3BAC /* Settings_Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538DAFDE1EB7271B00EE3BAC /* Settings_Launcher.swift */; };
 		538DAFE11EB727E400EE3BAC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538DAFE01EB727E400EE3BAC /* Settings.swift */; };
 		538DAFE31EB7289300EE3BAC /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538DAFE21EB7289300EE3BAC /* SettingCell.swift */; };
+		538DAFE51EB7A87000EE3BAC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538DAFE41EB7A87000EE3BAC /* Enums.swift */; };
+		538DAFE71EB7E46600EE3BAC /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538DAFE61EB7E46600EE3BAC /* Constraints.swift */; };
 		539C736E1E93EA83009CEB85 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C736D1E93EA83009CEB85 /* NewMessageController.swift */; };
 		539C73711E93F8B7009CEB85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C73701E93F8B7009CEB85 /* User.swift */; };
 		539C73741E9400ED009CEB85 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C73731E9400ED009CEB85 /* UserCell.swift */; };
@@ -91,6 +93,8 @@
 		538DAFDE1EB7271B00EE3BAC /* Settings_Launcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings_Launcher.swift; sourceTree = "<group>"; };
 		538DAFE01EB727E400EE3BAC /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		538DAFE21EB7289300EE3BAC /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		538DAFE41EB7A87000EE3BAC /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		538DAFE61EB7E46600EE3BAC /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		539C736D1E93EA83009CEB85 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		539C73701E93F8B7009CEB85 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		539C73731E9400ED009CEB85 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				538DAFDA1EB7086300EE3BAC /* DateConversion.swift */,
+				538DAFE41EB7A87000EE3BAC /* Enums.swift */,
+				538DAFE61EB7E46600EE3BAC /* Constraints.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -429,7 +435,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */,
+				538DAFE71EB7E46600EE3BAC /* Constraints.swift in Sources */,
 				538DAFDF1EB7271B00EE3BAC /* Settings_Launcher.swift in Sources */,
+				538DAFE51EB7A87000EE3BAC /* Enums.swift in Sources */,
 				539C737B1E97B868009CEB85 /* ChatLogController.swift in Sources */,
 				53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */,
 				538DAFDB1EB7086300EE3BAC /* DateConversion.swift in Sources */,

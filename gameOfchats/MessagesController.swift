@@ -36,9 +36,15 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         //tableView.backgroundColor = .blue
         //x,y,width height
         tableView.centerXAnchor .constraint(equalTo: view.centerXAnchor).isActive = true
-        tableView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 380).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -60).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        
+        // Push the collectionView down a bit
+ //       tableView.contentInset = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
+//        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         //darken the navbar
         navigationController?.navigationBar.isTranslucent = false        
@@ -61,7 +67,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         // When user is not logged in
         
         // Right navbar button
-        let image = UIImage(named: "Contacts-50")
+        //let image = UIImage(named: "Contacts-50")
         //navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         navigationItem.rightBarButtonItem?.tintColor = .white
         checkIfUserIsLoggedIn()
@@ -132,7 +138,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
     //
     func showControllerForSetting(setting: Setting){
         let dummySettingsViewController = UIViewController()
-        dummySettingsViewController.navigationItem.title = setting.name
+        dummySettingsViewController.navigationItem.title = setting.name.rawValue
         dummySettingsViewController.view.backgroundColor = .white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
         
@@ -163,15 +169,22 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //Private because no other class need to access this
     private func setupMenuBar(){
-        view.addSubview(menuBar)
-//        view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar) //horizontal constraints
-//        view.addContraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar) //Vertical constraints
-        menuBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        //let height = navigationItem.titleView?.frame.height
-        menuBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        menuBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        navigationController?.hidesBarsOnSwipe = true
         
+        let blueView = UIView()
+        blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+                
+        view.addSubview(blueView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
+        
+        self.view.addSubview(menuBar)
+        
+        view.addSubview(menuBar)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        
+        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
         
     }

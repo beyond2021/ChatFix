@@ -45,8 +45,8 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
                     return
                 }
                 //now dic is available
-//                let message = Message(dictionary: dictionary)
-               // message.setValuesForKeys(dictionary) //THIS WILL CRASH IF KEYS DONT MATCH
+                //                let message = Message(dictionary: dictionary)
+                // message.setValuesForKeys(dictionary) //THIS WILL CRASH IF KEYS DONT MATCH
                 
                 //  print("We fetched a message from Firebase, and we need to dec ide whether or not to filter it out:", message.text ?? "No message fetched")
                 // if message.chatPartnerId() == self.user?.id {
@@ -70,7 +70,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         
     }
     
-   // var titleLabel : UILabel?
+    // var titleLabel : UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,24 +79,14 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
         navigationController?.navigationBar.tintColor = .white
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
-        
-        
-        
-//        //setting the battery color to white
-//        titleLabel = UILabel(frame:CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-//        navigationItem.titleView = titleLabel
-////        titleLabel?.text = "Home"
-//        titleLabel?.textColor = .white
-//
-//        navigationItem.titleView?.addSubview(titleLabel!)
-        
-        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE
+        //
+        navigationController?.hidesBarsOnSwipe = false
         // make it draggable
         collectionView?.alwaysBounceVertical = true
         //space ontop AND BOTTOM SPACE of the collectionview
         collectionView?.contentInset  = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0) //MUST CHANGE BOTH
-      //  collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0) //MUST CHANGE BOTH
+        //  collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0) //MUST CHANGE BOTH
         //
         //Set up nav bar
         //navigationItem.title = "Chat Log Controller"
@@ -107,9 +97,18 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         //
         collectionView?.keyboardDismissMode = .interactive // interact with the keyboard
         
-                //KEYBOARD SYMAMTICS
-             setupKeyboardObservers()
+        //KEYBOARD SYMAMTICS
+        setupKeyboardObservers()
     }
+    
+    
+    func viewDidAppear() {
+        super.viewDidAppear(true)
+        navigationController?.hidesBarsOnSwipe = false
+    }
+    
+    
+    
     
     lazy var inputContainerView: ChatInputContainerView = {
         let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)) //refractor1
@@ -121,17 +120,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     }()
     
     func handleUploadTap(){
-        /*
-        // Effect
-        let pulse = Pulsing(numberOfPulses: 1, radius: 110, position: inputContainerView.center)
-        pulse.animationDuration = 0.8
-        pulse.backgroundColor = UIColor.white.cgColor
-        self.view.layer.insertSublayer(pulse, below: inputContainerView.layer)
- */
         
-
-        
-               
         //Bring up the picker
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true
@@ -140,26 +129,26 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         
         present(imagePickerController, animated: true, completion: nil)
     }
-   
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-            //Video
+        //Video
         if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL{
             
             handleVideoSelectedForUrl(url: videoUrl)
             //print("Here is the video file url:", videoUrl)
-            //we want to upload this file to firebase storage - 
-                       //return
+            //we want to upload this file to firebase storage -
+            //return
         } else {
             self.handleImageSelectedForInfo(info: info as AnyObject)
             
             
         }
         
-             // get rid of the picker
+        // get rid of the picker
         dismiss(animated: true, completion: nil)
         
     }
-     //MARK: - VIDEO
+    //MARK: - VIDEO
     
     private func handleVideoSelectedForUrl(url:URL) {
         let fileName = UUID().uuidString + ".mov"
@@ -190,15 +179,15 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             }
         })
         
-     uploadTask.observe(.progress) { (snapshot) in
-        if let completedUnitCount = snapshot.progress?.completedUnitCount{
-            
-            self.navigationItem.title = String(completedUnitCount)
-        }// print(snapshot.progress?.completedUnitCount ?? 0)//upload progress
+        uploadTask.observe(.progress) { (snapshot) in
+            if let completedUnitCount = snapshot.progress?.completedUnitCount{
+                
+                self.navigationItem.title = String(completedUnitCount)
+            }// print(snapshot.progress?.completedUnitCount ?? 0)//upload progress
         }
         uploadTask.observe(.success) { (snapshot) in
             self.navigationItem.title = self.user?.name
-//
+            //
             //self.titleLabel?.text = self.user?.name
             
         }
@@ -210,17 +199,17 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         do {
-           let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil) //gives us the first frame. this also throws(copyCGImage)
-             return UIImage(cgImage: thumbnailCGImage) //retur the image
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil) //gives us the first frame. this also throws(copyCGImage)
+            return UIImage(cgImage: thumbnailCGImage) //retur the image
             
         } catch let err {
             print(err)
         }
-           return nil
-        }
+        return nil
+    }
     
     
-     //IMAGE
+    //IMAGE
     fileprivate func handleImageSelectedForInfo(info: AnyObject){
         
         var selectedImageFromPicker: UIImage?
@@ -250,7 +239,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             })
             //uploadToFireBaseStorageUsingImage(image: selectedImage)
         }
-
+        
         
         
     }
@@ -278,7 +267,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
                     //now that we have the image we want to upload it to Firebase
                     completion(imageUrl)
                     
-                  //  self.sendMessageWithImageUrl(imageUrl: imageUrl, image: image)
+                    //  self.sendMessageWithImageUrl(imageUrl: imageUrl, image: image)
                     
                     
                     
@@ -315,11 +304,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     
     func setupKeyboardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name:.UIKeyboardDidShow, object: nil)
-        
-        //figure out how tall the keyboard is
-        //        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name:.UIKeyboardWillShow, object: nil)
-        //
-        //        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name:.UIKeyboardWillHide, object: nil)
         
         
     }
@@ -413,16 +397,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             cell.textView.isHidden = true
         }
         
-        /*
-        if message.videoUrl != nil {
-          // show the play button
-            cell.playButton.isHidden = false
-            
-        } else {
-           cell.playButton.isHidden = true
-            
-        }
- */
         cell.playButton.isHidden = message.videoUrl == nil // if the video url is nil we hide the button
         
         return cell
@@ -471,9 +445,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             // cell.bubbleView.isHidden = false
         }
         
-        
-        
-        
     }
     
     
@@ -513,8 +484,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     
     //MARK: - Send message to users
     //Chatinput at the bottom, we will put a container
-    
-    
     //MARK:- Start sending messages into firebase
     
     
@@ -580,8 +549,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             recipientMessageRef.updateChildValues([messageId:1]) //save
         }
         
-        
-        
     }
     
     
@@ -605,8 +572,6 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         
         self.startingImageView = startingImageView
         self.startingImageView?.isHidden = true
-        
-        
         // print("Performing zoom in logic in controller")
         //1: put red view on top of imageView
         startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
@@ -628,14 +593,9 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
             blackBackgroundView?.backgroundColor = UIColor.black
             blackBackgroundView?.alpha = 0 //Starts off invisible
             keyWindow.addSubview(blackBackgroundView!)
-            
-            
             keyWindow.addSubview(zoominImageView)
             //Next we want to zoom it into the middle of the page
-            
-            
-           
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 //
                 self.blackBackgroundView?.alpha = 1
                 //hide the chat inpu container
@@ -643,53 +603,24 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
                 //Math for the height ----- h2 / w1 = h1 / w1
                 //solve for H2------- H2 = h1 / w1 * w2
                 let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
-                
-                
-                
                 //we need to set the frame inside this block
                 //width = entire app width
                 zoominImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
                 //center it
                 zoominImageView.center = keyWindow.center
-                
-                
-                
             }, completion: nil)
-
             
-            
-            
-            
-//            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-//                self.blackBackgroundView?.alpha = 1
-//                //hide the chat inpu container
-//                self.inputContainerView.alpha = 0
-//                //Math for the height ----- h2 / w1 = h1 / w1
-//                //solve for H2------- H2 = h1 / w1 * w2
-//                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width
-//                
-//                
-//                
-//                //we need to set the frame inside this block
-//                //width = entire app width
-//                zoominImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
-//                //center it
-//                zoominImageView.center = keyWindow.center
-//                
-//            }, completion: nil)
             
         }
         
     }
     
     func handleZoomOut(tapGesture: UITapGestureRecognizer){
-                print("Zooming Out")
+        print("Zooming Out")
         if let zoomOutImageView = tapGesture.view {
             //corners
             zoomOutImageView.layer.cornerRadius = 16
             zoomOutImageView.clipsToBounds = true
-            
-            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 
                 //

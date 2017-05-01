@@ -165,11 +165,7 @@ class LoginController: UIViewController {
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //First I wanna change the background color before color extension
-        //view.backgroundColor = UIColor(red: 61/255, green: 91/255, blue: 151/255, alpha: 1)
-        
-        // after my extension
+               // after my extension
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         // add the views
         view.addSubview(inputContainerView)

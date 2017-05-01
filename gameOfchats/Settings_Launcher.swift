@@ -22,8 +22,17 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     let settings : [Setting] = {
         //let s = Settings(name: "Settings", imageName: "Settings Filled-50")
         
-        //Settings(name: <#T##String#>, imageName: <#T##String#>)
-        return [Setting(name: "Settings 1", imageName: "Settings Filled-50"), Setting(name: "Terms and privacy policy", imageName: "Lock Filled-50"), Setting(name: "Send feedback", imageName: "Comments Filled-50"), Setting(name: "Help!", imageName: "Help Filled-50"), Setting(name: "Switch account", imageName: "Circled User Male Filled-50"), Setting(name: "Cancel", imageName: "Cancel-50")]
+        let settingsSetting = Setting(name: .Settings, imageName: "Settings Filled-50")
+        let cancelSetting = Setting(name: .Cancel, imageName: "Cancel-50") // with the enum
+        let termsPrivacy = Setting(name: .TermsPrivacy, imageName: "Lock Filled-50")
+        let sendFeedback = Setting(name: .SendFeedback, imageName: "Comments Filled-50") // with the enum
+        let help = Setting(name: .Help, imageName: "Help Filled-50")
+        let switchAccount = Setting(name: .SwitchAccount, imageName: "Circled User Male Filled-50") // with the enum
+        
+        
+        
+        return [settingsSetting, termsPrivacy, sendFeedback, help, switchAccount , cancelSetting]
+
         
     }()
     
@@ -144,7 +153,12 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         }) { (completed : Bool) in
             let setting = self.settings[indexPath.item]
             //push new viewcontroller
-            self.homeController?.showControllerForSetting(setting: setting)
+            //self.homeController?.showControllerForSetting(setting: setting)
+            if setting.name != .Cancel{
+                self.homeController?.showControllerForSetting(setting: setting)
+                
+            }
+            
             
         }
         

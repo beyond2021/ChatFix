@@ -22,7 +22,7 @@ class SettingCell: BaseCell {
     var setting : Setting? {
         didSet {
             //INFO MUST BE SET IN HERE IN ORDER TO SHOW
-            nameLabel.text = setting?.name
+            nameLabel.text = (setting?.name).map { $0.rawValue }
             //SAFELY
             if let imageName = setting?.imageName {
               iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) //SWIFT3 TO CHANGE IMAGE TINT
