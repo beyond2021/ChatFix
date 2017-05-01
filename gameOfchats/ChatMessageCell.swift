@@ -94,7 +94,9 @@ class ChatMessageCell: UICollectionViewCell {
     }()
     
     //BUBBLE COLORS
-    static let blueBubbleColor = UIColor(r: 0, g: 137, b: 249) // class property
+//    static let blueBubbleColor = UIColor(r: 0, g: 137, b: 249) // class property
+    
+    static let blueBubbleColor = UIColor(r: 61, g: 91, b: 151)
     static let grayBubbleColor = UIColor(r: 240, g: 240, b: 240)
     //BLUE BUBBLES
     var bubbleViewWidthAnchor : NSLayoutConstraint?

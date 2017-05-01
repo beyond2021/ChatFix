@@ -62,7 +62,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Right navbar button
         let image = UIImage(named: "Contacts-50")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         navigationItem.rightBarButtonItem?.tintColor = .white
         checkIfUserIsLoggedIn()
         //
@@ -96,17 +96,20 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         //MENUBAR
        setupMenuBar()
         //
-       // setupNavBarButtonsOnRight()
+      setupNavBarButtonsOnRight()
         
     }
     
     func setupNavBarButtonsOnRight(){
-        let searchImage = UIImage(named: "Search-50")?.withRenderingMode(.alwaysOriginal)//makes the icon white
-        let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        let searchImage = UIImage(named: "Contacts-50-2")?.withRenderingMode(.alwaysOriginal)//makes the icon white
+        let newMessageBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleNewMessage))
         let moreImage = UIImage(named: "Menu 2 Filled-50")?.withRenderingMode(.alwaysOriginal)
         let moreBarButtonItem = UIBarButtonItem(image: moreImage , style: .plain, target: self, action: #selector(handleMore))
         
-        navigationItem.rightBarButtonItems = [ moreBarButtonItem, searchBarButtonItem]
+        //navigationItem.rightBarButtonItems?.tintColor = .white
+        newMessageBarButtonItem.tintColor = .white
+        
+        navigationItem.rightBarButtonItems = [ moreBarButtonItem, newMessageBarButtonItem]
         
     }
 
@@ -115,7 +118,27 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    //lazy code only called once when settingsLauncher is nil
+    lazy var settingsLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
+    
     func handleMore(){
+      settingsLauncher.showSettings()   
+        
+    }
+    //
+    func showControllerForSetting(setting: Setting){
+        let dummySettingsViewController = UIViewController()
+        dummySettingsViewController.navigationItem.title = setting.name
+        dummySettingsViewController.view.backgroundColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
+        
+        navigationController?.navigationBar.tintColor = .white //setting the back button color
+        navigationController?.pushViewController(dummySettingsViewController, animated: true)
+        
         
         
     }
