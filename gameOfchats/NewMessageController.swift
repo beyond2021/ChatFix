@@ -15,11 +15,15 @@ class NewMessageController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = false
         
         self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
         
+        //UINavigationBar.appearance().barTintColor = UIColor(r: 61, g: 91, b: 151)
         navigationController?.navigationBar.tintColor = .white
+        navigationItem.title = "Pick A Mate"
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        
         
         //adding the cancel button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
@@ -142,7 +146,8 @@ class NewMessageController: UITableViewController {
             
             //  //Let find the user that was tapped
             let user = self.users[indexPath.row]
-            
+           // navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
+
             
             self.messagesController?.showChatControllerForUser(user: user) // mes contrl is nil so nothing will happen
             //so we want to set mess contrl everytime we hit the button.  MESSAGE CONTROLLER HAD TO SET IT IN handleNewMessage:

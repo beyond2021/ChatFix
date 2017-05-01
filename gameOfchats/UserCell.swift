@@ -23,13 +23,24 @@ class UserCell: UITableViewCell {
             
             //coverting timestamp to date
             if let seconds = message?.timeStamp?.doubleValue {
-             let timeStampDate = NSDate(timeIntervalSince1970: seconds)
+                print(seconds)
+//                let ds = Date()
+//               let dss =  ds.timeAgoString
+                
+                
+             //let timeStampDate = NSDate(timeIntervalSince1970: seconds)
+             let timeStampDate = Date(timeIntervalSince1970: seconds)
+                
+                
+                let dss =  timeStampDate.timeAgoString
                 // formatting the date
+                //print(dss)
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm:ss a" // google the format
-             timeLabel.text = dateFormatter.string(from: timeStampDate as Date)
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "hh:mm:ss a" // google the format
+//             timeLabel.text = dateFormatter.string(from: timeStampDate as Date)
                 
+               timeLabel.text = dss
             }
                       
         }
@@ -78,11 +89,12 @@ class UserCell: UITableViewCell {
     
     let timeLabel : UILabel = {
         let label = UILabel()
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         
       //  label.text = "HH:MM:SS"
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.lightGray
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.gray
         return label
         
     }()
@@ -90,13 +102,18 @@ class UserCell: UITableViewCell {
   
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        self.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
         //
-        textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        detailTextLabel?.textColor = .lightGray
+        textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        detailTextLabel?.textColor = .gray
+        detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         //Add the imageView as a SubView
         addSubview(proileImageView)
         addSubview(timeLabel)
         setUpProfileImageView()
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -118,13 +135,14 @@ class UserCell: UITableViewCell {
         
         /////
        // x, y, width and height
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor) .isActive = true
+        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -28) .isActive = true
         //y is centered with textLabel
         timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
         // Width 100
         timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         //height same as textlabel
-        timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+       timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+       // timeLabel.heightAnchor.constraint(equalTo: self.heightAnchor, constant:-8).isActive = true
         
     }
     // change position of the labels

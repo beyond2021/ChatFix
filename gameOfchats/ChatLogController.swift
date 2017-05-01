@@ -70,14 +70,27 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         
     }
     
-       
+   // var titleLabel : UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = false
         
         self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
         navigationController?.navigationBar.tintColor = .white
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
+        
+        
+        
+//        //setting the battery color to white
+//        titleLabel = UILabel(frame:CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
+//        navigationItem.titleView = titleLabel
+////        titleLabel?.text = "Home"
+//        titleLabel?.textColor = .white
+//
+//        navigationItem.titleView?.addSubview(titleLabel!)
+        
         
         // make it draggable
         collectionView?.alwaysBounceVertical = true
@@ -185,6 +198,9 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         }
         uploadTask.observe(.success) { (snapshot) in
             self.navigationItem.title = self.user?.name
+//
+            //self.titleLabel?.text = self.user?.name
+            
         }
     }
     //VIDEO THUMBNAIL

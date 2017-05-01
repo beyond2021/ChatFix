@@ -36,17 +36,17 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         //tableView.backgroundColor = .blue
         //x,y,width height
         tableView.centerXAnchor .constraint(equalTo: view.centerXAnchor).isActive = true
-        tableView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 360).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 380).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -60).isActive = true
         
-        
-        
+        //darken the navbar
+        navigationController?.navigationBar.isTranslucent = false        
         //
         
-        self.navigationController?.navigationBar.isTranslucent = true
-        
-        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        
+//        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
         
         
         // How to save Data into fireBase
@@ -94,9 +94,35 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
        // NSString *token = [[FIRInstanceID instanceID] token];
         
         //MENUBAR
-        //setupMenuBar()
+       setupMenuBar()
+        //
+       // setupNavBarButtonsOnRight()
         
     }
+    
+    func setupNavBarButtonsOnRight(){
+        let searchImage = UIImage(named: "Search-50")?.withRenderingMode(.alwaysOriginal)//makes the icon white
+        let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        let moreImage = UIImage(named: "Menu 2 Filled-50")?.withRenderingMode(.alwaysOriginal)
+        let moreBarButtonItem = UIBarButtonItem(image: moreImage , style: .plain, target: self, action: #selector(handleMore))
+        
+        navigationItem.rightBarButtonItems = [ moreBarButtonItem, searchBarButtonItem]
+        
+    }
+
+    func handleSearch(){
+        
+        
+    }
+    
+    func handleMore(){
+        
+        
+    }
+    
+    
+    
+    
     //
     func viewWillAppear() {
         super.viewWillAppear(true)
@@ -107,6 +133,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let menuBar : MenuBar = {
         let mb = MenuBar()
+        mb.translatesAutoresizingMaskIntoConstraints = false
         
         return mb
          }()
@@ -114,8 +141,13 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
     //Private because no other class need to access this
     private func setupMenuBar(){
         view.addSubview(menuBar)
-        view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar) //horizontal constraints
-        view.addContraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar) //Vertical constraints
+//        view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar) //horizontal constraints
+//        view.addContraintsWithFormat(format: "V:|[v0(50)]|", views: menuBar) //Vertical constraints
+        menuBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        //let height = navigationItem.titleView?.frame.height
+        menuBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        menuBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         
         
@@ -593,6 +625,9 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         newMessageController.messagesController = self // setting the message controller
         
         let navControler = UINavigationController(rootViewController:newMessageController)  // this is how yiou add the navbar to the new controller.
+        
+        //navControler.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE TITLE COLOR
+        
         present(navControler, animated: true, completion: nil) // completion nil because we dont need to know when it completes.
         
         
