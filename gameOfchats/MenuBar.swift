@@ -61,8 +61,30 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         //selecxting the home button on start up
         let selectedIndexpath = NSIndexPath(row: 0, section: 0)
         collectionView.selectItem(at: selectedIndexpath as IndexPath, animated: false, scrollPosition: [])
+        //
+        setupHorizontalBar()
         
     }
+    
+    var horizontalBarLeftConstraint : NSLayoutConstraint?
+    
+    
+    func setupHorizontalBar(){
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = UIColor(white: 0.9, alpha: 1) //whitish color
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(horizontalBarView)
+        
+        //New School
+        horizontalBarLeftConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarLeftConstraint?.isActive = true
+        horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
+        horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        
+    }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -96,13 +118,21 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         return cell
     }
     
+    //MARK:- animating
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
+        print(indexPath.item)
+        //1: find the x everytime we click
+        let x = CGFloat(indexPath.item) * frame.width / 4 //calculates the left edge
+        horizontalBarLeftConstraint?.constant = x
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded() // animates bar when buttons are pressed
+        }, completion: nil)
     }
-    
-    
-    
 
+
+  
     
     
     
