@@ -124,8 +124,11 @@ class MessageCell: UICollectionViewCell {
             } else if ((message?.imageUrl) != nil){
                 detailTextLabel.text = "IPhoto>>📸"//"📸"
                 
-            } else {
+            } else if ((message?.text) != nil) {
                 detailTextLabel.text = message?.text
+                
+            } else {
+                detailTextLabel.text = "??"
                 
             }
             

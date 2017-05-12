@@ -87,11 +87,11 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupCollectionView(){
         //Sideways scroll
-        collectionView?.isScrollEnabled = false
+        //collectionView?.isScrollEnabled = false
         
         //collectionView?.isScrollEnabled = false
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-          //  flowLayout.scrollDirection = .horizontal
+          flowLayout.scrollDirection = .horizontal
             //flowLayout.scrollDirection = .vertical
             
             //remove the cell spacing
@@ -165,7 +165,12 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         let indexPath = NSIndexPath(item: menuItem, section: 0)
         collectionView?.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
         
+        //
+        
+        
     }
+   
+    
     
     //lazy code only called once when settingsLauncher is nil
     lazy var settingsLauncher: SettingsLauncher = {

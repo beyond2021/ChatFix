@@ -126,7 +126,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     //MARK:- animating
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
-        
+     /*
         //print(indexPath.item)
         //1: find the x and modify everytime we click 
         let x = CGFloat(indexPath.item) * frame.width / 4 //calculates the left edge
@@ -136,6 +136,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
             self.layoutIfNeeded() // animates bar when buttons are pressed
         }, completion: nil)
         //CALLING A FUNC FROM MESSAGESCONTROLLER FROM HERE. go back to messC and set a ref
+ */
 
         messageController?.scrollToMenuIndex(menuItem: indexPath.item)
         
