@@ -27,7 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // make the window visible
         window?.makeKeyAndVisible()
         // create the stoyboard manually here. It needs a RootViewController we will use a nav controller
-        window?.rootViewController = UINavigationController(rootViewController: MessagesController())
+        
+       let layout = UICollectionViewFlowLayout()
+        //layout.scrollDirection = .horizontal
+        
+        window?.rootViewController = UINavigationController(rootViewController: MessagesController(collectionViewLayout: layout))
+        
+////        window?.rootViewController = UINavigationController(rootViewController: MessagesController2())
         //
         //REMOTE NOTIFICATION
         if #available(iOS 10.0, *) {

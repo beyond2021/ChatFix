@@ -18,6 +18,7 @@ class Message: NSObject {
     var imageHeight : NSNumber?
     var imageWidth : NSNumber?
     var videoUrl : String?
+    var isVisited : Bool?
 
     //FILLED UP IN MESSAGES CONTROLLER
     //toid fromId logic
@@ -46,6 +47,7 @@ class Message: NSObject {
         imageHeight = dictionary["imageHeight"] as? NSNumber
         imageWidth = dictionary["imageWidth"] as? NSNumber
         videoUrl = dictionary["videoUrl"] as? String
+        isVisited = false
         
         
     }

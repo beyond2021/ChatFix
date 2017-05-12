@@ -8,6 +8,17 @@
 
 import UIKit
 
-class CheckoutCell: UICollectionViewCell {
+class CheckoutCell: BaseFeedCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        DescriptionLabel.text = "One Touch Billing Coming Soon"
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
     
 }

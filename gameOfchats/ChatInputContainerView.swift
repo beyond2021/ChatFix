@@ -22,11 +22,31 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
     }//SET UP WORK FOR ChatLogController?
     
     //SET UP WORK FOR THIS FILE
-    let sendButton = UIButton(type: .system) // gives u button flas when pressed
+    //let sendButton = UIButton(type: .system) // gives u button flas when pressed
+    let sendButton : UIButton = {
+        //let button = UIButton()
+        let button = UIButton(type: .system)
+        button.setTitle("Send", for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 53, green: 81, blue: 140), for: .normal)
+        
+        let image = UIImage(named: "Message Filled-50")
+       // button.setImage(image, for: .normal)
+//        button.tintColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+//        button.titleLabel?.textColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+//        button.titleLabel?.text = "Send"
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+       return button
+    }()
+    
+    
     let uploadImageView : UIImageView = {
         let uiv  = UIImageView()
         uiv.isUserInteractionEnabled = true
-        uiv.image = UIImage(named: "Picture-50-2")
+        uiv.tintColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+        //uiv.image = UIImage(named: "Picture-50-2")
+        //Google Images Filled-50
+        uiv.image = UIImage(named: "Google Images Filled-50")
         uiv.translatesAutoresizingMaskIntoConstraints = false
       return uiv
     }()
@@ -36,6 +56,8 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         let textField = UITextField()
         textField.placeholder = "Enter Message"
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        textField.tintColor = UIColor.rgb(red: 53, green: 81, blue: 140)
         //TEXT FIELD ENTER KEY
         textField.delegate = self
         return textField
@@ -51,7 +73,7 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
     addSubview(uploadImageView)
     
     //x,y,width,height
-    uploadImageView.leftAnchor.constraint(equalTo: self.leftAnchor) .isActive = true
+        uploadImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8) .isActive = true
     //y center of container
     uploadImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor) .isActive = true
     //width 80

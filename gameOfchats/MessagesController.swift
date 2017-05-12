@@ -9,10 +9,23 @@
 import UIKit
 import Firebase
 
-class MessagesController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class MessagesController: UICollectionViewController, UICollectionViewDelegateFlowLayout,ChatCellDelegate {
+    
+    
+    let CVCellId = "CVCellId"
+    let chatCellId = "chatCellId"
+    let testCellId = "testCellId"
+    let CallingCellId = "callingCellId"
+    let CheckoutCellId = "CheckoutCellId"
+    let FixitCellId = "FixitCellId"
+    
+    
+    //, UITableViewDataSource, UITableViewDelegate
     
     let cellId = "cellId"
     
+    /*
     lazy var tableView : UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -20,41 +33,22 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
        return tv
     }()
+ */
     
+    //
     
-    
-    
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        //
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        view.addSubview(tableView)
-        // 
-        //tableView.backgroundColor = .blue
-        //x,y,width height
-        tableView.centerXAnchor .constraint(equalTo: view.centerXAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        //view.backgroundColor = .white
         
-        // Push the collectionView down a bit
- //       tableView.contentInset = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
-//        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+       // let chatCell = ChatCell()
+        chatCell?.delegate = self
+        
+        
         
         //darken the navbar
         navigationController?.navigationBar.isTranslucent = false        
-        //
-        
-//        self.navigationController?.navigationBar.isTranslucent = false
-//        
-//        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
-        
-        
         // How to save Data into fireBase
         // 1: allocate Reference
         //    let reference = FIRDatabase.database().reference(fromURL: "https://peephole-6f487.firebaseio.com/")
@@ -62,42 +56,25 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // left nav button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        // checking and forcing the user to log in if they are not.
-        // When user is not logged in
+        //navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         
-        // Right navbar button
-        //let image = UIImage(named: "Contacts-50")
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        //UIColor.rgb(red: 200, green: 201, blue: 210)
+        //navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        
         checkIfUserIsLoggedIn()
-        //
-        //REGISTERING THE CUSTOM CELL
-        // tableView.register(UserCell.self, forCellReuseIdentifier: cellId)// register user cell
-        
-        self.tableView.register(UserCell.self, forCellReuseIdentifier: "cellId")
-        
-//        let nib = UINib(nibName: "UserCell", bundle: nil)
-//        tableView.register(nib, forCellReuseIdentifier: "cellId")
-        //FETCHING FROM THE DATABASE
-        // 2 TYPES OF FETCH  SINGLE FETCH AND FETCH ALL
-        // SINGLE FETCH FOR NAVIGATION BAR TITLE
-        // FETCH ALL TO FILL THE TABLEVIEW
-        
-        //GET The Messages
-        //observeMessages()
+                //observeMessages()
         
         // observeUserMessages() // moved to setupnavbarwithuser
-        
-        tableView.allowsMultipleSelectionDuringEditing = true //swipe to delete 1
-        
-        // [START get_iid_token]
+                // [START get_iid_token]
        // let token = FIRInstanceID.instanceID().token()!
        // print("The token is:", token)
         
-        FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
+       // FIRMessaging.messaging().subscribe(toTopic: "/topics/news")
         
        // NSString *token = [[FIRInstanceID instanceID] token];
+        setupCollectionView()
         
         //MENUBAR
        setupMenuBar()
@@ -105,6 +82,64 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
       setupNavBarButtonsOnRight()
         
     }
+    
+    
+    
+    func setupCollectionView(){
+        //Sideways scroll
+        collectionView?.isScrollEnabled = false
+        
+        //collectionView?.isScrollEnabled = false
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+          //  flowLayout.scrollDirection = .horizontal
+            //flowLayout.scrollDirection = .vertical
+            
+            //remove the cell spacing
+            flowLayout.minimumLineSpacing = 0
+            
+        }
+        collectionView?.backgroundColor = .white
+        //ChatCell
+        collectionView?.register(ChatCell.self, forCellWithReuseIdentifier: chatCellId)
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: testCellId)
+        
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CVCellId)
+        collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
+        collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
+        collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        //paging snap in place
+        collectionView?.isPagingEnabled = true
+        
+    }
+    /*
+    func setupTableView(){
+        //self.tableView.delegate = self
+        //self.tableView.dataSource = self
+
+        
+        //view.addSubview(tableView)
+        
+        self.tableView.register(UserCell.self, forCellReuseIdentifier: "cellId")
+        tableView.allowsMultipleSelectionDuringEditing = true //swipe to delete 1
+        
+        tableView.centerXAnchor .constraint(equalTo: view.centerXAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        
+        
+        // Push the collectionView down a bit
+        //       tableView.contentInset = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
+        //        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 350, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+
+        
+    }
+ */
     
     func setupNavBarButtonsOnRight(){
         let searchImage = UIImage(named: "Contacts-50-2")?.withRenderingMode(.alwaysOriginal)//makes the icon white
@@ -120,7 +155,15 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func handleSearch(){
+        scrollToMenuIndex(menuItem: 2)
         
+        
+    }
+    
+    //AUTOMATIC SCROLL TO MENUITEM POSITION. THIS FUNC IS USED INSIDE OF MENUBAR-EVERYTIME WE TAP ON THE ICON
+    func scrollToMenuIndex(menuItem:Int){
+        let indexPath = NSIndexPath(item: menuItem, section: 0)
+        collectionView?.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
         
     }
     
@@ -145,24 +188,22 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationController?.navigationBar.tintColor = .white //setting the back button color
         navigationController?.pushViewController(dummySettingsViewController, animated: true)
         
-        
-        
     }
     
-    
-    
-    
-    //
+        //
     func viewWillAppear() {
         super.viewWillAppear(true)
-        tableView.reloadData()
+       // tableView.reloadData()
+        collectionView?.reloadData()
     }
     
     
     
-    let menuBar : MenuBar = {
+    lazy var  menuBar : MenuBar = {
         let mb = MenuBar()
         mb.translatesAutoresizingMaskIntoConstraints = false
+        //reference
+        mb.messageController = self
         
         return mb
          }()
@@ -173,6 +214,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let blueView = UIView()
         blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+       // UIColor(r: 61, g: 91, b: 151)
                 
         view.addSubview(blueView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
@@ -188,8 +230,103 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
+    //THIS IS HOW WE FIND OUT WHERE WE SCROLLED TO
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //print(scrollView.contentOffset.x) //
+        //moving the menubar with the pages
+        menuBar.horizontalBarLeftConstraint?.constant = scrollView.contentOffset.x / 4
+    }
+    //HILIGHTING THE BUTTONS WITH SCROLL
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //targetContentOffset.pointee.x = view.frame.width
+        //print(targetContentOffset.pointee.x / view.frame.width) //1.0, 2.0, 3.0, 4.0 //positions
+        //now that we have the index
+        let index = targetContentOffset.pointee.x / view.frame.width
+        let indexPath = NSIndexPath(item:Int(index) , section: 0)
+        menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: [])
+    }
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
     
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        /*
+        let identifier : String
+        
+        
+        if indexPath.item == 0 {
+            identifier = chatCellId
+        } else if indexPath.item == 1 {
+            
+            identifier = CallingCellId
+            
+        } else {
+            
+            identifier = testCellId
+        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+
+        return cell
+ */
+        
+        
+      
+       // let identifier : String
+      //  let cell : UICollectionViewCell
+        
+        if indexPath.item == 0 {
+            //identifier = chatCellId
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
+             cell.messagesController = self
+            return cell
+        
+        } else if indexPath.item == 1 {
+            
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CallingCellId, for: indexPath) as! CallingCell
+            return cell
+            
+        } else if indexPath.item == 2 {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixitCellId, for: indexPath) as! FixItCell
+            return cell
+            
+        }else if indexPath.item == 3 {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CheckoutCellId, for: indexPath) as! CheckoutCell
+            return cell
+            
+        }
+        
+        
+        else {
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: testCellId, for: indexPath) as UICollectionViewCell
+           return cell
+        }
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+       
+        
+     //   let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
+//        cell.messagesController = self
+        
+        
+        
+      //  let colors:[UIColor] = [.blue,.green,.yellow,.purple]
+        //cell.backgroundColor = colors[indexPath.item]
+       // return cell
+
+    }
+    // Size of Cell
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    func swipeLeft(){
+        
+        
+    }
+    
+/*
     
     //swipe to delete 2
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -233,6 +370,9 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
+ */
+    var chatCell : ChatCell?
+    
     
     //AN ARRAY TO HOLD ALL THE MESSAGES
     var messages = [Message]()
@@ -286,7 +426,10 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
                 //message.setValuesForKeys(dictionary)
                 //test messages
                // print(message.text ?? "No message")
-                self.messages.append(message)
+               self.messages.append(message)
+                //print(self.messages.count)
+                
+                
                 //This will crash because of backgroung thread so lets call this on Dispatch_asyn
                 //GROUPING THE MESSAGES.This block below of code pick up all the different messages. 1 per user
                 if let toId = message.chatPartnerId() {
@@ -335,7 +478,8 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         DispatchQueue.main.async(execute: {
             //  print("WE reloaded the table") // this was called 10 times thats wyhy the images were false
-            self.tableView.reloadData() //refresh our tableview
+           // self.tableView.reloadData() //refresh our tableview
+            self.collectionView?.reloadData()
         })
         
         
@@ -388,6 +532,12 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
      
      */
     //cell height
+
+
+
+//TV
+    
+    /*
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
@@ -418,7 +568,9 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
+ */
     //
+    /*
     
     //MARK: - set up the number of cells
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -482,7 +634,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    
+    */
     //MARK: - checkIfUserIsLoggedIn
     func checkIfUserIsLoggedIn(){
         
@@ -526,7 +678,8 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         //remove all the messages in here
         messages.removeAll()
         messagesDictionary.removeAll()
-        tableView.reloadData()
+       // tableView.reloadData()
+        collectionView?.reloadData()
         
         //u
         //listen call listen to logged in user. logged in messages
@@ -592,9 +745,9 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         let nameLabel = UILabel()
         //MUST ADD IN THE VIEW AFTER YOU CREATE IT!!!! OR YOU WILL GET A VIEW HIARCHY CRASH
         containerView.addSubview(nameLabel)
-        nameLabel.textColor = .white
+        nameLabel.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        nameLabel.text = user.name
+        nameLabel.text = (user.name)?.uppercased()
         //nameLabel.text = "oin  i iiririiiimfg"
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -630,8 +783,21 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+//    func openChatController(user:User) {
+//        print("opening chat vc")
+//        
+//       showChatControllerForUser(user: user) 
+//    }
+    
     //MARK: - Loading the showChatController by clicking the nav
     
+    
+    func openChatController(sender: ChatCell){
+        
+        print("protocol is pressed")
+    }
+    
+  
     func showChatControllerForUser(user:User){
         //print(123)
         // get ref to controller
@@ -647,6 +813,7 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
     }
+ 
     
     
     
@@ -693,4 +860,5 @@ class MessagesController: UIViewController, UITableViewDataSource, UITableViewDe
 }
 
 //Extension
+
 

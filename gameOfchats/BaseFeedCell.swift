@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseCell: UICollectionViewCell {
+class BaseFeedCell: UICollectionViewCell {
     
     let DescriptionLabel : UILabel = {
         let label = UILabel()

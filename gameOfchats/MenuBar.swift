@@ -18,7 +18,10 @@ extension UIColor {
 
 
 class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    let imageNames = ["Home Filled-50", "Phone Filled-50", "Screenshot Filled-50", "Microphone Filled-50"]
+    let imageNames = ["Home Filled-50", "Phone Filled-50", "Screenshot Filled-50", "POS Terminal Filled-50"]
+    
+    var messageController : MessagesController?
+////    var messageController : MessagesController2?
     
     //collectionView to hold buttons
     lazy var collectionView : UICollectionView = {
@@ -71,7 +74,9 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func setupHorizontalBar(){
         let horizontalBarView = UIView()
-        horizontalBarView.backgroundColor = UIColor(white: 0.9, alpha: 1) //whitish color
+        //horizontalBarView.backgroundColor = UIColor(white: 0.9, alpha: 1) //whitish color
+        //UIColor.rgb(red: 200, green: 201, blue: 210)
+        horizontalBarView.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(horizontalBarView)
         
@@ -121,14 +126,20 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     //MARK:- animating
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
-        print(indexPath.item)
-        //1: find the x everytime we click
+        
+        //print(indexPath.item)
+        //1: find the x and modify everytime we click 
         let x = CGFloat(indexPath.item) * frame.width / 4 //calculates the left edge
         horizontalBarLeftConstraint?.constant = x
         
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.layoutIfNeeded() // animates bar when buttons are pressed
         }, completion: nil)
+        //CALLING A FUNC FROM MESSAGESCONTROLLER FROM HERE. go back to messC and set a ref
+
+        messageController?.scrollToMenuIndex(menuItem: indexPath.item)
+        
+        //messageController.scrollToMenuIndex(indexPath.item)
     }
 
 

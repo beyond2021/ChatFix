@@ -113,8 +113,9 @@ class ChatMessageCell: UICollectionViewCell {
         view.layer.cornerRadius = 16 //needed
         view.layer.masksToBounds = true //needed
         view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.white.cgColor
-
+        //view.layer.borderColor = UIColor.white.cgColor
+        //UIColor.rgb(red: 200, green: 201, blue: 210)
+        view.layer.borderColor = UIColor.rgb(red: 200, green: 201, blue: 210).cgColor
         
         return view
         

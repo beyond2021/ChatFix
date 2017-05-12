@@ -16,13 +16,13 @@ import UIKit
         var timeAgoString: String {
             let interval = Calendar.current.dateComponents([.year, .month, .day, .hour], from: self, to: Date())
             if let year = interval.year, year > 0 {
-                return year == 1 ? "\(year) year ago" : "\(year) years ago"
+                return year == 1 ? "\(year)yr ago" : "\(year)yrs ago"
             } else if let month = interval.month, month > 0 {
-                return month == 1 ? "\(month) month ago" : "\(month) months ago"
+                return month == 1 ? "\(month)mon ago" : "\(month)mons ago"
             } else if let day = interval.day, day > 0 {
-                return day == 1 ? "\(day) day ago" : "\(day) days ago"
+                return day == 1 ? "\(day)day ago" : "\(day)days ago"
             } else if let hour = interval.hour, hour > 0 {
-                return hour == 1 ? "\(hour) hour ago" : "\(hour) hours ago"
+                return hour == 1 ? "\(hour)hr ago" : "\(hour)hrs ago"
             } else {
 //                let dateFormatter = DateFormatter()
 //                dateFormatter.dateFormat = "hh:mm:ss a" // google the format
@@ -30,7 +30,7 @@ import UIKit
 //                //return "a moment ago"
 //                
                 
-                return "a moment ago"
+                return ("a m ago").uppercased()
             }
         }
         

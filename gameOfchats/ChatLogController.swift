@@ -76,10 +76,13 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
         
+        //self.blackBackgroundView?.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
-        navigationController?.navigationBar.tintColor = .white
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE
+        //navigationController?.navigationBar.tintColor = .white
+        //UIColor.rgb(red: 200, green: 201, blue: 210)
+        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210) //Back Button
+        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.rgb(red: 200, green: 201, blue: 210)] //Title
         //
         navigationController?.hidesBarsOnSwipe = false
         // make it draggable
@@ -90,7 +93,9 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         //
         //Set up nav bar
         //navigationItem.title = "Chat Log Controller"
-        collectionView?.backgroundColor = UIColor.white
+        //collectionView?.backgroundColor = UIColor.white
+        collectionView?.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        
         //register cell
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         

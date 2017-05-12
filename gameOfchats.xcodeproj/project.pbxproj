@@ -11,7 +11,6 @@
 		530D01821EB1EA7B007F1768 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530D01811EB1EA7B007F1768 /* MenuBar.swift */; };
 		5311991A1E9160E600070A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531199191E9160E600070A81 /* AppDelegate.swift */; };
 		5311991C1E9160E600070A81 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311991B1E9160E600070A81 /* MessagesController.swift */; };
-		5311991F1E9160E600070A81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5311991D1E9160E600070A81 /* Main.storyboard */; };
 		531199211E9160E700070A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 531199201E9160E700070A81 /* Assets.xcassets */; };
 		531199241E9160E700070A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 531199221E9160E700070A81 /* LaunchScreen.storyboard */; };
 		5311992D1E9166B400070A81 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311992C1E9166B400070A81 /* LoginController.swift */; };
@@ -37,6 +36,14 @@
 		539C73791E956678009CEB85 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C73781E956678009CEB85 /* Extensions.swift */; };
 		539C737B1E97B868009CEB85 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C737A1E97B868009CEB85 /* ChatLogController.swift */; };
 		539C737D1E988EBB009CEB85 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539C737C1E988EBB009CEB85 /* Message.swift */; };
+		53A17F731EC15AEB00A4070D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F721EC15AEB00A4070D /* ChatCell.swift */; };
+		53A17F761EC19F2C00A4070D /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F751EC19F2C00A4070D /* MessageCell.swift */; };
+		53A17F9C1EC2703800A4070D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F9B1EC2703800A4070D /* ApiService.swift */; };
+		53A17F9E1EC2B13A00A4070D /* MessagesController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */; };
+		53A17FA11EC46E0E00A4070D /* BaseFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA01EC46E0E00A4070D /* BaseFeedCell.swift */; };
+		53A17FA31EC481A300A4070D /* FixItCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA21EC481A300A4070D /* FixItCell.swift */; };
+		53A17FA61EC481DE00A4070D /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA51EC481DE00A4070D /* CheckoutCell.swift */; };
+		53A17FA91EC4846000A4070D /* CallingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA81EC4846000A4070D /* CallingCell.swift */; };
 		53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */; };
 		53A9B3A41E927F8100D271A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */; };
 		53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */; };
@@ -71,7 +78,6 @@
 		531199161E9160E600070A81 /* gameOfchats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameOfchats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		531199191E9160E600070A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5311991B1E9160E600070A81 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
-		5311991E1E9160E600070A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		531199201E9160E700070A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		531199231E9160E700070A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		531199251E9160E700070A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +108,14 @@
 		539C73781E956678009CEB85 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		539C737A1E97B868009CEB85 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		539C737C1E988EBB009CEB85 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		53A17F721EC15AEB00A4070D /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		53A17F751EC19F2C00A4070D /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		53A17F9B1EC2703800A4070D /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController2.swift; sourceTree = "<group>"; };
+		53A17FA01EC46E0E00A4070D /* BaseFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFeedCell.swift; sourceTree = "<group>"; };
+		53A17FA21EC481A300A4070D /* FixItCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixItCell.swift; sourceTree = "<group>"; };
+		53A17FA51EC481DE00A4070D /* CheckoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
+		53A17FA81EC4846000A4070D /* CallingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallingCell.swift; sourceTree = "<group>"; };
 		53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
@@ -179,6 +193,7 @@
 		531199181E9160E600070A81 /* gameOfchats */ = {
 			isa = PBXGroup;
 			children = (
+				53A17F9A1EC2700A00A4070D /* API Service */,
 				538DAFD91EB7083D00EE3BAC /* Extensions */,
 				538CD8E71EAF0DA5008C4A16 /* Animations */,
 				5357F7771EA1D2AB0048999D /* gameOfchats.entitlements */,
@@ -188,7 +203,6 @@
 				539C736F1E93F859009CEB85 /* Model */,
 				5311992B1E9164FA00070A81 /* Controllers */,
 				531199191E9160E600070A81 /* AppDelegate.swift */,
-				5311991D1E9160E600070A81 /* Main.storyboard */,
 				531199201E9160E700070A81 /* Assets.xcassets */,
 				531199221E9160E700070A81 /* LaunchScreen.storyboard */,
 				531199251E9160E700070A81 /* Info.plist */,
@@ -200,6 +214,7 @@
 		5311992B1E9164FA00070A81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */,
 				538DAFDE1EB7271B00EE3BAC /* Settings_Launcher.swift */,
 				5311992C1E9166B400070A81 /* LoginController.swift */,
 				5311991B1E9160E600070A81 /* MessagesController.swift */,
@@ -250,6 +265,8 @@
 		539C73721E9400B3009CEB85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53A17F9F1EC46DBE00A4070D /* Main Pages */,
+				53A17F741EC19EFA00A4070D /* Cells */,
 				538DAFE21EB7289300EE3BAC /* SettingCell.swift */,
 				530D01811EB1EA7B007F1768 /* MenuBar.swift */,
 				539C73731E9400ED009CEB85 /* UserCell.swift */,
@@ -266,6 +283,34 @@
 				539C73781E956678009CEB85 /* Extensions.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		53A17F741EC19EFA00A4070D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				53A17F751EC19F2C00A4070D /* MessageCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		53A17F9A1EC2700A00A4070D /* API Service */ = {
+			isa = PBXGroup;
+			children = (
+				53A17F9B1EC2703800A4070D /* ApiService.swift */,
+			);
+			name = "API Service";
+			sourceTree = "<group>";
+		};
+		53A17F9F1EC46DBE00A4070D /* Main Pages */ = {
+			isa = PBXGroup;
+			children = (
+				53A17F721EC15AEB00A4070D /* ChatCell.swift */,
+				53A17FA01EC46E0E00A4070D /* BaseFeedCell.swift */,
+				53A17FA21EC481A300A4070D /* FixItCell.swift */,
+				53A17FA51EC481DE00A4070D /* CheckoutCell.swift */,
+				53A17FA81EC4846000A4070D /* CallingCell.swift */,
+			);
+			name = "Main Pages";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,7 +412,6 @@
 				531199241E9160E700070A81 /* LaunchScreen.storyboard in Resources */,
 				53A9B3A41E927F8100D271A9 /* GoogleService-Info.plist in Resources */,
 				531199211E9160E700070A81 /* Assets.xcassets in Resources */,
-				5311991F1E9160E600070A81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,17 +480,25 @@
 			files = (
 				538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */,
 				538DAFE71EB7E46600EE3BAC /* Constraints.swift in Sources */,
+				53A17F9E1EC2B13A00A4070D /* MessagesController2.swift in Sources */,
+				53A17FA61EC481DE00A4070D /* CheckoutCell.swift in Sources */,
 				538DAFDF1EB7271B00EE3BAC /* Settings_Launcher.swift in Sources */,
 				538DAFE51EB7A87000EE3BAC /* Enums.swift in Sources */,
 				539C737B1E97B868009CEB85 /* ChatLogController.swift in Sources */,
 				53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */,
+				53A17FA91EC4846000A4070D /* CallingCell.swift in Sources */,
+				53A17F761EC19F2C00A4070D /* MessageCell.swift in Sources */,
 				538DAFDB1EB7086300EE3BAC /* DateConversion.swift in Sources */,
+				53A17FA31EC481A300A4070D /* FixItCell.swift in Sources */,
 				539C736E1E93EA83009CEB85 /* NewMessageController.swift in Sources */,
+				53A17FA11EC46E0E00A4070D /* BaseFeedCell.swift in Sources */,
 				538DAFE11EB727E400EE3BAC /* Settings.swift in Sources */,
 				5311991C1E9160E600070A81 /* MessagesController.swift in Sources */,
 				539C73741E9400ED009CEB85 /* UserCell.swift in Sources */,
 				538DAFE31EB7289300EE3BAC /* SettingCell.swift in Sources */,
 				539C73791E956678009CEB85 /* Extensions.swift in Sources */,
+				53A17F9C1EC2703800A4070D /* ApiService.swift in Sources */,
+				53A17F731EC15AEB00A4070D /* ChatCell.swift in Sources */,
 				5311992D1E9166B400070A81 /* LoginController.swift in Sources */,
 				539C73761E948C04009CEB85 /* LoginController+handlers.swift in Sources */,
 				53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */,
@@ -477,14 +529,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5311991D1E9160E600070A81 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5311991E1E9160E600070A81 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		531199221E9160E700070A81 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -613,7 +657,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -631,7 +675,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -12,7 +12,8 @@ import Firebase
 
 class LoginController: UIViewController {
     
-    var messagesController : MessagesController?
+   var messagesController : MessagesController?
+////     var messagesController : MessagesController2?
     
     //MARK:- Spinner
     lazy var spinner : UIActivityIndicatorView = {

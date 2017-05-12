@@ -139,6 +139,8 @@ class NewMessageController: UITableViewController {
     //slide Down the controller when cell is selected
     
     var messagesController : MessagesController?
+////       var messagesController : MessagesController2?
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dismiss(animated: true) { 
             print("Dismiss Completed")
