@@ -21,7 +21,7 @@ class MessageCell: UICollectionViewCell {
         newMessageView.backgroundColor = UIColor.rgb(red: 51, green: 2, blue: 129)
         self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         self.layer.borderWidth = 1
-        self.layer.cornerRadius = 16
+        self.layer.cornerRadius = 8
         self.clipsToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowOpacity = 1
