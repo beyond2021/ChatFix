@@ -16,30 +16,22 @@ class BaseFeedCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-       // label.textColor = UI
         
-        
-      return label
+        return label
     }()
-    
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         setupLabel()
-        
-        
     }
     
     func setupLabel(){
-               addSubview(DescriptionLabel)
-                DescriptionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-                DescriptionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-               DescriptionLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-               DescriptionLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-
+        addSubview(DescriptionLabel)
+        DescriptionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        DescriptionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        DescriptionLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        DescriptionLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
     }
     

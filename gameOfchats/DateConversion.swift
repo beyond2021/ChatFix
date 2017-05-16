@@ -18,7 +18,7 @@ import UIKit
             if let year = interval.year, year > 0 {
                 return year == 1 ? "\(year)yr ago" : "\(year)yrs ago"
             } else if let month = interval.month, month > 0 {
-                return month == 1 ? "\(month)mon ago" : "\(month)mons ago"
+                return month == 1 ? "\(month)mth ago" : "\(month)mths ago"
             } else if let day = interval.day, day > 0 {
                 return day == 1 ? "\(day)day ago" : "\(day)days ago"
             } else if let hour = interval.hour, hour > 0 {
@@ -30,7 +30,7 @@ import UIKit
 //                //return "a moment ago"
 //                
                 
-                return ("a m ago").uppercased()
+                return "a min ago"
             }
         }
         

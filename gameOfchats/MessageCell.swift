@@ -18,7 +18,10 @@ class MessageCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //self.isVisited = false
-        newMessageView.backgroundColor = UIColor.rgb(red: 51, green: 2, blue: 129)
+        //newMessageView.backgroundColor = UIColor.rgb(red: 51, green: 2, blue: 129)
+        //UIColor.rgb(red: 53, green: 81, blue: 140)
+        newMessageView.backgroundColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+        
         self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8

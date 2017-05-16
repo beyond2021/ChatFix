@@ -67,12 +67,40 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         setupMenuBar()
         //
         setupNavBarButtonsOnRight()
+      //  perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        checkIfUserIsLoggedIn()
+    }
+    
+    func checkIfUserIsLoggedIn(){
+        
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            // handleLogout() // getting too many controllers error
+              perform(#selector(handleLogout), with: nil, afterDelay: 0)
+            
+            
+        } else {
+            
+        
+            return
+            
+        }
+        
         
     }
+
+    
+    
+    
     
     func viewWillAppear() {
         super.viewWillAppear(true)
-        collectionView?.reloadData()
+//        collectionView?.reloadData()
+//        setupCollectionView()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+//        setupCollectionView()
     }
 
     
@@ -175,8 +203,14 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         if indexPath.item == 0 {
             //identifier = chatCellId
+            //setupCollectionView()
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
+            
             cell.messagesController = self
+            //cell.checkIfUserIsLoggedIn()
+           cell.observeUserMessages()
+            //cell.getUserMessages()
             return cell
             
         } else if indexPath.item == 1 {
@@ -314,6 +348,17 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
                 let user = User()
                 user.setValuesForKeys(dictionary) //user is set here from login/signup
                 self.setUpNavBarWithUser(user: user) // contains the name email and image of the user
+                //TODO
+                //NEED TO SETUP THIS USER IN CHATCELL
+               
+                DispatchQueue.main.async(execute: {
+                    //  print("WE reloaded the table") // this was called 10 times thats wyhy the images were false
+                    // self.tableView.reloadData() //refresh our tableview
+                    self.collectionView?.reloadData()
+                   // self.attempTedReloadOfTable()
+                })
+
+                
                 
             }
             
@@ -324,6 +369,10 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     // setting up navbar with image and text centered
     func setUpNavBarWithUser(user:User) {
+        let indexPath = IndexPath(item: 0, section: 0 )
+        collectionView?.reloadItems(at: [indexPath])
+        
+       // self.collectionView?.reloadData()
         
         let titleView = UIView() //This is our container
         //Set a fram for our titleView
@@ -376,6 +425,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         containerView.addSubview(nameLabel)
         nameLabel.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        //print("The user is:", user.name ?? "")
+        
         nameLabel.text = (user.name)?.uppercased()
         //nameLabel.text = "oin  i iiririiiimfg"
         
@@ -397,6 +449,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         self.navigationItem.titleView = titleView
         
+        
     }
     
     
@@ -413,8 +466,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         // use nav controller to push chatlogcontroller on the view
         navigationController?.pushViewController(chatLogController, animated: true) // we dont need segues from storyboards :)
-        
-        
         
     }
     
@@ -445,13 +496,14 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         // log out of the database
         //when something throws errorswe have to catch it. do,try,catch // FIRAuth.auth()?.signOut()
         
+        print("Gonna try to open logout from messages")
+        
         do {
             try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
         }
-        // Here I want launch a viewcontroller when logout is pressed
-        
+                
         let loginController = LoginController()
         loginController.messagesController = self //
         present(loginController, animated: true, completion: nil)

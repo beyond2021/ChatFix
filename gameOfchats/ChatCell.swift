@@ -21,39 +21,24 @@ protocol ChatCellDelegate: class {
 
 class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    weak var delegate :ChatCellDelegate?
+   
     
+    
+    weak var delegate :ChatCellDelegate?
     //var userMessages : [Message] = []
     let cellId = "cellId"
-    
-    
     var deleteView: UIButton?
     var imageView: UIImageView?
     
-    
-    
-    
-    
+   //
     
     lazy var collectionView : UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.isUserInteractionEnabled = true
         cv.translatesAutoresizingMaskIntoConstraints = false
-       
         cv.delegate = self
         cv.dataSource = self
-        
-       
-        
-//        var swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.deleteCell))
-//        swipeRight.delegate = self as? UIGestureRecognizerDelegate
-//        swipeRight.direction = .right
-//        cv.addGestureRecognizer(swipeRight)
-        
-        
-        
         return cv
     }()
     
@@ -72,9 +57,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         iv.clipsToBounds = true
         iv.image = image
         iv.contentMode = .scaleAspectFill
-        
-        
-       return iv
+        return iv
     }()
 
 
@@ -86,61 +69,37 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     }()
    
     
-    
+   
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //print("feed array count is:",feedArray.count)
-        
-        /*
-        deleteView = UIButton(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        deleteView?.contentMode = UIViewContentMode.scaleAspectFit
-        contentView.addSubview(deleteView!)
-        
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        imageView?.contentMode = UIViewContentMode.scaleAspectFit
-        contentView.addSubview(imageView!)
- */
-        
-        
-        
-        
         checkIfUserIsLoggedIn() //Main Call
-        //TODO IMAGE
-        //backgroundColor = .white
-        //backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
-        
+//observeUserMessages()
         addSubview(backgroundImageView)
         backgroundImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         backgroundImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         backgroundImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         backgroundImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        
         backgroundImageView.addSubview(visualEffectView)
         visualEffectView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
         visualEffectView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
         visualEffectView.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
         visualEffectView.heightAnchor.constraint(equalTo: backgroundImageView.heightAnchor).isActive = true
-
-        
-        
-        
-        //visualEffectView.frame = backgroundImageView.bounds
-        
-      // backgroundImageView.addSubview(visualEffectView)
-        
-       // messages.append(feedArray)
-        
+    //    observeUserMessages()
         setupCollectionView()
+        //collectionView.reloadData()
+     // resetCollectionViewAndEmptyData()
+       // getUserMessages()
     }
     
     func getUserMessages() {
-      // checkIfUserIsLoggedIn()
+      let loginController = LoginController()
+        loginController.chatCell = self
         
     }
     
-    //////////
+    //MARK:- DATA AREA
     
     //AN ARRAY TO HOLD ALL THE MESSAGES
     var messages = [Message]()
@@ -149,6 +108,11 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     //FAN-OUT
     func  observeUserMessages(){
+       //self.attempTedReloadOfTable()
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        
+       collectionView.reloadData()
         //get the user id
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             return
@@ -160,23 +124,20 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             //print(snapshot)
             let userId = snapshot.key
             FIRDatabase.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
-                // print(snapshot)
+                // print("Message Id:",snapshot.key)
                 let messageId = snapshot.key
-                
                 self.fetchMessageWithMessageId(messageId: messageId)
                 //
             }, withCancel: nil)
-            
             
         }, withCancel: nil)
         //OBSERVE WHEN CHILD IS REMOVED
         ref.observe(.childRemoved, with: { (snapshot) in
             // print(snapshot.key)
             // print(self.messagesDictionary)
-            self.messagesDictionary.removeValue(forKey: snapshot.key)
-            self.attempTedReloadOfTable()
+            self.messagesDictionary.removeValue(forKey: snapshot.key) //empty the dictionary
+            self.attempTedReloadOfTable() //reload the collectionview
         }, withCancel: nil)
-        
     }
     
     private func fetchMessageWithMessageId(messageId: String){
@@ -195,7 +156,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
                 //test messages
                 // print(message.text ?? "No message")
                 self.messages.append(message)
-                //print(self.messages.count)
+               print(self.messages.count)
                 
                 
                 //This will crash because of backgroung thread so lets call this on Dispatch_asyn
@@ -262,6 +223,14 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         if FIRAuth.auth()?.currentUser?.uid == nil {
             // handleLogout() // getting too many controllers error
 //*            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+            
+          // self.messagesController?.handleLogout()
+            
+          //  perform(#selector(self.messagesController?.handleLogout), with: nil, afterDelay: 0)
+            
+          
+            
+            
         } else {
             
             fetchUserAndSetUpNavBarTitle()
@@ -270,6 +239,31 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         
     }
+    
+    /*
+    func performLogout(){
+        if let aClass = NSClassFromString("MessagesController") {
+            let sel = #selector(MessagesController.handleLogout)
+           // let num = NSNumber(value: 1337)
+            
+            if let myClass = aClass as? NSObjectProtocol {
+                if myClass.responds(to: sel) {
+                  //  myClass.perform(sel)
+                    print("Gonna try to open logout from Chatcell")
+                }
+            }
+        }
+        
+        
+        
+        
+        
+    }
+ */
+    
+    
+    
+    
     
     func fetchUserAndSetUpNavBarTitle(){
         // Fetch a single value
@@ -286,18 +280,42 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 //  self.navigationItem.title = dictionary["name"] as? String
                 let user = User()
+                
+                print("The user is:", user)
+                
+                
                 user.setValuesForKeys(dictionary)
               // self.setUpNavBarWithUser(user: user)
+                
+                
+                
                self.resetCollectionViewAndEmptyData()
                 
                 // contains the name email and image of the user
                 self.messagesController?.setUpNavBarWithUser(user: user)
+                
+                   self.resetAndLoad()
+                
+                //self.observeUserMessages()
             }
             
         }, withCancel: nil)
         
-        
+     // observeUserMessages()
     }
+    
+    
+   func  resetAndLoad() {
+    messages.removeAll()
+    messagesDictionary.removeAll()
+    collectionView.reloadData()
+    observeUserMessages()
+    
+    
+    }
+    
+    
+    
     
     func resetCollectionViewAndEmptyData() {
         //remove all the messages in here
@@ -407,8 +425,9 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //
         
-
+        collectionView.reloadData()
         
+        //resetCollectionViewAndEmptyData()
         
     }
     required init?(coder aDecoder: NSCoder) {
@@ -442,7 +461,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         return CGSize(width: self.frame.width - 20, height: 80)
     }
     
-    var messagesController : MessagesController?
+    weak var messagesController : MessagesController?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //print("I am pressing:", indexPath.item)

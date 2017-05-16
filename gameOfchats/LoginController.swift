@@ -13,6 +13,7 @@ import Firebase
 class LoginController: UIViewController {
     
    var messagesController : MessagesController?
+    var chatCell : ChatCell?
 ////     var messagesController : MessagesController2?
     
     //MARK:- Spinner
@@ -445,8 +446,12 @@ class LoginController: UIViewController {
                     
                     return // print the error and get out
                 }
+              
+                
+                
                 // IF THERE IS SUCCESS
                 self.messagesController?.fetchUserAndSetUpNavBarTitle() // nav bar title
+                //self.chatCell?.fetchUserAndSetUpNavBarTitle()
                 self.dismiss(animated: true, completion: nil)
             })
             
