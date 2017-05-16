@@ -330,7 +330,7 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
     func handleKeyboardWillShow(notification: Notification){
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         
-        print(notification.userInfo ?? "")// print out the keyboard info, size etc.
+  //      print(notification.userInfo ?? "")// print out the keyboard info, size etc.
         //print(keyboardFrame?.height ?? "") // we get the height of the keyboard of 271.0
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         //Move the input area up 271.0 some how in setupComponents

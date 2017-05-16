@@ -94,7 +94,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     func viewWillAppear() {
         super.viewWillAppear(true)
-//        collectionView?.reloadData()
+        collectionView?.reloadData()
 //        setupCollectionView()
         
     }

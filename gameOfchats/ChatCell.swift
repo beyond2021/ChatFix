@@ -8,6 +8,7 @@
 
 import UIKit
 import  Firebase
+import AVFoundation
 
 protocol ChatCellDelegate: class {
     //func openChatController(user: User)
@@ -74,6 +75,8 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
         checkIfUserIsLoggedIn() //Main Call
 //observeUserMessages()
         addSubview(backgroundImageView)
@@ -88,6 +91,10 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         visualEffectView.heightAnchor.constraint(equalTo: backgroundImageView.heightAnchor).isActive = true
     //    observeUserMessages()
         setupCollectionView()
+        collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
+        
+        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+        
         //collectionView.reloadData()
      // resetCollectionViewAndEmptyData()
        // getUserMessages()
@@ -113,6 +120,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         messagesDictionary.removeAll()
         
        collectionView.reloadData()
+        
         //get the user id
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             return
@@ -156,7 +164,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
                 //test messages
                 // print(message.text ?? "No message")
                 self.messages.append(message)
-               print(self.messages.count)
+             //  print(self.messages.count)
                 
                 
                 //This will crash because of backgroung thread so lets call this on Dispatch_asyn
@@ -281,7 +289,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
                 //  self.navigationItem.title = dictionary["name"] as? String
                 let user = User()
                 
-                print("The user is:", user)
+               // print("The user is:", user)
                 
                 
                 user.setValuesForKeys(dictionary)
@@ -429,13 +437,29 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //resetCollectionViewAndEmptyData()
         
+//        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+       // print("PLAY SOUND")
+    }
+    
+    deinit {
+        collectionView.removeObserver(self, forKeyPath: "contentSize")
+        print("removing SOUND")
+    }
+    
+    
+    
+    
     //DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+      
+       // print(messages.count)
         return messages.count
     }
     
@@ -453,6 +477,16 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         
         return cell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //
+       //print("about to display :", indexPath.item)
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //
+      //  print( "\(indexPath.item) is about to leave")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -563,8 +597,15 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
  }
  */
 
-
-
+extension ChatCell : UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+      //  ImagePreloader.preloadImagesForIndexPaths(indexPaths) // happens on a background queue
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+      //  ImagePreloader.cancelPreloadImagesForIndexPaths(indexPaths) // again, happens on a background queue
+    }
+}
 
 
 

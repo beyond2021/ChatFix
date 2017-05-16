@@ -141,7 +141,7 @@ class MessageCell: UICollectionViewCell {
             
             //coverting timestamp to date
             if let seconds = message?.timeStamp?.doubleValue {
-                print(seconds)
+              //  print(seconds)
                 //                let ds = Date()
                 //               let dss =  ds.timeAgoString
                 
@@ -168,7 +168,7 @@ class MessageCell: UICollectionViewCell {
         if let id = message?.chatPartnerId() {
             let ref = FIRDatabase.database().reference().child("users").child(id) //get the ref to the toId
             ref.observe(.value, with: { (snapshot) in
-                // print(snapShot)
+                 //print(snapshot.value ?? "")
                 // Put the snapshot value in a dictionary
                 if  let dictionary = snapshot.value as? [String : AnyObject] {
                     self.textLabel.text = (dictionary["name"] as? String)?.uppercased()

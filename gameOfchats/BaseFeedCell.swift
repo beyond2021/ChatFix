@@ -15,6 +15,7 @@ class BaseFeedCell: UICollectionViewCell {
         label.text = "VOIP Calling coming soon."
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
         label.textAlignment = .center
         
         return label
@@ -22,7 +23,8 @@ class BaseFeedCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        //backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        backgroundColor = UIColor.rgb(red: 20, green: 23, blue: 33)
         setupLabel()
     }
     
