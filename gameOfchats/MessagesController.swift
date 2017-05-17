@@ -101,6 +101,23 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 //        setupCollectionView()
+        
+        
+        UIView.animate(withDuration: 2.5, delay: 3.0, usingSpringWithDamping: 3, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+            let indexPath = IndexPath(item: 1, section: 0)
+           self.collectionView?.scrollToItem(at: indexPath, at: .right, animated: true)
+            
+            //
+        }) { (true) in
+            //
+            let indexPath = IndexPath(item: 0, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: .left, animated: true)
+
+            
+        }
+        
+        
+        
     }
 
     

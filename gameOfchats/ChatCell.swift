@@ -90,8 +90,14 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         visualEffectView.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
         visualEffectView.heightAnchor.constraint(equalTo: backgroundImageView.heightAnchor).isActive = true
     //    observeUserMessages()
+        visualEffectView.alpha = 0
+
+        
         setupCollectionView()
-        collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
+        collectionView.alpha = 0
+        animateBackground()
+        
+//        collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
         
         collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
@@ -99,6 +105,25 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
      // resetCollectionViewAndEmptyData()
        // getUserMessages()
     }
+    
+    func animateBackground(){
+        self.visualEffectView.alpha = 0
+        
+        
+        UIView.animate(withDuration: 3.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            //
+            self.collectionView.alpha = 1
+            self.visualEffectView.alpha = 1
+            
+            
+        }) { (true) in
+            // 
+          //  self.setupCollectionView()
+            self.collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
+        }
+        
+    }
+    
     
     func getUserMessages() {
       let loginController = LoginController()
@@ -439,7 +464,14 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
 //        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
+       
+        
+        
     }
+    
+    
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
