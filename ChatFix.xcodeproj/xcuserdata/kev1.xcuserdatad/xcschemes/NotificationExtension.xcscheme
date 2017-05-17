@@ -18,7 +18,7 @@
                BlueprintIdentifier = "5341BF101EA3023A00342221"
                BuildableName = "NotificationExtension.appex"
                BlueprintName = "NotificationExtension"
-               ReferencedContainer = "container:gameOfchats.xcodeproj">
+               ReferencedContainer = "container:ChatFix.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "531199151E9160E600070A81"
-               BuildableName = "gameOfchats.app"
-               BlueprintName = "gameOfchats"
-               ReferencedContainer = "container:gameOfchats.xcodeproj">
+               BuildableName = "ChatFix.app"
+               BlueprintName = "ChatFix"
+               ReferencedContainer = "container:ChatFix.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
             BlueprintIdentifier = "5341BF101EA3023A00342221"
             BuildableName = "NotificationExtension.appex"
             BlueprintName = "NotificationExtension"
-            ReferencedContainer = "container:gameOfchats.xcodeproj">
+            ReferencedContainer = "container:ChatFix.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "531199151E9160E600070A81"
-            BuildableName = "gameOfchats.app"
-            BlueprintName = "gameOfchats"
-            ReferencedContainer = "container:gameOfchats.xcodeproj">
+            BuildableName = "ChatFix.app"
+            BlueprintName = "ChatFix"
+            ReferencedContainer = "container:ChatFix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -92,9 +92,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "531199151E9160E600070A81"
-            BuildableName = "gameOfchats.app"
-            BlueprintName = "gameOfchats"
-            ReferencedContainer = "container:gameOfchats.xcodeproj">
+            BuildableName = "ChatFix.app"
+            BlueprintName = "ChatFix"
+            ReferencedContainer = "container:ChatFix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

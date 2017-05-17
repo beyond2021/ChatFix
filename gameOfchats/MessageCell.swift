@@ -187,6 +187,10 @@ class MessageCell: UICollectionViewCell {
         
         
     }
+    //Because cell is reued empty the image
+    override func prepareForReuse() {
+        proileImageView.image = nil
+    }
     
     var messagesController : MessagesController?    
     //Create an imageView

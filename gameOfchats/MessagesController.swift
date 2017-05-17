@@ -102,7 +102,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidAppear(true)
 //        setupCollectionView()
         
-        
+        /*
         UIView.animate(withDuration: 2.5, delay: 3.0, usingSpringWithDamping: 3, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             let indexPath = IndexPath(item: 1, section: 0)
            self.collectionView?.scrollToItem(at: indexPath, at: .right, animated: true)
@@ -115,6 +115,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
 
             
         }
+ */
         
         
         
@@ -128,6 +129,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 0
+            flowLayout.itemSize = (self.collectionView?.frame.size)!;
+
         }
         collectionView?.backgroundColor = .clear
         //ChatCell
@@ -136,8 +139,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
         collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
         collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //paging snap in place
         collectionView?.isPagingEnabled = true
         
@@ -514,6 +517,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         //when something throws errorswe have to catch it. do,try,catch // FIRAuth.auth()?.signOut()
         
         print("Gonna try to open logout from messages")
+        
         
         do {
             try FIRAuth.auth()?.signOut()

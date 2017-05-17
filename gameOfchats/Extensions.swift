@@ -22,6 +22,8 @@ extension UIImageView {
         //1: check cache for images first
         if let cachedImage = imageCache.object(forKey: urlString as NSString) {
             self.image = cachedImage
+           // self.image = nil
+            
             return
         }
         
@@ -39,8 +41,10 @@ extension UIImageView {
             DispatchQueue.main.async() {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if let downloadedImage = UIImage(data: data!) {
+                   // print("Image Data is:", data)
                     imageCache.setObject(downloadedImage, forKey: (urlString as AnyObject) as! NSString)
-                    self.image = downloadedImage
+                   self.image = downloadedImage
+                   // self.image = UIImage(named: "Google Images Filled-50")
                 }
                 
             }

@@ -99,7 +99,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
 //        collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
         
-        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+//        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
         //collectionView.reloadData()
      // resetCollectionViewAndEmptyData()
@@ -144,7 +144,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         messages.removeAll()
         messagesDictionary.removeAll()
         
-       collectionView.reloadData()
+     //  collectionView.reloadData()
         
         //get the user id
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
@@ -159,6 +159,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             FIRDatabase.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
                 // print("Message Id:",snapshot.key)
                 let messageId = snapshot.key
+                print("New messgaeId is:", messageId)
                 self.fetchMessageWithMessageId(messageId: messageId)
                 //
             }, withCancel: nil)
@@ -342,7 +343,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     messages.removeAll()
     messagesDictionary.removeAll()
     collectionView.reloadData()
-    observeUserMessages()
+  //  observeUserMessages()
     
     
     }
@@ -359,7 +360,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //u
         //listen call listen to logged in user. logged in messages
-        observeUserMessages()
+     //   observeUserMessages()
 
         
         
@@ -458,13 +459,13 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //
         
-        collectionView.reloadData()
+        
         
         //resetCollectionViewAndEmptyData()
         
-//        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
+        collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
-       
+       collectionView.reloadData()
         
         
     }
@@ -477,7 +478,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-       // print("PLAY SOUND")
+        print("Collection view is reloaded")
     }
     
     deinit {
@@ -503,6 +504,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         //print("Feed array messages are:",messages.count)
         
         let message = messages[indexPath.row]//get the message for the proper row
+        cell?.proileImageView.image = nil
         
         cell?.message = message //THIS IS WHERE THE MESSAGE VAR IN USERCELL IS SET
         //print("Message is:", message)

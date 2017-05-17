@@ -85,6 +85,10 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.rgb(red: 200, green: 201, blue: 210)] //Title
         //
         navigationController?.hidesBarsOnSwipe = false
+        //
+//        navigationController?.hidesBarsWhenVerticallyCompact = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         // make it draggable
         collectionView?.alwaysBounceVertical = true
         //space ontop AND BOTTOM SPACE of the collectionview
