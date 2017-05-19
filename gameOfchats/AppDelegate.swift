@@ -68,12 +68,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UINavigationBar.appearance().tintColor = UIColor(r: 230, g: 32, b: 31)
        application.statusBarStyle = .lightContent //This and infoplist makes status white
         
-        UINavigationBar.appearance().barTintColor = UIColor(r: 61, g: 91, b: 151)
+//        UINavigationBar.appearance().barTintColor = UIColor(r: 61, g: 91, b: 151)
+//        
+//        // Make the nav bar look deeper
+//        let statusBarbackgroundView = UIView()
+//        statusBarbackgroundView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+//        window?.addSubview(statusBarbackgroundView)
+        
+                
+        
+        
+        
+        UINavigationBar.appearance().barTintColor = aquaBlueChatfixColor
         
         // Make the nav bar look deeper
         let statusBarbackgroundView = UIView()
-        statusBarbackgroundView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        statusBarbackgroundView.backgroundColor = aquaBlueChatfixColor
         window?.addSubview(statusBarbackgroundView)
+        
+        
         
         //Constraints
         window?.addContraintsWithFormat(format: "H:|[v0]|", views: statusBarbackgroundView)

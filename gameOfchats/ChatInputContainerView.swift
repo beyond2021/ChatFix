@@ -43,10 +43,13 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
     let uploadImageView : UIImageView = {
         let uiv  = UIImageView()
         uiv.isUserInteractionEnabled = true
-        uiv.tintColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+//        uiv.tintColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+        uiv.tintColor = aquaBlueChatfixColor
+        
+        
         //uiv.image = UIImage(named: "Picture-50-2")
         //Google Images Filled-50
-        uiv.image = UIImage(named: "Google Images Filled-50")
+        uiv.image = UIImage(named: "Google Images Filled-50-2")
         uiv.translatesAutoresizingMaskIntoConstraints = false
       return uiv
     }()

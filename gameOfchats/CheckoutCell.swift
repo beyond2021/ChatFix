@@ -12,6 +12,10 @@ class CheckoutCell: BaseFeedCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         DescriptionLabel.text = "One Touch Billing Coming Soon"
+        let image = UIImage(named: "working-on-macbook-and-iphone-in-a-bed-picjumbo-com")
+        backgroundImageView.image = image
+
+        
         
     }
     

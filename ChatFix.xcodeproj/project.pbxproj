@@ -39,12 +39,12 @@
 		53A17F731EC15AEB00A4070D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F721EC15AEB00A4070D /* ChatCell.swift */; };
 		53A17F761EC19F2C00A4070D /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F751EC19F2C00A4070D /* MessageCell.swift */; };
 		53A17F9C1EC2703800A4070D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F9B1EC2703800A4070D /* ApiService.swift */; };
-		53A17F9E1EC2B13A00A4070D /* MessagesController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */; };
 		53A17FA11EC46E0E00A4070D /* BaseFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA01EC46E0E00A4070D /* BaseFeedCell.swift */; };
 		53A17FA31EC481A300A4070D /* FixItCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA21EC481A300A4070D /* FixItCell.swift */; };
 		53A17FA61EC481DE00A4070D /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA51EC481DE00A4070D /* CheckoutCell.swift */; };
 		53A17FA91EC4846000A4070D /* CallingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A17FA81EC4846000A4070D /* CallingCell.swift */; };
 		53A734561EC5EA4F001CA91C /* CleanUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A734551EC5EA4F001CA91C /* CleanUp.swift */; };
+		53A7366D1ECF26AB001CA91C /* AnimateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A7366C1ECF26AB001CA91C /* AnimateLabel.swift */; };
 		53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */; };
 		53A9B3A41E927F8100D271A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */; };
 		53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */; };
@@ -112,12 +112,12 @@
 		53A17F721EC15AEB00A4070D /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		53A17F751EC19F2C00A4070D /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		53A17F9B1EC2703800A4070D /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController2.swift; sourceTree = "<group>"; };
 		53A17FA01EC46E0E00A4070D /* BaseFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFeedCell.swift; sourceTree = "<group>"; };
 		53A17FA21EC481A300A4070D /* FixItCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixItCell.swift; sourceTree = "<group>"; };
 		53A17FA51EC481DE00A4070D /* CheckoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
 		53A17FA81EC4846000A4070D /* CallingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallingCell.swift; sourceTree = "<group>"; };
 		53A734551EC5EA4F001CA91C /* CleanUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanUp.swift; sourceTree = "<group>"; };
+		53A7366C1ECF26AB001CA91C /* AnimateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimateLabel.swift; sourceTree = "<group>"; };
 		53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
@@ -217,10 +217,9 @@
 		5311992B1E9164FA00070A81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				53A17F9D1EC2B13A00A4070D /* MessagesController2.swift */,
+				5311991B1E9160E600070A81 /* MessagesController.swift */,
 				538DAFDE1EB7271B00EE3BAC /* Settings_Launcher.swift */,
 				5311992C1E9166B400070A81 /* LoginController.swift */,
-				5311991B1E9160E600070A81 /* MessagesController.swift */,
 				539C736D1E93EA83009CEB85 /* NewMessageController.swift */,
 				539C737A1E97B868009CEB85 /* ChatLogController.swift */,
 			);
@@ -241,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				538CD8E81EAF0E0E008C4A16 /* Pulsing.swift */,
+				53A7366C1ECF26AB001CA91C /* AnimateLabel.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -483,7 +483,6 @@
 			files = (
 				538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */,
 				538DAFE71EB7E46600EE3BAC /* Constraints.swift in Sources */,
-				53A17F9E1EC2B13A00A4070D /* MessagesController2.swift in Sources */,
 				53A17FA61EC481DE00A4070D /* CheckoutCell.swift in Sources */,
 				53A734561EC5EA4F001CA91C /* CleanUp.swift in Sources */,
 				538DAFDF1EB7271B00EE3BAC /* Settings_Launcher.swift in Sources */,
@@ -504,6 +503,7 @@
 				53A17F9C1EC2703800A4070D /* ApiService.swift in Sources */,
 				53A17F731EC15AEB00A4070D /* ChatCell.swift in Sources */,
 				5311992D1E9166B400070A81 /* LoginController.swift in Sources */,
+				53A7366D1ECF26AB001CA91C /* AnimateLabel.swift in Sources */,
 				539C73761E948C04009CEB85 /* LoginController+handlers.swift in Sources */,
 				53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */,
 				539C737D1E988EBB009CEB85 /* Message.swift in Sources */,

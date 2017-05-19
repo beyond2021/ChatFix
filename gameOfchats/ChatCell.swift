@@ -54,7 +54,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         let iv = UIImageView()
         iv.isUserInteractionEnabled = true
         iv.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "AdobeStock_132678227")
+        let image = UIImage(named: "AdobeStock_44190609")
         iv.clipsToBounds = true
         iv.image = image
         iv.contentMode = .scaleAspectFill
@@ -159,7 +159,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             FIRDatabase.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
                 // print("Message Id:",snapshot.key)
                 let messageId = snapshot.key
-                print("New messgaeId is:", messageId)
+               // print("New messgaeId is:", messageId)
                 self.fetchMessageWithMessageId(messageId: messageId)
                 //
             }, withCancel: nil)

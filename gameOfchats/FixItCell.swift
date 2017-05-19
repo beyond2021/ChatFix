@@ -13,6 +13,9 @@ class FixItCell: BaseFeedCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         DescriptionLabel.text = "Video Fixing Comimg Soon"
+        let image = UIImage(named: "kaboompics_Man using a tablet")
+        backgroundImageView.image = image
+
        
     }
     

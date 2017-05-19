@@ -20,7 +20,8 @@ class MessageCell: UICollectionViewCell {
         //self.isVisited = false
         //newMessageView.backgroundColor = UIColor.rgb(red: 51, green: 2, blue: 129)
         //UIColor.rgb(red: 53, green: 81, blue: 140)
-        newMessageView.backgroundColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+//        newMessageView.backgroundColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+        newMessageView.backgroundColor = aquaBlueChatfixColor
         
         self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         self.layer.borderWidth = 1
@@ -84,6 +85,7 @@ class MessageCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "detailTextLabel"
+        
         return label
     }()
     
@@ -216,11 +218,15 @@ class MessageCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkGray
+       // label.textColor = .darkGray
+        
+//        label.textColor = UIColor.rgb(red: 53, green: 81, blue: 140)
+        label.textColor = aquaBlueChatfixColor
         
         label.text = "HH:MM:SS"
         label.font = UIFont.systemFont(ofSize: 16)
        // label.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        label.textAlignment = .right
         return label
         
     }()
@@ -271,7 +277,7 @@ class MessageCell: UICollectionViewCell {
         ///
         /////
         // x, y, width and height
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -28) .isActive = true
+        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20) .isActive = true
         //y is centered with textLabel
         timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         // Width 100
@@ -311,7 +317,9 @@ class MessageCell: UICollectionViewCell {
         
         //
         
-        newMessageView.centerXAnchor.constraint(equalTo: timeLabel.centerXAnchor).isActive = true
+//        newMessageView.centerXAnchor.constraint(equalTo: timeLabel.centerXAnchor).isActive = true
+        newMessageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        
         //y
         newMessageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         //width

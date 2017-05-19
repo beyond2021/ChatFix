@@ -48,7 +48,9 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         
         //set the button color
-        button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
+       // button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
+        button.backgroundColor = UIColor(r: 0, g: 99, b: 156)
+        
         button.setTitle("Register", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
@@ -145,9 +147,9 @@ class LoginController: UIViewController {
     
     
     //MARK:- pickImageLabel
-    let pickImageLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Please choose a profile pic you Super Star"
+    let pickImageLabel: AnimatedLabel = {
+        let label = AnimatedLabel()
+        label.text = "Please pick a profile pic."
         label.textAlignment = .center
         label.textColor = .white
         label.numberOfLines = 0
@@ -163,12 +165,42 @@ class LoginController: UIViewController {
         super.viewWillAppear(true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+      fadeProfileLabel()
+        
+        
+    }
+    
+    var pickImageLabelCenterAnchor : NSLayoutConstraint?
+    
     
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+       // pickImageLabel.countFromZero(to: 200, duration: 10)
+//        label.countFromZero(to: 200, duration: 10)
+//        label.countFromCurrent(to: 400)
+//        label.count(from: 400, to: 500, duration: 900)
+        
+        UIView.animate(withDuration: 12.0, delay: 1, options: ([.curveLinear, .repeat]), animations: {() -> Void in
+//            self.pickImageLabel.center = CGPointMake(0 - self.pickImageLabel.bounds.size.width / 2, self.pickImageLabel.center.y)
+            
+            
+            
+            
+            
+            
+            
+            
+        }, completion:  { _ in })
+        
+        
                // after my extension
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        view.backgroundColor = aquaBlueChatfixColor
+        
+        
         // add the views
         view.addSubview(inputContainerView)
         view.addSubview(loginRegisterButton)
@@ -289,9 +321,12 @@ class LoginController: UIViewController {
         //
         
         // x to the edge of the container
-        pickImageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true        // y starts at the bottom of the textfield
+        pickImageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        // y starts at the bottom of the textfield
+        //pickImageLabelCenterAnchor?.isActive = true
         pickImageLabel.bottomAnchor.constraint(equalTo: profileImageView.topAnchor, constant: -20).isActive = true        // width is the total width of the container view
         pickImageLabel.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+       
         pickImageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         
@@ -364,15 +399,35 @@ class LoginController: UIViewController {
         loginValidation(email: email, password: password)
     }
     
+    func fadeProfileLabel(){
+        self.pickImageLabel.alpha = 0
+        
+        UIView.animate(withDuration: 5.0, delay: 1, options: ([.curveLinear, .repeat]), animations: {() -> Void in
+            
+            self.pickImageLabel.alpha = 1
+            //    self.pickImageLabel.widthAnchor.constraint(equalToConstant: 1).isActive = true
+            // self.pickImageLabelCenterAnchor?.isActive = true
+        }, completion:  { _ in })
+
+        
+        
+    }
     
     
     //MARK : - Hndle login register change
     func handleLoginRegistorChange(){
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
             nameTextField.isHidden = true
+            profileImageView.isHidden = true
+            profileImageView.isUserInteractionEnabled = true
+            pickImageLabel.alpha = 0
+            
         } else {
             nameTextField.isHidden = false
+            profileImageView.isHidden = false
+            profileImageView.isUserInteractionEnabled = false
             //  let aState = AppState.RegisterState
+            fadeProfileLabel()
             
         }
         

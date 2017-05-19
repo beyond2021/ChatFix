@@ -12,12 +12,13 @@ import Firebase
 class NewMessageController: UITableViewController {
     let cellId = "cellId"
     var users = [User]() // create the model. any emptyy array of type users
+    var sortedUsers = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
         
-        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+   //     self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
         
         //UINavigationBar.appearance().barTintColor = UIColor(r: 61, g: 91, b: 151)
         navigationController?.navigationBar.tintColor = .white
@@ -69,6 +70,18 @@ class NewMessageController: UITableViewController {
              
                 //NOW WE HAVE USER WE CAN ADD IT TO THE ARRAY
                 self.users.append(user)
+                var sortedNamesArray = [String]()
+                sortedNamesArray.append(user.name!)
+                
+             //   self.sortedUsers = self.users.sort { $0.compare($1, options: .numeric) == .orderedAscending }
+                
+                self.sortedUsers = self.users.sorted { _,_ in user.name!.compare(user.name!, options: .numeric) == .orderedDescending }
+                
+                
+//                self.sortedUsers = self.users.sorted(by: { (user1, user2) -> Bool in
+//                    //
+//                    return user1.name.fi > user2.name
+//                })
                 
                 
                 // this will crash because we are access the tableview from a backgropund thread, so lets use dispatch_async to fix
@@ -76,10 +89,10 @@ class NewMessageController: UITableViewController {
                     self.tableView.reloadData() // here we get themain thread and reload the tableview. now we can use users.count
                 })
                 
+                print(self.sortedUsers)
                 
                 
-                
-                print(user.name ?? "There is no name", user.email ?? "there is no email")
+        //        print(user.name ?? "There is no name", user.email ?? "there is no email")
                 
             }
         }, withCancel: nil)
@@ -94,7 +107,8 @@ class NewMessageController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+       // return users.count
+        return sortedUsers.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +121,8 @@ class NewMessageController: UITableViewController {
         // get the labels
         
         // get reference to user
-        let user =  users[indexPath.row]
+      //  let user =  users[indexPath.row]
+        let user = sortedUsers[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
         

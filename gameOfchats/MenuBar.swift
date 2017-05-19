@@ -28,7 +28,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         //cv.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31)
-        cv.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+//        cv.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        cv.backgroundColor = aquaBlueChatfixColor
         cv.translatesAutoresizingMaskIntoConstraints = false
         //
         cv.dataSource = self
@@ -74,10 +75,10 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func setupHorizontalBar(){
         let horizontalBarView = UIView()
-        //horizontalBarView.backgroundColor = UIColor(white: 0.9, alpha: 1) //whitish color
+        horizontalBarView.backgroundColor = UIColor(white: 0.9, alpha: 1) //whitish color
         //UIColor.rgb(red: 200, green: 201, blue: 210)
 //        horizontalBarView.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
-        horizontalBarView.backgroundColor = UIColor.rgb(red: 20, green: 23, blue: 33)
+//        horizontalBarView.backgroundColor = UIColor.rgb(red: 20, green: 23, blue: 33)
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(horizontalBarView)
         

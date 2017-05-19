@@ -21,11 +21,39 @@ class BaseFeedCell: UICollectionViewCell {
         return label
     }()
     
+    let backgroundImageView : UIImageView = {
+        let iv = UIImageView()
+        iv.isUserInteractionEnabled = true
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(named: "AdobeStock_44190609")
+        iv.clipsToBounds = true
+       // iv.image = image
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         //backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        let image = UIImage(named: "AdobeStock_44190609")
+        backgroundImageView.image = image
+        
+        
+        
         backgroundColor = UIColor.rgb(red: 20, green: 23, blue: 33)
         setupLabel()
+        addSubview(backgroundImageView)
+        backgroundImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        backgroundImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        backgroundImageView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        backgroundImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+       
+        
+        
+        
     }
     
     func setupLabel(){

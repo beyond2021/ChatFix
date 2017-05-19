@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+let aquaBlueChatfixColor = UIColor.rgb(red: 0, green: 142, blue: 253)
 
 
 class MessagesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -20,13 +21,15 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     let CheckoutCellId = "CheckoutCellId"
     let FixitCellId = "FixitCellId"
     
-    var chatCell : ChatCell?
+    
+    
+    
     //AN ARRAY TO HOLD ALL THE MESSAGES
     var messages = [Message]()
     //GROUPING THE MESSAGES
     var messagesDictionary = [String: Message]()
     
-    
+    var chatCell : ChatCell? // links
     lazy var  menuBar : MenuBar = {
         let mb = MenuBar()
         mb.translatesAutoresizingMaskIntoConstraints = false
@@ -52,23 +55,30 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fadeInMenubar()
         //darken the navbar
         navigationController?.navigationBar.isTranslucent = false
+        
         // How to save Data into fireBase
         // 1: allocate Reference
         //    let reference = FIRDatabase.database().reference(fromURL: "https://peephole-6f487.firebaseio.com/")
         //    reference.updateChildValues(["someValue":123123])
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+//        navigationItem.leftBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+//        navigationItem.rightBarButtonItem?.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        
         setupCollectionView()
         //MENUBAR
-        setupMenuBar()
+//        setupMenuBar()
         //
         setupNavBarButtonsOnRight()
       //  perform(#selector(handleLogout), with: nil, afterDelay: 0)
         checkIfUserIsLoggedIn()
+        
     }
     
     func checkIfUserIsLoggedIn(){
@@ -80,49 +90,45 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             
         } else {
             
-        
-            return
+                return
             
         }
-        
         
     }
 
     
     
     
-    
+    /*
     func viewWillAppear() {
         super.viewWillAppear(true)
         collectionView?.reloadData()
 //        setupCollectionView()
         
     }
+ */
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//        setupCollectionView()
-        
-        /*
-        UIView.animate(withDuration: 2.5, delay: 3.0, usingSpringWithDamping: 3, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
-            let indexPath = IndexPath(item: 1, section: 0)
-           self.collectionView?.scrollToItem(at: indexPath, at: .right, animated: true)
-            
-            //
-        }) { (true) in
-            //
-            let indexPath = IndexPath(item: 0, section: 0)
-            self.collectionView?.scrollToItem(at: indexPath, at: .left, animated: true)
-
-            
-        }
- */
-        
-        
         
     }
 
     
     //MARK:- SETUP
+    
+    func fadeInMenubar(){
+       // menuBar.alpha = 0
+        UIView.animate(withDuration: 1.0, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+          //  self.menuBar.alpha = 1
+            self.setupMenuBar()
+        }) { (true) in
+            self.setupCollectionView()
+        }
+        
+    }
+    
+    
+    
+    
     
     func setupCollectionView(){
         
@@ -139,7 +145,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
         collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
         collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //paging snap in place
         collectionView?.isPagingEnabled = true
@@ -160,7 +166,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     private func setupMenuBar(){
         navigationController?.hidesBarsOnSwipe = true
         let blueView = UIView()
-        blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+       // blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        blueView.backgroundColor = aquaBlueChatfixColor
         view.addSubview(blueView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
@@ -169,6 +176,16 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        menuBar.alpha = 0
+        UIView.animate(withDuration: 1.0, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+            //  self.menuBar.alpha = 1
+            self.menuBar.alpha = 1
+        }) { (true) in
+           // self.setupCollectionView()
+        }
+
+        
+        
     }
     
     
@@ -443,7 +460,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         let nameLabel = UILabel()
         //MUST ADD IN THE VIEW AFTER YOU CREATE IT!!!! OR YOU WILL GET A VIEW HIARCHY CRASH
         containerView.addSubview(nameLabel)
-        nameLabel.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+//        nameLabel.textColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        nameLabel.textColor = .white
+        
         nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
         //print("The user is:", user.name ?? "")
@@ -528,6 +547,43 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         let loginController = LoginController()
         loginController.messagesController = self //
         present(loginController, animated: true, completion: nil)
+        
+    }
+    
+   
+    //MARK:- Motion
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        //
+       // showShake()
+        
+        let indexPath = IndexPath(item: 1, section: 0 )
+        
+        
+       // collectionView?.reloadItems(at: [indexPath])
+       // collectionView?.moveItem(at: indexPath0, to: indexPath1)
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        
+        
+    }
+    
+    func showShake() {
+        let alert = UIAlertController(title: "I was shaked", message: "I will call now", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+        
+    }
+
+    
+    func callingBeyond2021(){
+        guard let number = URL(string: "telprompt://" + "19173495126") else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
         
     }
     

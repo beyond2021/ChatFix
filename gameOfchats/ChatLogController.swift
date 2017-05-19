@@ -77,12 +77,16 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         self.navigationController?.navigationBar.isTranslucent = false
         
         //self.blackBackgroundView?.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
-        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
-        //navigationController?.navigationBar.tintColor = .white
+//        self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
+        
+        
+       navigationController?.navigationBar.tintColor = .white
         //UIColor.rgb(red: 200, green: 201, blue: 210)
-        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210) //Back Button
-        //navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.rgb(red: 200, green: 201, blue: 210)] //Title
+//        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 200, green: 201, blue: 210) //Back Button
+        
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING THE
+//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.rgb(red: 200, green: 201, blue: 210)] //Title
         //
         navigationController?.hidesBarsOnSwipe = false
         //
