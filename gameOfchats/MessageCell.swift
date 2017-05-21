@@ -23,9 +23,9 @@ class MessageCell: UICollectionViewCell {
 //        newMessageView.backgroundColor = UIColor.rgb(red: 53, green: 81, blue: 140)
         newMessageView.backgroundColor = aquaBlueChatfixColor
         
-//        self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
+        self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         
-        self.layer.borderColor = aquaBlueChatfixColor.cgColor
+//        self.layer.borderColor = aquaBlueChatfixColor.cgColor
         
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 8

@@ -1,0 +1,10 @@
+
+{
+    "work":
+             
+             {
+             "workId": "1",
+             "name": "Structured Cabling",
+             "workDescription": "Structured cabling design and installation is governed by a set of standards that specify wiring data centers, offices, and apartment buildings for data or voice communications using various kinds of cable, most commonly category 5e (CAT5e), category 6 (CAT6), and fiber optic cabling and modular connectors. These standards define how to lay the cabling in various topologies in order to meet the needs of the customer, typically using a central patch panel (which is normally 19 inch rack-mounted), from where each modular connection can be used as needed. Each outlet is then patched into a network switch (normally also rack-mounted) for network use or into an IP or PBX (private branch exchange) telephone system patch panel."
+             }
+}

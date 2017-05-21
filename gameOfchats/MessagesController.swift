@@ -426,7 +426,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         let profileImageView = UIImageView()
         profileImageView.layer.borderWidth = 1
         //profileImageView.layer.borderColor = UIColor.white.cgColor
-        profileImageView.layer.borderColor = UIColor(r: 61, g: 91, b: 151).cgColor
+//        profileImageView.layer.borderColor = UIColor(r: 61, g: 91, b: 151).cgColor
+        profileImageView.layer.borderColor = aquaBlueChatfixColor.cgColor
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         //set aspect ratio

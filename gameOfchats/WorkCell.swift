@@ -28,9 +28,11 @@ class WorkCell: UICollectionViewCell {
         return label
     }()
     
+    
+    
     var work : Work? {
         didSet{
-            
+            workCellNameLabel.text = work?.name
             
         }
         

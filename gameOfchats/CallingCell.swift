@@ -11,6 +11,61 @@ import UIKit
 class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     let workArrayStrings = ["Structured Cabling", "Office Networking", "Entry Access Systems", "Wireless Access Points", "Alarm Systems", "Mobile App Development" ]
+    //MANUALLY LOADING ALL WORK
+    var works = [Work]()
+    
+    func getWork(){
+        /*
+        let workStructuredCabling = Work()
+        workStructuredCabling.name = "Structured Cabling"
+        workStructuredCabling.workId = 100056
+        workStructuredCabling.workDescription = "Structured cabling design and installation is governed by a set of standards that specify wiring data centers, offices, and apartment buildings for data or voice communications using various kinds of cable, most commonly category 5e (CAT5e), category 6 (CAT6), and fiber optic cabling and modular connectors. These standards define how to lay the cabling in various topologies in order to meet the needs of the customer, typically using a central patch panel (which is normally 19 inch rack-mounted), from where each modular connection can be used as needed. Each outlet is then patched into a network switch (normally also rack-mounted) for network use or into an IP or PBX (private branch exchange) telephone system patch panel."
+ */
+        
+        
+        if let path = Bundle.main.path(forResource: "work", ofType: "json") {
+            do{
+               let data = try(NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe))
+                //now we will get our json dictionary
+                let jsonDictionary = try(JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers)) as! [String:AnyObject]
+         //   print(jsonDictionary["work"] ?? "")
+                
+               /*
+                if let workDictionary = jsonDictionary["work"] as? [String:AnyObject] {
+                    //Create our new work object
+                    let work = Work()
+                    //WITH ONE LINE OF CODE
+                    work.setValuesForKeys(workDictionary)
+                   print(work.name ?? "", work.workDescription ?? "")
+                    self.work = [work]
+                //    print(self.work)
+                    
+                }
+ */
+             if let worksArray = jsonDictionary["work"] as? [[String:AnyObject]] {
+              //  print(works)
+             //   self.works = works
+                for workDictionary in worksArray {
+                    let work = Work()
+                    
+                   work.setValuesForKeys(workDictionary)
+                    self.works.append(work)
+                }
+                
+                
+                }
+                
+                
+
+                
+            }
+            catch let dataErr {
+                print(dataErr)
+                
+            }
+            
+        }
+    }
     
     let workCellId = "workCellId"
     
@@ -33,6 +88,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
         let image = UIImage(named: "20")
         backgroundImageView.image = image
         setupCollectionView()
+        getWork()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +124,8 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
             self.collectionView.alpha = 1
         }) { (true) in
             //TODO
-            self.readJson()
+//self.readJson()
+            self.getWork()
         }
 
         
@@ -96,12 +153,17 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return workArrayStrings.count
+       // return workArrayStrings.count
+        return works.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: workCellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: workCellId, for: indexPath) as! WorkCell
+        let work = self.works[indexPath.row]
+        cell.work = work
+        
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
