@@ -18,7 +18,7 @@ extension UIColor {
 
 
 class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    let imageNames = ["Home Filled-50", "Phone Filled-50", "Screenshot Filled-50", "POS Terminal Filled-50"]
+    let imageNames = ["Assistant Filled-50", "Maintenance Filled-50", "Screenshot Filled-50", "POS Terminal Filled-50"]
     
     var messageController : MessagesController?
 ////    var messageController : MessagesController2?

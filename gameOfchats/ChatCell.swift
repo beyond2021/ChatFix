@@ -95,6 +95,8 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         setupCollectionView()
         collectionView.alpha = 0
+        
+        
         animateBackground()
         
 //        collectionView.prefetchDataSource = self as? UICollectionViewDataSourcePrefetching
@@ -113,7 +115,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         UIView.animate(withDuration: 3.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
             //
             self.collectionView.alpha = 1
-            self.visualEffectView.alpha = 1
+            self.visualEffectView.alpha = 0.5
             
             
         }) { (true) in
@@ -274,30 +276,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
     }
     
-    /*
-    func performLogout(){
-        if let aClass = NSClassFromString("MessagesController") {
-            let sel = #selector(MessagesController.handleLogout)
-           // let num = NSNumber(value: 1337)
-            
-            if let myClass = aClass as? NSObjectProtocol {
-                if myClass.responds(to: sel) {
-                  //  myClass.perform(sel)
-                    print("Gonna try to open logout from Chatcell")
-                }
-            }
-        }
-        
-        
-        
-        
-        
-    }
- */
-    
-    
-    
-    
+       
     
     func fetchUserAndSetUpNavBarTitle(){
         // Fetch a single value
@@ -309,43 +288,35 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             // print(snapshot) // console will print out the name and email
             
-            
             //get the dictionary out of the snapshot
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 //  self.navigationItem.title = dictionary["name"] as? String
                 let user = User()
-                
-               // print("The user is:", user)
-                
-                
+                // print("The user is:", user)
                 user.setValuesForKeys(dictionary)
-              // self.setUpNavBarWithUser(user: user)
+                // self.setUpNavBarWithUser(user: user)
                 
-                
-                
-               self.resetCollectionViewAndEmptyData()
+                self.resetCollectionViewAndEmptyData()
                 
                 // contains the name email and image of the user
                 self.messagesController?.setUpNavBarWithUser(user: user)
                 
-                   self.resetAndLoad()
+                self.resetAndLoad()
                 
                 //self.observeUserMessages()
             }
             
         }, withCancel: nil)
         
-     // observeUserMessages()
+        // observeUserMessages()
     }
     
     
-   func  resetAndLoad() {
-    messages.removeAll()
-    messagesDictionary.removeAll()
-    collectionView.reloadData()
-  //  observeUserMessages()
-    
-    
+    func  resetAndLoad() {
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        collectionView.reloadData()
+        
     }
     
     
@@ -360,88 +331,21 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         
         //u
         //listen call listen to logged in user. logged in messages
-     //   observeUserMessages()
-
-        
+        //   observeUserMessages()
         
     }
     
    
- 
- 
-    //MARK: - Loading the showChatController by clicking the nav
-    
-  /*
-     -(void)remove:(int)i {
-     
-     [self.collectionObj performBatchUpdates:^{
-     [array removeObjectAtIndex:i];
-     NSIndexPath *indexPath =[NSIndexPath indexPathForRow:i inSection:0];
-     [self.collectionObj deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
-     
-     } completion:^(BOOL finished) {
-     
-     }];
-     }
- 
- */
-    
-    /*
-     [self.collectionView performBatchUpdates:^{
-     
-     NSArray *selectedItemsIndexPaths = [self.collectionView indexPathsForSelectedItems];
-     
-     // Delete the items from the data source.
-     [self deleteItemsFromDataSourceAtIndexPaths:selectedItemsIndexPaths];
-     
-     // Now delete the items from the collection view.
-     [self.collectionView deleteItemsAtIndexPaths:selectedItemsIndexPaths];
-     
-     } completion:nil];
-     
-     
-     
-     // This method is for deleting the selected images from the data source array
-     -(void)deleteItemsFromDataSourceAtIndexPaths:(NSArray  *)itemPaths
-     {
-     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-     for (NSIndexPath *itemPath  in itemPaths) {
-     [indexSet addIndex:itemPath.row];
-     }
-     [self.images removeObjectsAtIndexes:indexSet]; // self.images is my data source
-     
-     }
- 
- */
-    
-    
-    
-    
     
    /////////
     func setupCollectionView() {
-//        backgroundImageView.addSubview(collectionView)
         addSubview(collectionView)
-        
-        
-        
-//        collectionView.centerXAnchor.constraint(equalTo: backgroundImageView.centerXAnchor).isActive = true
-//        collectionView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
-//        collectionView.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
-//        collectionView.heightAnchor.constraint(equalTo: backgroundImageView.heightAnchor).isActive = true
-        
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        
         collectionView.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor).isActive = true
         collectionView.centerYAnchor.constraint(equalTo: visualEffectView.centerYAnchor).isActive = true
         collectionView.widthAnchor.constraint(equalTo: visualEffectView.widthAnchor, constant: -20).isActive = true
         collectionView.heightAnchor.constraint(equalTo: visualEffectView.heightAnchor).isActive = true
-
-        
-        
-        
-        
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top:50, left: 0, bottom: 0, right: 0)
         
@@ -451,21 +355,26 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             flowLayout.minimumLineSpacing = 10 //Decrease the gap
             
         }
-
+        
         
         collectionView.backgroundColor = .clear
         //ChatCell
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: cellId)
-        
-        //
-        
-        
-        
-        //resetCollectionViewAndEmptyData()
-        
         collectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
         
-       collectionView.reloadData()
+        
+        
+//        let animation = CATransition()
+//        animation.type = "suckEffect"
+//        animation.duration = 0.7
+//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        animation.endProgress = 1
+//        animation.isRemovedOnCompletion = true
+//        collectionView.layer.add(animation, forKey: "transitionViewAnimation")
+
+        
+        
+        collectionView.reloadData()
         
         
     }
@@ -509,6 +418,8 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         cell?.message = message //THIS IS WHERE THE MESSAGE VAR IN USERCELL IS SET
         //print("Message is:", message)
         
+        animateCell(cell: cell!)
+        
         
         return cell!
     }
@@ -516,6 +427,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         //
        //print("about to display :", indexPath.item)
+        animateCell(cell: cell)
         
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -533,6 +445,10 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //print("I am pressing:", indexPath.item)
+        //
+        
+        
+        //
         
         let cell : MessageCell = collectionView.cellForItem(at: indexPath) as! MessageCell
        // print("Print cell is:", cell.message ?? "")
@@ -540,7 +456,6 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         if cell.message?.isVisited == false {
             cell.newMessageView.backgroundColor = .clear
         }
-        
         
         let message = messages[indexPath.row]
         // print(message.text, message.toId, message.fromId)
@@ -580,6 +495,32 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         print("Swiping left")
         
     }
+    //
+    func animateCell(cell: UICollectionViewCell) {
+        let animation = CABasicAnimation(keyPath: "cornerRadius")
+        animation.fromValue = 200
+        cell.layer.cornerRadius = 8
+        animation.toValue = 0
+        animation.duration = 0.5
+        cell.layer.add(animation, forKey: animation.keyPath)
+        
+        
+    }
+    
+    func suckItAnimation(){
+        let animation = CATransition()
+        animation.type = "suckEffect"
+        animation.duration = 0.7
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.endProgress = 1
+        animation.isRemovedOnCompletion = true
+        collectionView.layer.add(animation, forKey: "transitionViewAnimation")
+    }
+    
+    
+    
+    
+    
     
     
 }

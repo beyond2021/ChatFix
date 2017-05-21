@@ -8,34 +8,13 @@
 
 import Foundation
 
-class Work: NSObject {
+class Work: SafeJsonObject {
     // inside here "User" we will hold reference to email and name. These are the values inside the snapshots
     var workId : NSNumber?
 //    var customerId :String?
     var name : String?
     var workDescription : String?
 
-//    override func setValue(_ value: Any?, forKey key: String) {
-//        //
-//    }
     
 }
 
-/*
-extension Work {
-    convenience init?(json: [String: Any]) {
-        guard let name = json["title"] as? String,
-            let customerId = json["customerId"] ,
-            let workDescription = json["workDescription"],
-            let workId = json["workId"]
-            else {
-                return nil
-        }
-        
-        
-        self.name = name
-        self.customerId = customerId as! String
-        self.workDescription = workDescription as! String
-    }
-}
- */
