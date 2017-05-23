@@ -14,6 +14,7 @@ class Work: SafeJsonObject {
 //    var customerId :String?
     var name : String?
     var workDescription : String?
+    var imageName : String?
 
     
 }

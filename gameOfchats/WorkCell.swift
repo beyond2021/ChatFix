@@ -46,8 +46,10 @@ class WorkCell: UICollectionViewCell {
       //  self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         self.layer.borderColor = aquaBlueChatfixColor.cgColor
         
-        self.layer.borderWidth = 3
-        self.layer.cornerRadius = 8
+        self.layer.borderWidth = 1
+//        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 75
+        
         self.clipsToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowOpacity = 1

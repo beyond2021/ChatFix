@@ -27,7 +27,9 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         //let button = UIButton()
         let button = UIButton(type: .system)
         button.setTitle("Send", for: .normal)
-        button.setTitleColor(UIColor.rgb(red: 53, green: 81, blue: 140), for: .normal)
+//        button.setTitleColor(UIColor.rgb(red: 53, green: 81, blue: 140), for: .normal)
+        button.setTitleColor(aquaBlueChatfixColor, for: .normal)
+        
         
         let image = UIImage(named: "Message Filled-50")
        // button.setImage(image, for: .normal)

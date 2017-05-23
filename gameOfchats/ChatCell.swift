@@ -374,7 +374,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
 
         
         
-        collectionView.reloadData()
+   //     collectionView.reloadData()
         
         
     }

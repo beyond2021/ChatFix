@@ -75,8 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        statusBarbackgroundView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
 //        window?.addSubview(statusBarbackgroundView)
         
-                
-        
+               
         
         
         UINavigationBar.appearance().barTintColor = aquaBlueChatfixColor

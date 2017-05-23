@@ -35,6 +35,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         mb.translatesAutoresizingMaskIntoConstraints = false
         //reference
         mb.messageController = self
+        mb.dropShadow() // my extension
         
         return mb
     }()
@@ -58,6 +59,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         fadeInMenubar()
         //darken the navbar
         navigationController?.navigationBar.isTranslucent = false
+        
+       // navigationController?.extendedLayoutIncludesOpaqueBars = true//
         
         // How to save Data into fireBase
         // 1: allocate Reference
@@ -99,16 +102,17 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     
-    /*
+    
     func viewWillAppear() {
         super.viewWillAppear(true)
-        collectionView?.reloadData()
-//        setupCollectionView()
-        
+//        collectionView?.reloadData()
+////        setupCollectionView()
+        fadeInMenubar()
     }
- */
+ 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+       // fadeInMenubar()
         
     }
 
@@ -161,13 +165,22 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         newMessageBarButtonItem.tintColor = .white
         navigationItem.rightBarButtonItems = [ moreBarButtonItem, newMessageBarButtonItem]
     }
+   
+    let blueView : UIView = {
+        let view = UIView()
+        view.backgroundColor = aquaBlueChatfixColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+ 
     
     //Private because no other class need to access this
-    private func setupMenuBar(){
-        navigationController?.hidesBarsOnSwipe = true
-        let blueView = UIView()
+     func setupMenuBar(){
+        navigationController?.hidesBarsOnSwipe = false
+       // let blueView = UIView()
        // blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
-        blueView.backgroundColor = aquaBlueChatfixColor
+       // blueView.backgroundColor = aquaBlueChatfixColor
         view.addSubview(blueView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
@@ -177,7 +190,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         menuBar.alpha = 0
-        UIView.animate(withDuration: 1.0, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
             //  self.menuBar.alpha = 1
             self.menuBar.alpha = 1
         }) { (true) in
@@ -248,21 +261,34 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             //cell.checkIfUserIsLoggedIn()
            cell.observeUserMessages()
             //cell.getUserMessages()
+            
+            navigationController?.navigationBar.isHidden = false
+           // fadeInMenubar()
+            
             return cell
             
         } else if indexPath.item == 1 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CallingCellId, for: indexPath) as! CallingCell
+            cell.messagesController = self
+            navigationController?.navigationBar.isHidden = false
+           // fadeInMenubar()
+            
             return cell
             
         } else if indexPath.item == 2 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixitCellId, for: indexPath) as! FixItCell
+            navigationController?.navigationBar.isHidden = false
+           // fadeInMenubar()
             return cell
             
         }else if indexPath.item == 3 {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CheckoutCellId, for: indexPath) as! CheckoutCell
+           navigationController?.navigationBar.isHidden = false
+           // fadeInMenubar()
+            
             return cell
             
         }
@@ -279,7 +305,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
-    
+   /*(
     //MARK:- COLLECTIONVIEW DELEGATE METHODS
     private func attempTedReloadOfTable() {
         
@@ -290,9 +316,10 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         
     }
+ */
     
     
-    
+/*
     
     //TIMER
     var timer : Timer?
@@ -321,6 +348,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         
     }
+ */
     
     /*
      

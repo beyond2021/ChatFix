@@ -5,31 +5,42 @@
   {
  "workId": "1",
  "name": "Structured Cabling",
+  "imageName": "binary-1327512_640",
  "workDescription": "Structured cabling design and installation is governed by a set of standards that specify wiring data centers, offices, and apartment buildings for data or voice communications using various kinds of cable, most commonly category 5e (CAT5e), category 6 (CAT6), and fiber optic cabling and modular connectors. These standards define how to lay the cabling in various topologies in order to meet the needs of the customer, typically using a central patch panel (which is normally 19 inch rack-mounted), from where each modular connection can be used as needed. Each outlet is then patched into a network switch (normally also rack-mounted) for network use or into an IP or PBX (private branch exchange) telephone system patch panel."
  },
  {
  "workId": "2",
  "name": "Office Networking",
+             "imageName": "hose-coupling-206004_640",
+             
  "workDescription": "A computer network or data network is a telecommunications network which allows nodes to share resources. In computer networks, networked computing devices exchange data with each other using a data link. The connections between nodes are established using either cable media or wireless media."
  },
  {
  "workId": "3",
  "name": "Entry Access Systems",
+             "imageName": "digital-intercom-699256_640",
+             
  "workDescription": "We have many years experience in the installation and maintenance of electronic security equipment on various types of property from small residential home projects, to large multi-entrance fully integrated systems. Our systems are designed by us for you. With your needs and requirements understood we can provide systems that are both secure and convenient "
  },
  {
  "workId": "4",
  "name": "Wireless Access Points",
+             "imageName": "binary-1327512_640",
+             
  "workDescription": "Now you can use small business wireless technology to extend your wired network to employees without sacrificing security or performance. Cisco Small Business Wireless Access Points allow your staff to connect to valuable network resources from a variety of locations across your workspace."
  },
  {
  "workId": "5",
  "name": "Alarm Systems",
+             "imageName": "security-systems-156149_640",
+             
  "workDescription": "The design of a commercial fire alarm system is critical to ensure the premises is adequately protected at all times with reliable pre-warning. The fire alarm systems that Sentry installs are capable of detecting the early stages of fire conditions. In the case of a detected fire, an alarm will sound and a Central Station Monitoring Center is immediately informed to alert thre proper authorities."
  },
  {
  "workId": "6",
  "name": "Mobile App Development",
+             "imageName": "code-1076536_640",
+             
  "workDescription": "At Beyond2021, we have helped many clients deploy apps to every major smartphone platform. We have developers and designers who specialize in iOS (iPhone\/iPad), Android, Windows Phone, and Blackberry. No matter what platform you want to build your smartphone app for, Beyond2021 has you covered."
  }]
 }
