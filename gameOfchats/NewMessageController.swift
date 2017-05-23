@@ -12,7 +12,7 @@ import Firebase
 class NewMessageController: UITableViewController {
     let cellId = "cellId"
     var users = [User]() // create the model. any emptyy array of type users
-    var sortedUsers = [User]()
+ //   var sortedUsers = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +25,20 @@ class NewMessageController: UITableViewController {
         navigationItem.title = "Pick A Mate"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
-        
         //adding the cancel button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        
         //REGISTERING THE CUSTOM CELL
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         // I wann get all the users
         fetchUser()
         
         
-        
-        
     }
     
    
     func handleCancel(){
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil) // dismiss itself
     }
     
     func fetchUser() {
@@ -49,7 +47,7 @@ class NewMessageController: UITableViewController {
             // This fetches all of the users
          //   print("User Found")
             // lets add all of these users into an array
-        //    print(snapshot)
+        //    print(snapshot) // many snapshots
             // there is a dictionay value of every snapshot
             //Break point hre to get the list of snapshots
             if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -70,12 +68,12 @@ class NewMessageController: UITableViewController {
              
                 //NOW WE HAVE USER WE CAN ADD IT TO THE ARRAY
                 self.users.append(user)
-                var sortedNamesArray = [String]()
-                sortedNamesArray.append(user.name!)
+//                var sortedNamesArray = [String]()
+//                sortedNamesArray.append(user.name!)
                 
              //   self.sortedUsers = self.users.sort { $0.compare($1, options: .numeric) == .orderedAscending }
                 
-                self.sortedUsers = self.users.sorted { _,_ in user.name!.compare(user.name!, options: .numeric) == .orderedDescending }
+//                self.sortedUsers = self.users.sorted { _,_ in user.name!.compare(user.name!, options: .numeric) == .orderedDescending }
                 
                 
 //                self.sortedUsers = self.users.sorted(by: { (user1, user2) -> Bool in
@@ -89,7 +87,7 @@ class NewMessageController: UITableViewController {
                     self.tableView.reloadData() // here we get themain thread and reload the tableview. now we can use users.count
                 })
                 
-                print(self.sortedUsers)
+//                print(self.sortedUsers)
                 
                 
         //        print(user.name ?? "There is no name", user.email ?? "there is no email")
@@ -108,21 +106,17 @@ class NewMessageController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // return users.count
-        return sortedUsers.count
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // lets use a hack for now
-    //    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellId)
-       // let cell = UserCell(style: .subtitle, reuseIdentifier: cellId) as UserCell
+    //Everytime you deque a cell the init method on the custom cell is calles
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
-        // this is a hack because we need to deque our cells for maximum efficiency
-        // get the labels
         
         // get reference to user
       //  let user =  users[indexPath.row]
-        let user = sortedUsers[indexPath.row]
+        let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
         

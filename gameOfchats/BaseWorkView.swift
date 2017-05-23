@@ -165,7 +165,7 @@ class BaseWorkView: UIView {
             workImageView.image = UIImage(named: (work?.imageName)!)                
                 
             descriptionLabel.text = work?.workDescription
-            print("description label is:",descriptionLabel.text ?? "")
+          //  print("description label is:",descriptionLabel.text ?? "")
             
             
         }

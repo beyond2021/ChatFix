@@ -111,6 +111,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
         UIView.animate(withDuration: 1.0, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
             self.messagesController?.navigationController?.navigationBar.isHidden = true
             self.messagesController?.navigationController?.navigationBar.isTranslucent = true
+//            NotificationCenter.default.post(name: WORK_VIEW_UP_NOTIFICATION, object: nil)
             //extendedLayoutIncludesOpaqueBars
 //            self.messagesController?.navigationController?.extendedLayoutIncludesOpaqueBars = true//
             
@@ -139,7 +140,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
         }) { (true) in
             //
        //   self.setupWorkView(work: work)
-            
+        NotificationCenter.default.post(name: WORK_VIEW_UP_NOTIFICATION, object: nil)
             
             
         }
@@ -218,6 +219,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
             
         }) { (true) in
             //
+            NotificationCenter.default.post(name: WORK_VIEW_DOWN_NOTIFICATION, object: nil)
         }
         
         
@@ -333,6 +335,8 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
                                     
         }
         )
+        
+        NotificationCenter.default.post(name: WORK_VIEW_UP_NOTIFICATION, object: nil)
         
        presentWorkView(work: works[indexPath.item])
         

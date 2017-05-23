@@ -51,6 +51,7 @@
 		53A736751ED189EF001CA91C /* single.json in Resources */ = {isa = PBXBuildFile; fileRef = 53A736741ED189EF001CA91C /* single.json */; };
 		53A736771ED1E178001CA91C /* SafeJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A736761ED1E178001CA91C /* SafeJson.swift */; };
 		53A7367A1ED205BF001CA91C /* BaseWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A736791ED205BF001CA91C /* BaseWorkView.swift */; };
+		53A7369A1ED463E8001CA91C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A736991ED463E8001CA91C /* Constants.swift */; };
 		53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */; };
 		53A9B3A41E927F8100D271A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */; };
 		53D7C20F1EA0A2C700444976 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */; };
@@ -130,6 +131,7 @@
 		53A736741ED189EF001CA91C /* single.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = single.json; sourceTree = "<group>"; };
 		53A736761ED1E178001CA91C /* SafeJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeJson.swift; sourceTree = "<group>"; };
 		53A736791ED205BF001CA91C /* BaseWorkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWorkView.swift; sourceTree = "<group>"; };
+		53A736991ED463E8001CA91C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		53A8DF2E1E9AB6EB001B6A9B /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				53A734551EC5EA4F001CA91C /* CleanUp.swift */,
 				53A736721ED06FF9001CA91C /* work.json */,
 				53A736741ED189EF001CA91C /* single.json */,
+				53A736991ED463E8001CA91C /* Constants.swift */,
 			);
 			path = gameOfchats;
 			sourceTree = "<group>";
@@ -232,9 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				5311991B1E9160E600070A81 /* MessagesController.swift */,
+				539C736D1E93EA83009CEB85 /* NewMessageController.swift */,
 				538DAFDE1EB7271B00EE3BAC /* Settings_Launcher.swift */,
 				5311992C1E9166B400070A81 /* LoginController.swift */,
-				539C736D1E93EA83009CEB85 /* NewMessageController.swift */,
 				539C737A1E97B868009CEB85 /* ChatLogController.swift */,
 			);
 			name = Controllers;
@@ -272,8 +275,8 @@
 		539C736F1E93F859009CEB85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				538DAFE01EB727E400EE3BAC /* Settings.swift */,
 				539C73701E93F8B7009CEB85 /* User.swift */,
+				538DAFE01EB727E400EE3BAC /* Settings.swift */,
 				539C737C1E988EBB009CEB85 /* Message.swift */,
 				53A736701ED06019001CA91C /* Work.swift */,
 			);
@@ -534,6 +537,7 @@
 				53A17F731EC15AEB00A4070D /* ChatCell.swift in Sources */,
 				5311992D1E9166B400070A81 /* LoginController.swift in Sources */,
 				53A7366F1ED052B1001CA91C /* WorkCell.swift in Sources */,
+				53A7369A1ED463E8001CA91C /* Constants.swift in Sources */,
 				53A7366D1ECF26AB001CA91C /* AnimateLabel.swift in Sources */,
 				539C73761E948C04009CEB85 /* LoginController+handlers.swift in Sources */,
 				53A8DF2F1E9AB6EB001B6A9B /* ChatMessageCell.swift in Sources */,

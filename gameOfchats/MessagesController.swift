@@ -10,6 +10,18 @@ import UIKit
 import Firebase
 let aquaBlueChatfixColor = UIColor.rgb(red: 0, green: 142, blue: 253)
 
+/*
+extension Collection where Generator.Element: Hashable {
+    // Returns the index paths of the elements which still exist after the subtraction
+    func differenceWith(collectionToSubtract:[Self.Generator.Element]) -> [NSIndexPath] {
+        return Set<<#Element: Hashable#>>(self).subtract(Set(collectionToSubtract))
+            .flatMap { self.indexOf($0) as? Int }
+            .map { NSIndexPath(forItem: $0, inSection: 0) }
+    }
+}
+ */
+
+
 
 class MessagesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -56,6 +68,11 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(workViewUp), name: WORK_VIEW_UP_NOTIFICATION, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(workViewDown), name: WORK_VIEW_DOWN_NOTIFICATION, object: nil)
+        
+        
+        
         fadeInMenubar()
         //darken the navbar
         navigationController?.navigationBar.isTranslucent = false
@@ -89,13 +106,41 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         if FIRAuth.auth()?.currentUser?.uid == nil {
             // handleLogout() // getting too many controllers error
               perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            
+            //FIRAuth.auth()?.currentUser?.uid  // this is the userid of the person with the phones
             
         } else {
             
-                return
+            fetchUserAndSetUpNavBarTitle()
+            /*
+            // here we fetch a single value for the
+            let uid = FIRAuth.auth()?.currentUser?.uid
             
+            FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                //
+              //  print("SINGLE SNAPSHOT IS:",snapshot)
+                /*
+                 SINGLE SNAPSHOT IS: Snap (F2J7xibI2fY8wItqk5IUoi5rwX52) {
+                 email = "Bk@gmail.com";
+                 name = "Brudda  Keev";
+                 profileImageUrl = "https://firebasestorage.googleapis.com/v0/b/peephole-6f487.appspot.com/o/profile_images%2FC69FF9E5-FF06-4C34-8BB8-23BDD20F3125.jpg?alt=media&token=aabc0213-9b77-44f0-8249-f4b3347e0dce";
+                 }
+                 //
+ */
+                //when we get this value, we are not longer listening
+          //      self.navigationItem.title = ???
+                // get the name out of the snapshot dictionary
+                if let dictionary = snapshot.value as? [String:AnyObject]{
+                 // self.navigationItem.title = dictionary["name"] as? String
+                    print("Navigation title is:",dictionary["name"] as? String ?? "No Name" )
+                }
+                
+                
+                
+            }, withCancel: nil)
+            //return
+ */
         }
+ 
         
     }
 
@@ -115,7 +160,20 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
        // fadeInMenubar()
         
     }
-
+    
+    func workViewUp() {
+        print("Work view up")
+collectionView?.isScrollEnabled = false
+        
+        
+    }
+    
+    func workViewDown(){
+       print("Work view down")
+        collectionView?.isScrollEnabled = true
+        
+    }
+    
     
     //MARK:- SETUP
     
@@ -259,7 +317,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             
             cell.messagesController = self
             //cell.checkIfUserIsLoggedIn()
-           cell.observeUserMessages()
+          cell.observeUserMessages()
             //cell.getUserMessages()
             
             navigationController?.navigationBar.isHidden = false
@@ -350,6 +408,15 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
  */
     
+    func deleteRow(){
+        collectionView?.performBatchUpdates({ 
+            //
+        }, completion: { (true) in
+            //
+        })
+        
+    }
+    
     /*
      
      //swipe to delete 2
@@ -436,6 +503,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     func setUpNavBarWithUser(user:User) {
         let indexPath = IndexPath(item: 0, section: 0 )
         collectionView?.reloadItems(at: [indexPath])
+        
+       
         
        // self.collectionView?.reloadData()
         
@@ -565,7 +634,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         //when something throws errorswe have to catch it. do,try,catch // FIRAuth.auth()?.signOut()
         
         print("Gonna try to open logout from messages")
-        
+      //  chatCell?.messages.isEmpty
         
         do {
             try FIRAuth.auth()?.signOut()

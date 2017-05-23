@@ -77,7 +77,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         super.init(frame: frame)
         
         
-        checkIfUserIsLoggedIn() //Main Call
+   //     checkIfUserIsLoggedIn() //Main Call
 //observeUserMessages()
         addSubview(backgroundImageView)
         backgroundImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -142,11 +142,11 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     
     //FAN-OUT
     func  observeUserMessages(){
-       //self.attempTedReloadOfTable()
+       
         messages.removeAll()
         messagesDictionary.removeAll()
         
-     //  collectionView.reloadData()
+    
         
         //get the user id
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
@@ -187,10 +187,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
             if let dictionary = snapshot.value as? [ String: Any] {
                 //we will create a message object nwith the snapshot values
                 let message = Message(dictionary: dictionary as [String : AnyObject])
-                //Fill the message
-                //message.setValuesForKeys(dictionary)
-                //test messages
-                // print(message.text ?? "No message")
+                
                 self.messages.append(message)
              //  print(self.messages.count)
                 
@@ -251,89 +248,8 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     }
     
     
-    
-    
-    //MARK: - checkIfUserIsLoggedIn
-    func checkIfUserIsLoggedIn(){
-        
-        if FIRAuth.auth()?.currentUser?.uid == nil {
-            // handleLogout() // getting too many controllers error
-//*            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            
-          // self.messagesController?.handleLogout()
-            
-          //  perform(#selector(self.messagesController?.handleLogout), with: nil, afterDelay: 0)
-            
-          
-            
-            
-        } else {
-            
-            fetchUserAndSetUpNavBarTitle()
-           
-        }
-        
-        
-    }
-    
-       
-    
-    func fetchUserAndSetUpNavBarTitle(){
-        // Fetch a single value
-        //1: get a reference to the firebase databse main - child(users) - > child (uid)
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
-            // if for some reason uid is nil
-            return
-        }
-        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            // print(snapshot) // console will print out the name and email
-            
-            //get the dictionary out of the snapshot
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                //  self.navigationItem.title = dictionary["name"] as? String
-                let user = User()
-                // print("The user is:", user)
-                user.setValuesForKeys(dictionary)
-                // self.setUpNavBarWithUser(user: user)
-                
-                self.resetCollectionViewAndEmptyData()
-                
-                // contains the name email and image of the user
-                self.messagesController?.setUpNavBarWithUser(user: user)
-                
-                self.resetAndLoad()
-                
-                //self.observeUserMessages()
-            }
-            
-        }, withCancel: nil)
-        
-        // observeUserMessages()
-    }
-    
-    
-    func  resetAndLoad() {
-        messages.removeAll()
-        messagesDictionary.removeAll()
-        collectionView.reloadData()
-        
-    }
-    
-    
-    
-    
-    func resetCollectionViewAndEmptyData() {
-        //remove all the messages in here
-        messages.removeAll()
-        messagesDictionary.removeAll()
-        //*        tableView.reloadData()
-        collectionView.reloadData()
-        
-        //u
-        //listen call listen to logged in user. logged in messages
-        //   observeUserMessages()
-        
-    }
+
+ 
     
    
     
@@ -413,7 +329,7 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         //print("Feed array messages are:",messages.count)
         
         let message = messages[indexPath.row]//get the message for the proper row
-        cell?.proileImageView.image = nil
+       // cell?.proileImageView.image = nil
         
         cell?.message = message //THIS IS WHERE THE MESSAGE VAR IN USERCELL IS SET
         //print("Message is:", message)
