@@ -167,29 +167,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
         
     }
 
-    /*
-    func setupWorkView(work:Work){
-            addSubview(workView)
-            workView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 20).isActive = true
-    
-            workView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -20).isActive = true
-    
-            workView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 20).isActive = true
-    
-            workView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -20).isActive = true
-    
-            let baseWorkView = BaseWorkView()
-            baseWorkView.work = work
-    
-    
-//            baseWorkView.workImageView.image = UIImage(named: work.imageName!)
-//            baseWorkView.descriptionLabel.text = work.workDescription
-
-    
-    
-    }
- */
-    
+     
     
     
     
@@ -207,7 +185,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
             self.messagesController?.navigationController?.navigationBar.isTranslucent = false
         //    self.messagesController?.menuBar.isHidden = false
             self.messagesController?.blueView.alpha = 1            //
-            self.messagesController?.setupMenuBar()
+        //    self.messagesController?.setupMenuBar()
             
 //            self.messagesController?.menuBar.alpha = 1
             

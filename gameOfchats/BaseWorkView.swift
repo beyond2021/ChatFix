@@ -13,6 +13,15 @@ extension BaseWorkView {
         print("UIView :Tounches began in UIView")
         next?.touchesBegan(touches, with: event)
            }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if(event?.subtype == UIEventSubtype.motionShake) {
+            print("You shook me, now what")
+        }
+
+    }
+    
+    
 }
 
 
@@ -103,43 +112,51 @@ class BaseWorkView: UIView {
        return label
     }()
     
+    let quoteLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.text = "Shake To Get A Quote"
+        label.textColor = .white
+        
+        
+        return label
+    }()
+    
    
    
    
        override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = true
+        
+        
         layer.cornerRadius = 20
-        //
-//        addSubview(dismissButton)
-//        dismissButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-//        dismissButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-//        dismissButton.widthAnchor.constraint(equalToConstant: 50)
-//        dismissButton.heightAnchor.constraint(equalToConstant: 50)
-        //
-//        let maskLayer = CALayer()
-//        maskLayer.frame = self.bounds
-//        maskLayer.addSublayer(whiteView.layer)
-        
-        
-        
-        
-    
+        self.becomeFirstResponder()
     }
     
     
-    
+//   var quoteWidthAnchor : NSLayoutConstraint?
     
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.becomeFirstResponder()
+ //       self.canBecomeFirstResponder = true
+
         //
         addSubview(workImageView)
         workImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         workImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         workImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         workImageView.heightAnchor.constraint(equalToConstant: bounds.size.height / 2).isActive = true
-        print("height is:",bounds.size.height)
+       // print("height is:",bounds.size.height)
+        //
+        workImageView.addSubview(quoteLabel)
+        quoteLabel.centerXAnchor.constraint(equalTo: workImageView.centerXAnchor).isActive = true
+        quoteLabel.topAnchor.constraint(equalTo: workImageView.topAnchor, constant: 20).isActive = true
+        quoteLabel.widthAnchor.constraint(equalToConstant: bounds.size.width / 2).isActive = true
+        quoteLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         
         
@@ -171,7 +188,9 @@ class BaseWorkView: UIView {
         }
         
     }
-
+    
+    //MARK:- Shake Gesture
+     
     
     
     
@@ -180,11 +199,4 @@ class BaseWorkView: UIView {
     }
     
     
-    
-//    func dismissWorkView(){
-//       print("Dismissing work view")
-//        
-//    }
-    
-
-}
+   }

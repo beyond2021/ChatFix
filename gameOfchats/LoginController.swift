@@ -10,6 +10,18 @@ import UIKit
 import Firebase
 //import EZLoadingActivity
 
+extension UIView {
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.duration = 0.6
+        animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
+        layer.add(animation, forKey: "shake")
+    }
+}
+
+
+
 class LoginController: UIViewController {
     
    var messagesController : MessagesController?
@@ -417,16 +429,25 @@ class LoginController: UIViewController {
     //MARK : - Hndle login register change
     func handleLoginRegistorChange(){
         if loginRegisterSegmentedController.selectedSegmentIndex == 0 {
+            nameTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
             nameTextField.isHidden = true
             profileImageView.isHidden = true
             profileImageView.isUserInteractionEnabled = true
             pickImageLabel.alpha = 0
             
         } else {
+            emailTextField.text = ""
+            passwordTextField.text = ""
+
+            
             nameTextField.isHidden = false
+          //  nameTextField.text = ""
             profileImageView.isHidden = false
             profileImageView.isUserInteractionEnabled = false
             //  let aState = AppState.RegisterState
+          //  passwordTextField.text = ""
             fadeProfileLabel()
             
         }
@@ -461,6 +482,7 @@ class LoginController: UIViewController {
         
         // Nametextfield title label
         nameTextField.placeholder = loginRegisterSegmentedController.selectedSegmentIndex == 0 ? "" : "Name"
+        nameTextField.text = loginRegisterSegmentedController.selectedSegmentIndex == 0 ? "" : ""
         //  */
         
     }
@@ -477,13 +499,17 @@ class LoginController: UIViewController {
         
         // Validate the text fields
         if isValidEmail(testStr: email) == false{
+            self.emailTextField.shake()
+            
             let alertc = UIAlertController(title: "Invalid", message: "Please enter a valid email address", preferredStyle: .alert)
             alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
             // perhaps use action.title here
             
+            
             self.present(alertc, animated: true)
             
         } else if (password.characters.count) < 6 {
+            self.passwordTextField.shake()
             let alertc = UIAlertController(title: "Invalid", message: "Password must be greater than 8 characters", preferredStyle: .alert)
             alertc.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
             // perhaps use action.title here

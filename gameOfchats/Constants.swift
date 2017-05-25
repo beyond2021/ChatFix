@@ -10,3 +10,5 @@ import Foundation
 
 let WORK_VIEW_UP_NOTIFICATION = NSNotification.Name(rawValue: "workViewUpNotification")
 let WORK_VIEW_DOWN_NOTIFICATION = NSNotification.Name(rawValue: "workViewDownNotification")
+
+let MENUBAR_PRESS_QUOTE_NOTIFICATION = NSNotification.Name(rawValue: "menubarQuoteNotification")

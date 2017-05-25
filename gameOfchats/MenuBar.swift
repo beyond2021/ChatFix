@@ -148,21 +148,15 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     //MARK:- animating
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
-     /*
-        //print(indexPath.item)
-        //1: find the x and modify everytime we click 
-        let x = CGFloat(indexPath.item) * frame.width / 4 //calculates the left edge
-        horizontalBarLeftConstraint?.constant = x
-        
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.layoutIfNeeded() // animates bar when buttons are pressed
-        }, completion: nil)
-        //CALLING A FUNC FROM MESSAGESCONTROLLER FROM HERE. go back to messC and set a ref
- */
-
+        if indexPath.item == 2 {
+            print(indexPath.item)
+            print("Time for a quote")
+            NotificationCenter.default.post(name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)
+        }
+     
         messageController?.scrollToMenuIndex(menuItem: indexPath.item)
         
-        //messageController.scrollToMenuIndex(indexPath.item)
+       
     }
 
 

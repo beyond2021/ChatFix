@@ -70,7 +70,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(workViewUp), name: WORK_VIEW_UP_NOTIFICATION, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(workViewDown), name: WORK_VIEW_DOWN_NOTIFICATION, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showControllerForQuote), name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)
         
         
         fadeInMenubar()
@@ -99,6 +99,15 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
       //  perform(#selector(handleLogout), with: nil, afterDelay: 0)
         checkIfUserIsLoggedIn()
         
+    }
+    
+    deinit {
+//        NotificationCenter.default.rem(self, selector: #selector(workViewUp), name: WORK_VIEW_UP_NOTIFICATION, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(workViewDown), name: WORK_VIEW_DOWN_NOTIFICATION, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showControllerForQuote), name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)
+        NotificationCenter.removeObserver(self, forKeyPath: WORK_VIEW_UP_NOTIFICATION.rawValue)
+        NotificationCenter.removeObserver(self, forKeyPath: WORK_VIEW_DOWN_NOTIFICATION.rawValue)
+        NotificationCenter.removeObserver(self, forKeyPath: MENUBAR_PRESS_QUOTE_NOTIFICATION.rawValue)
     }
     
     func checkIfUserIsLoggedIn(){
@@ -158,20 +167,53 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
        // fadeInMenubar()
+        workUpFlag = false
         
     }
     
+    var workUpFlag : Bool?
+    
     func workViewUp() {
         print("Work view up")
-collectionView?.isScrollEnabled = false
-        
-        
+        if workUpFlag == false {
+            workUpFlag = true
+        }
+            
     }
     
     func workViewDown(){
        print("Work view down")
         collectionView?.isScrollEnabled = true
+        if workUpFlag == true {
+            workUpFlag = false
+        }
+
         
+        
+           }
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+     //   print("Device was shaken!")
+        if(event?.subtype == UIEventSubtype.motionShake) {
+            if workUpFlag == true {
+                print("You shook me, now what")
+                //scrollToMenuIndex(menuItem: 2)
+//                self.collectionView.scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO
+//                let indexPath = NSIndexPath(item: 2, section: 0)
+//                self.collectionView?.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    //MARK:- ShakeGesture
+     func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if(event?.subtype == UIEventSubtype.motionShake) {
+            print("You shook me, now what")
+        }
     }
     
     
@@ -247,7 +289,7 @@ collectionView?.isScrollEnabled = false
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-        menuBar.alpha = 0
+      menuBar.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
             //  self.menuBar.alpha = 1
             self.menuBar.alpha = 1
@@ -262,7 +304,7 @@ collectionView?.isScrollEnabled = false
     
     
     func handleSearch(){
-        scrollToMenuIndex(menuItem: 2)
+  //      scrollToMenuIndex(menuItem: 2)
     }
     
     
@@ -310,22 +352,23 @@ collectionView?.isScrollEnabled = false
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.item == 0 {
-            //identifier = chatCellId
-            //setupCollectionView()
+            
+            resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
             
             cell.messagesController = self
-            //cell.checkIfUserIsLoggedIn()
+           
           cell.observeUserMessages()
-            //cell.getUserMessages()
+            
             
             navigationController?.navigationBar.isHidden = false
-           // fadeInMenubar()
+           
             
             return cell
             
         } else if indexPath.item == 1 {
+          //  removeNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CallingCellId, for: indexPath) as! CallingCell
             cell.messagesController = self
@@ -335,17 +378,24 @@ collectionView?.isScrollEnabled = false
             return cell
             
         } else if indexPath.item == 2 {
+            resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixitCellId, for: indexPath) as! FixItCell
+            cell.messagesController = self
+          // cell.showQuoteController()
             navigationController?.navigationBar.isHidden = false
-           // fadeInMenubar()
+           print("Quote")
+            
+            
             return cell
             
-        }else if indexPath.item == 3 {
+        }else if indexPath.item == 3{
+            resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CheckoutCellId, for: indexPath) as! CheckoutCell
            navigationController?.navigationBar.isHidden = false
            // fadeInMenubar()
+            
             
             return cell
             
@@ -657,13 +707,14 @@ collectionView?.isScrollEnabled = false
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         //
        // showShake()
-        
-        let indexPath = IndexPath(item: 1, section: 0 )
-        
-        
-       // collectionView?.reloadItems(at: [indexPath])
-       // collectionView?.moveItem(at: indexPath0, to: indexPath1)
-        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        if workUpFlag == true {
+            let indexPath = IndexPath(item: 2, section: 0 )
+            NotificationCenter.default.post(name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)            
+            collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            
+            
+            
+        }
         
         
         
@@ -682,6 +733,43 @@ collectionView?.isScrollEnabled = false
     func callingBeyond2021(){
         guard let number = URL(string: "telprompt://" + "19173495126") else { return }
         UIApplication.shared.open(number, options: [:], completionHandler: nil)
+        
+    }
+    
+    func resetNav(){
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.messagesController?.menuBar.removeFromSuperview()
+        navigationController?.navigationBar.isTranslucent = false
+        //    self.messagesController?.menuBar.isHidden = false
+        blueView.alpha = 1            //
+       // setupMenuBar()
+        
+        //            self.messagesController?.menuBar.alpha = 1
+        
+        menuBar.isHidden = false
+        menuBar.alpha = 1
+        
+        
+    }
+    
+    func removeNav() {
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        menuBar.isHidden = true
+        
+        
+    }
+    
+    func showControllerForQuote(){
+        let dummySettingsViewController = QuoteViewController()
+        
+        dummySettingsViewController.navigationItem.title = "QUOTE"
+       // dummySettingsViewController.view.backgroundColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING
+        navigationController?.navigationBar.tintColor = .white //setting the back button color
+        navigationController?.pushViewController(dummySettingsViewController, animated: true)
         
     }
     
