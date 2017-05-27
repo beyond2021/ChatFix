@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		305EE069727099445CD6DFFE /* Pods_gameOfchats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */; };
+		41DCB9C1C2415522DF0A5C9A /* Pods_ChatFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB12F9902A9412BAF8C7E6E /* Pods_ChatFix.framework */; };
 		530D01821EB1EA7B007F1768 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530D01811EB1EA7B007F1768 /* MenuBar.swift */; };
 		5311991A1E9160E600070A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531199191E9160E600070A81 /* AppDelegate.swift */; };
 		5311991C1E9160E600070A81 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311991B1E9160E600070A81 /* MessagesController.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0335EDA62783A580E6075FD8 /* Pods-ChatFix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatFix.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatFix/Pods-ChatFix.release.xcconfig"; sourceTree = "<group>"; };
 		530D01811EB1EA7B007F1768 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		531199161E9160E600070A81 /* ChatFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		531199191E9160E600070A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +140,9 @@
 		53A9B3A31E927F8100D271A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53D7C20E1EA0A2C700444976 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		6B57E4F9216D8059E473550E /* Pods-gameOfchats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameOfchats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gameOfchats/Pods-gameOfchats.debug.xcconfig"; sourceTree = "<group>"; };
+		72B43C16AC5C49F094B3A320 /* Pods-ChatFix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatFix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatFix/Pods-ChatFix.debug.xcconfig"; sourceTree = "<group>"; };
 		9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gameOfchats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB12F9902A9412BAF8C7E6E /* Pods_ChatFix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatFix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73CEF21CEAE67C3A4F966B5 /* Pods-gameOfchats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameOfchats.release.xcconfig"; path = "Pods/Target Support Files/Pods-gameOfchats/Pods-gameOfchats.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +154,7 @@
 				5357F77B1EA283C20048999D /* MessageUI.framework in Frameworks */,
 				5357F7791EA283B50048999D /* Messages.framework in Frameworks */,
 				305EE069727099445CD6DFFE /* Pods_gameOfchats.framework in Frameworks */,
+				41DCB9C1C2415522DF0A5C9A /* Pods_ChatFix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +180,7 @@
 				9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */,
 				5341BF121EA3023A00342221 /* UserNotifications.framework */,
 				5341BF141EA3023A00342221 /* UserNotificationsUI.framework */,
+				ACB12F9902A9412BAF8C7E6E /* Pods_ChatFix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -184,6 +190,8 @@
 			children = (
 				6B57E4F9216D8059E473550E /* Pods-gameOfchats.debug.xcconfig */,
 				D73CEF21CEAE67C3A4F966B5 /* Pods-gameOfchats.release.xcconfig */,
+				72B43C16AC5C49F094B3A320 /* Pods-ChatFix.debug.xcconfig */,
+				0335EDA62783A580E6075FD8 /* Pods-ChatFix.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -490,7 +498,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-gameOfchats/Pods-gameOfchats-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatFix/Pods-ChatFix-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CAD56015E83D6CBDFD4ADB63 /* [CP] Embed Pods Frameworks */ = {
@@ -505,7 +513,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-gameOfchats/Pods-gameOfchats-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChatFix/Pods-ChatFix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -689,7 +697,7 @@
 		};
 		531199291E9160E700070A81 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B57E4F9216D8059E473550E /* Pods-gameOfchats.debug.xcconfig */;
+			baseConfigurationReference = 72B43C16AC5C49F094B3A320 /* Pods-ChatFix.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -711,7 +719,7 @@
 		};
 		5311992A1E9160E700070A81 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D73CEF21CEAE67C3A4F966B5 /* Pods-gameOfchats.release.xcconfig */;
+			baseConfigurationReference = 0335EDA62783A580E6075FD8 /* Pods-ChatFix.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

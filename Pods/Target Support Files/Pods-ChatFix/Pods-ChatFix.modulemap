@@ -1,0 +1,6 @@
+framework module Pods_ChatFix {
+  umbrella header "Pods-ChatFix-umbrella.h"
+
+  export *
+  module * { export * }
+}
