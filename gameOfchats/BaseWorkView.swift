@@ -42,7 +42,7 @@ class BaseWorkView: UIView {
     let whiteView : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         view.clipsToBounds = true
         view.layer.masksToBounds = true
         
@@ -103,10 +103,12 @@ class BaseWorkView: UIView {
     
     
     
-    let descriptionLabel : UILabel = {
-        let label = UILabel()
+    let descriptionLabel : RQShineLabel = {
+        let label = RQShineLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+       // label.backgroundColor = .clear
+        label.sizeToFit()
         
         
        return label
@@ -183,8 +185,9 @@ class BaseWorkView: UIView {
                 
             descriptionLabel.text = work?.workDescription
           //  print("description label is:",descriptionLabel.text ?? "")
-            
-            
+           descriptionLabel.shine()
+           // descriptionLabel.kevShine()
+            print("About to shine")
         }
         
     }

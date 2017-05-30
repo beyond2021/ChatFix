@@ -15,6 +15,7 @@
 		531199211E9160E700070A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 531199201E9160E700070A81 /* Assets.xcassets */; };
 		531199241E9160E700070A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 531199221E9160E700070A81 /* LaunchScreen.storyboard */; };
 		5311992D1E9166B400070A81 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311992C1E9166B400070A81 /* LoginController.swift */; };
+		533AA56A1ED92E79007F233C /* RQShineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533AA5691ED92E79007F233C /* RQShineLabel.m */; };
 		5341BF131EA3023A00342221 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5341BF121EA3023A00342221 /* UserNotifications.framework */; };
 		5341BF151EA3023A00342221 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5341BF141EA3023A00342221 /* UserNotificationsUI.framework */; };
 		5341BF181EA3023A00342221 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5341BF171EA3023A00342221 /* NotificationViewController.swift */; };
@@ -93,6 +94,9 @@
 		531199231E9160E700070A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		531199251E9160E700070A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5311992C1E9166B400070A81 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		533AA5671ED92E78007F233C /* ChatFix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChatFix-Bridging-Header.h"; sourceTree = "<group>"; };
+		533AA5681ED92E79007F233C /* RQShineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQShineLabel.h; sourceTree = "<group>"; };
+		533AA5691ED92E79007F233C /* RQShineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RQShineLabel.m; sourceTree = "<group>"; };
 		5341BF111EA3023A00342221 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5341BF121EA3023A00342221 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5341BF141EA3023A00342221 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -267,8 +271,11 @@
 		538CD8E71EAF0DA5008C4A16 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				533AA5681ED92E79007F233C /* RQShineLabel.h */,
+				533AA5691ED92E79007F233C /* RQShineLabel.m */,
 				538CD8E81EAF0E0E008C4A16 /* Pulsing.swift */,
 				53A7366C1ECF26AB001CA91C /* AnimateLabel.swift */,
+				533AA5671ED92E78007F233C /* ChatFix-Bridging-Header.h */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -411,6 +418,7 @@
 					531199151E9160E600070A81 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = SC6R6MV2N8;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -523,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533AA56A1ED92E79007F233C /* RQShineLabel.m in Sources */,
 				538CD8E91EAF0E0E008C4A16 /* Pulsing.swift in Sources */,
 				538DAFE71EB7E46600EE3BAC /* Constraints.swift in Sources */,
 				53A17FA61EC481DE00A4070D /* CheckoutCell.swift in Sources */,
@@ -701,6 +710,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = gameOfchats/gameOfchats.entitlements;
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -712,6 +722,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "gameOfchats/ChatFix-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -723,6 +735,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = gameOfchats/gameOfchats.entitlements;
 				DEVELOPMENT_TEAM = SC6R6MV2N8;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -734,6 +747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beyond2021.gameOfchats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "gameOfchats/ChatFix-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
