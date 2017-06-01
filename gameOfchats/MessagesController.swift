@@ -383,7 +383,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixitCellId, for: indexPath) as! FixItCell
             cell.messagesController = self
           // cell.showQuoteController()
-            navigationController?.navigationBar.isHidden = false
+            navigationController?.navigationBar.isHidden = true
            print("Quote")
             
             
@@ -765,10 +765,23 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     func showControllerForQuote(){
         let dummySettingsViewController = QuoteViewController()
         
+//        self.present(dummySettingsViewController, animated: true, completion: nil)
+        
+        
         dummySettingsViewController.navigationItem.title = "QUOTE"
+        
+        
+        
+        
        // dummySettingsViewController.view.backgroundColor = .white
+        dummySettingsViewController.view.backgroundColor = .clear
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING
         navigationController?.navigationBar.tintColor = .white //setting the back button color
+        
+        menuBar.isHidden = true
+        
+        
+        
         navigationController?.pushViewController(dummySettingsViewController, animated: true)
         
     }

@@ -14,44 +14,63 @@ class QuoteViewController: UIViewController , AVCaptureMetadataOutputObjectsDele
     var sessionOutput = AVCapturePhotoOutput();
     var sessionOutputSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecJPEG]);
     var previewLayer = AVCaptureVideoPreviewLayer();
-    var cameraView: UIView?
+//    var cameraView: UIView?
+    
+    var cameraView: UIView = {
+     let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+       return cv
+    }()
     
     
     var label: UILabel = UILabel()
     var detectLabel: UILabel = UILabel()
     var button: UIButton = UIButton()
     
+    var window: UIWindow?
+    
     override func viewDidLoad() {
         
-        cameraView = UIView(frame: view.frame)
-        view.addSubview(cameraView!)
+        
+        //cameraView = UIView(frame: view.frame)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+       // cameraView = UIView(frame: (window?.frame)!)
+        view.addSubview(cameraView)
+        cameraView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        cameraView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        cameraView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         
-        view.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        label.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
-        label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
         
-        view.addSubview(detectLabel)
-        detectLabel.translatesAutoresizingMaskIntoConstraints = false
-        detectLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        detectLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        detectLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
-        detectLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-        detectLabel.textAlignment = .right
-        detectLabel.textColor = UIColor.red
         
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        button.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
-        button.setTitle("Capture", for: .normal)
-        button.addTarget(self, action: #selector(takePhoto(_:)), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue
+//        view.addSubview(label)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        label.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
+//        label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+//        
+//        view.addSubview(detectLabel)
+//        detectLabel.translatesAutoresizingMaskIntoConstraints = false
+//        detectLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        detectLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        detectLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
+//        detectLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
+//        detectLabel.textAlignment = .right
+//        detectLabel.textColor = UIColor.red
+        
+//        view.addSubview(button)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+//        button.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//        button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
+//        button.setTitle("Capture", for: .normal)
+//        button.addTarget(self, action: #selector(takePhoto(_:)), for: .touchUpInside)
+//        button.backgroundColor = UIColor.blue
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,9 +95,14 @@ class QuoteViewController: UIViewController , AVCaptureMetadataOutputObjectsDele
                             captureSession.addOutput(sessionOutput);
                             previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
                             previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)//(cameraView?.bounds)!
+//                                                        previewLayer.frame = CGRect(x: 0, y: 0, width: cameraView.frame.size.width, height: cameraView.frame.size.height)//(cameraView?.bounds)!
+                            
+                            
+                          //  previewLayer.frame = cameraView.bounds
+                            
                             previewLayer.videoGravity = AVLayerVideoGravityResizeAspect/*AVLayerVideoGravityResizeAspectFill*/;
                             previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait;
-                            cameraView?.layer.addSublayer(previewLayer);
+                            cameraView.layer.addSublayer(previewLayer);
                         }
                         
                         let captureMetadataOutput:AVCaptureMetadataOutput  = AVCaptureMetadataOutput()
