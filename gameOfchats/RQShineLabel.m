@@ -109,12 +109,18 @@
 - (void)shineWithCompletion:(void (^)())completion
 {
   
-  if (!self.isShining && self.isFadedOut) {
-    self.completion = completion;
-    self.fadedOut = NO;
-    [self startAnimationWithDuration:self.shineDuration];
+//  if (!self.isShining && self.isFadedOut) {
+//    self.completion = completion;
+//    self.fadedOut = NO;
+//    [self startAnimationWithDuration:self.shineDuration];
+//  }
+    if (!self.isShining){
+        self.completion = completion;
+        self.fadedOut = NO;
+        [self startAnimationWithDuration:self.shineDuration];
+        
+    }
   }
-}
 
 -(void) kevShine
 {

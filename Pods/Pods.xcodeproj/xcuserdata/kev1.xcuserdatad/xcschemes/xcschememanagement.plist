@@ -29,10 +29,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyCam.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1C7DEEB12FE3DFFA1E293AFAD44072D0</key>
+		<key>5DD5CA75AC96ACF153E68873987E172C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +47,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93C8D97A43F17C1227A2B3550FCC603D</key>
+		<key>B87E15A7CEECB2C51BF0C96B0C0343A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B09417DB5043DD718BB42A92E1FF36CD</key>
+		<key>BF2098D22EBC2420991E897A4A434A77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F538A119655DFBA9A61069931A605F85</key>
 		<dict>
 			<key>primary</key>
 			<true/>

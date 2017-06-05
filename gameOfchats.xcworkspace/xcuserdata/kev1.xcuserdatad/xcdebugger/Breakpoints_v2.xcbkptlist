@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518294411.245289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
             landmarkName = "setUpNavBarWithUser(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518199201.430774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518294411.245289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
             landmarkName = "fetchUserAndSetUpNavBarTitle()"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518114065.839446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "motionEnded(motion:withEvent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/CallingCell.swift"
-            timestampString = "517318111.891319"
+            timestampString = "518114782.626273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "motionEnded(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518199201.430774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518199201.430774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518199201.430774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/CallingCell.swift"
-            timestampString = "517321256.596291"
+            timestampString = "518114782.626273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "presentWorkView(work:)"
             landmarkType = "7">
             <Locations>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "gameOfchats/MessagesController.swift"
-            timestampString = "517349415.295695"
+            timestampString = "518199201.430774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "setupMenuBar()"
             landmarkType = "7">
          </BreakpointContent>
@@ -297,13 +297,92 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "gameOfchats/RQShineLabel.m"
-            timestampString = "517602199.370485"
+            filePath = "gameOfchats/BaseWorkView.swift"
+            timestampString = "517603363.437206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-shineWithCompletion:"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "work"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameOfchats/CallingCell.swift"
+            timestampString = "518114782.626273"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "presentWorkView(work:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ChatFix.CallingCell.presentWorkView (work : ChatFix.Work) -&gt; ()"
+                  moduleName = "ChatFix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kev1/Desktop/CurrentProjects/gameOfchats/gameOfchats/CallingCell.swift"
+                  timestampString = "518111941.013577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ChatFix.CallingCell.(presentWorkView (work : ChatFix.Work) -&gt; ()).(closure #1)"
+                  moduleName = "ChatFix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kev1/Desktop/CurrentProjects/gameOfchats/gameOfchats/CallingCell.swift"
+                  timestampString = "518111941.016547"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "1318">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ChatFix.CallingCell.(presentWorkView (work : ChatFix.Work) -&gt; ()).(closure #2)"
+                  moduleName = "ChatFix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kev1/Desktop/CurrentProjects/gameOfchats/gameOfchats/CallingCell.swift"
+                  timestampString = "518111941.020124"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameOfchats/MessagesController.swift"
+            timestampString = "518199201.430774"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "scrollToMenuIndex(menuItem:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -313,14 +392,62 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "gameOfchats/BaseWorkView.swift"
-            timestampString = "517603363.437206"
+            filePath = "gameOfchats/CallingCell.swift"
+            timestampString = "518114430.094679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "work"
-            landmarkType = "24">
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "setNavBar()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameOfchats/CallingCell.swift"
+            timestampString = "518115904.131939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "removeBaseWorkView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ChatFix.CallingCell.removeBaseWorkView () -&gt; ()"
+                  moduleName = "ChatFix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kev1/Desktop/CurrentProjects/gameOfchats/gameOfchats/CallingCell.swift"
+                  timestampString = "518117755.322433"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ChatFix.CallingCell.(removeBaseWorkView () -&gt; ()).(closure #1)"
+                  moduleName = "ChatFix"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kev1/Desktop/CurrentProjects/gameOfchats/gameOfchats/CallingCell.swift"
+                  timestampString = "518117755.325072"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

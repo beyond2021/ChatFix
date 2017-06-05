@@ -105,10 +105,24 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
         getWork()
     }
     
+    deinit {
+      //  self.messagesController?.navigationController?.isNavigationBarHidden = false
+    }
+    
+    
+    func setNavBar(){
+      self.messagesController?.navigationController?.isNavigationBarHidden = true
+        self.messagesController?.menuBar.isHidden = true
+        
+    }
+    
+    
     
     func presentWorkView(work:Work){
         
         UIView.animate(withDuration: 1.0, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
+            self.messagesController?.navigationController?.isNavigationBarHidden = true
+            
             self.messagesController?.navigationController?.navigationBar.isHidden = true
             self.messagesController?.navigationController?.navigationBar.isTranslucent = true
 //            NotificationCenter.default.post(name: WORK_VIEW_UP_NOTIFICATION, object: nil)
@@ -117,22 +131,11 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
             
             
             self.messagesController?.navigationController?.setNavigationBarHidden(true, animated: true)
-           // self.messagesController?.menuBar.removeFromSuperview()
-           // self.messagesController?.menuBar.isHidden = true
-            
-           // self.messagesController?.blueView.removeFromSuperview()
-           // self.messagesController?.navigationController?.navigationBar.isTranslucent = true
             
             //
             self.messagesController?.menuBar.isHidden = true
             
-           // self.messagesController?.menuBar.alpha = 0
-//            self.messagesController?.blueView.alpha = 0
-                        //
-//            let baseWorkView = BaseWorkView()
-//            print(work.imageName ?? "")
-//            baseWorkView.workImageView.image = UIImage(named: work.imageName!)
-//            baseWorkView.descriptionLabel.text = work.workDescription
+            self.messagesController?.menuBar.alpha = 0
             
             
             

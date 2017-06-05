@@ -12,7 +12,7 @@ target 'ChatFix' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'PusherSwift'
-    
+    pod "SwiftyCam"
     
     
 end

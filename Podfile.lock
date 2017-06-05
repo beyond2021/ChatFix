@@ -50,6 +50,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - Protobuf (3.2.0)
   - PusherSwift (4.0.1)
+  - SwiftyCam (2.1.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - PusherSwift
+  - SwiftyCam
 
 SPEC CHECKSUMS:
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
@@ -72,7 +74,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   PusherSwift: 8249a1c3634943cf7e1e9a691468357d53ab7e5f
+  SwiftyCam: 2f13473f67afa4658bff79453d7db6890e2fa84d
 
-PODFILE CHECKSUM: 0f90bba26d6242704315bed59bd42b82b005cd53
+PODFILE CHECKSUM: 3a8cc56580f34ddafeb939c532c54e57380b258e
 
 COCOAPODS: 1.2.0

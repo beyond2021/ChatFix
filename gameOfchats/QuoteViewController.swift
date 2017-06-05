@@ -8,215 +8,111 @@
 
 import UIKit
 import AVFoundation
+import SwiftyCam
 
-class QuoteViewController: UIViewController , AVCaptureMetadataOutputObjectsDelegate, AVCapturePhotoCaptureDelegate {
-    var captureSession = AVCaptureSession();
-    var sessionOutput = AVCapturePhotoOutput();
-    var sessionOutputSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey:AVVideoCodecJPEG]);
-    var previewLayer = AVCaptureVideoPreviewLayer();
-//    var cameraView: UIView?
-    
-    var cameraView: UIView = {
-     let cv = UIView()
-        cv.translatesAutoresizingMaskIntoConstraints = false
-       return cv
+class QuoteViewController: SwiftyCamViewController , SwiftyCamViewControllerDelegate {
+    //MARK:- Controls
+    lazy var flashSwitch : UISwitch = {
+        let sw = UISwitch()
+        sw.translatesAutoresizingMaskIntoConstraints = false
+        sw.addTarget(self, action: #selector(flashDidChange(_:)), for: .valueChanged)
+        sw.isOn = true
+        sw.setOn(true, animated: true)
+        
+     return sw
     }()
     
+    lazy var camera : UIButton = {
+        let sw = UIButton(type: .system)
+        sw.translatesAutoresizingMaskIntoConstraints = false
+        sw.addTarget(self, action: #selector(cameraSwitch), for: .touchUpInside)
+        
+        
+        return sw
+    }()
     
-    var label: UILabel = UILabel()
-    var detectLabel: UILabel = UILabel()
-    var button: UIButton = UIButton()
-    
-    var window: UIWindow?
+    lazy var photoButton : SwiftyCamButton = {
+        let sw = SwiftyCamButton(type: .system)
+        sw.translatesAutoresizingMaskIntoConstraints = false
+        sw.addTarget(self, action: #selector(takePic), for: .touchUpInside)
+        sw.delegate = self
+        return sw
+    }()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+                setupViews()
+        
+        cameraDelegate = self
+        defaultCamera = .rear
+        
+        doubleTapCameraSwitch = false
+        videoQuality = .high
+        maximumVideoDuration = 10.0
         
         
-        //cameraView = UIView(frame: view.frame)
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-       // cameraView = UIView(frame: (window?.frame)!)
-        view.addSubview(cameraView)
-        cameraView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        cameraView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        cameraView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        
-        
-        
-        
-//        view.addSubview(label)
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        label.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
-//        label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-//        
-//        view.addSubview(detectLabel)
-//        detectLabel.translatesAutoresizingMaskIntoConstraints = false
-//        detectLabel.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        detectLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        detectLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:-view.frame.height*0.08).isActive = true
-//        detectLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05).isActive = true
-//        detectLabel.textAlignment = .right
-//        detectLabel.textColor = UIColor.red
-        
-//        view.addSubview(button)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        button.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//        button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08).isActive = true
-//        button.setTitle("Capture", for: .normal)
-//        button.addTarget(self, action: #selector(takePhoto(_:)), for: .touchUpInside)
-//        button.backgroundColor = UIColor.blue
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        var builtInDual : AVCaptureDeviceType?
-        if #available(iOS 10.2, *){
-         builtInDual = AVCaptureDeviceType.builtInDualCamera
-        } else {
-         builtInDual = nil
-        }
+    func setupViews(){
         
-        let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes:[ builtInDual!, AVCaptureDeviceType.builtInTelephotoCamera,AVCaptureDeviceType.builtInWideAngleCamera], mediaType:AVMediaTypeVideo, position: AVCaptureDevicePosition.unspecified)
-        for device in (deviceDiscoverySession?.devices)! {
-            if(device.position == AVCaptureDevicePosition.back){
-                captureSession.sessionPreset = AVCaptureSessionPresetPhoto;//this
-                do{
-                    let input = try AVCaptureDeviceInput(device: device)
-                    if(captureSession.canAddInput(input)){
-                        captureSession.addInput(input);
-                        
-                        if(captureSession.canAddOutput(sessionOutput)){
-                            
-                            captureSession.addOutput(sessionOutput);
-                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession);
-                            previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)//(cameraView?.bounds)!
-//                                                        previewLayer.frame = CGRect(x: 0, y: 0, width: cameraView.frame.size.width, height: cameraView.frame.size.height)//(cameraView?.bounds)!
-                            
-                            
-                          //  previewLayer.frame = cameraView.bounds
-                            
-                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspect/*AVLayerVideoGravityResizeAspectFill*/;
-                            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait;
-                            cameraView.layer.addSublayer(previewLayer);
-                        }
-                        
-                        let captureMetadataOutput:AVCaptureMetadataOutput  = AVCaptureMetadataOutput()
-                        captureSession.addOutput(captureMetadataOutput)
-                        let dispatchQueue = DispatchQueue(label: "queue")
-                        captureMetadataOutput.setMetadataObjectsDelegate(self , queue: dispatchQueue)
-                        captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-                        
-                    }
-                }
-                catch{
-                    print("exception!");
-                }
-            }
+        
+    }
+    
+    
+    //MARK:- Flash
+    func flashDidChange(_ sender:UISwitch) {
+       // flashEnabled = true
+        if (sender.isOn == true){
+            print("on")
+        }
+        else{
+            print("off")
         }
         
     }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        captureSession.startRunning()
-    }
-    
-    /* AVCaptureMetadataOutputObjectsDelegate */
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        if metadataObjects != nil && metadataObjects.count > 0 {
-            let metadatas = metadataObjects as Array
-            let metadataObject: AVMetadataMachineReadableCodeObject = metadatas[0] as! AVMetadataMachineReadableCodeObject
-            if metadataObject.type == AVMetadataObjectTypeQRCode {
-                print("\(metadataObject.stringValue)")
-                DispatchQueue.main.async {
-                    
-                    self.label.text = metadataObject.stringValue
-                    self.detectLabel.text = "+"
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                        self.detectLabel.text = ""
-                    })
-                }
-            }
-        }
-    }
-    
-    func takePhoto(_ sender:UIButton) {
-        let settings = AVCapturePhotoSettings()
-        sessionOutput.capturePhoto(with: settings, delegate: self)
-    }
-    
-    /* AVCapturePhotoCaptureDelegate */
-    func capture(_ captureOutput: AVCapturePhotoOutput, willBeginCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        print("willBeginCapture")
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, willCapturePhotoForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        print("willCapturePhoto")
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, didCapturePhotoForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        print("didCapturePhoto")
-    }
-    
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishCaptureForResolvedSettings resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {
-        print("didFinishCapture")
-    }
-    
-    /* jpeg */
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        print("jpg")
-        if let error = error {
-            print(error.localizedDescription)
-        }
+    func cameraSwitch(){
         
-        if let sampleBuffer = photoSampleBuffer {
-            print("sampleBuffer: \(sampleBuffer)")
-            
-            if let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: nil) {
-                print("dataImage: \(dataImage)")
-                print("inside if let")
-                
-                let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-                
-                let folderPath = paths[0]
-                let filePath = folderPath.appendingPathComponent("image.jpg")
-                print("filePath: \(filePath)")
-                do {
-                    try dataImage.write(to: filePath, options:.atomic)
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-                
-                let image = UIImage(data: dataImage)
-                if let im = image {
-                    UIImageWriteToSavedPhotosAlbum(im, nil, nil, nil)
-                }
-                print("\(String(describing: image))")
-            } else {
-                print("outside if let")
-            }
-        }
-    }
-    
-    /* raw */
-    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingRawPhotoSampleBuffer rawSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        print("raw")
         
     }
-    
-    
-    
-    override var shouldAutorotate: Bool {
-        return false
+    func takePic(){
+      // captu
+        
+    }
+    //MARK:- Swifty Cam Delegate methods
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
+        // Called when takePhoto() is called or if a SwiftyCamButton initiates a tap gesture
+        // Returns a UIImage captured from the current session
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.portrait
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+        // Called when startVideoRecording() is called
+        // Called if a SwiftyCamButton begins a long press gesture
     }
     
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+        // Called when stopVideoRecording() is called
+        // Called if a SwiftyCamButton ends a long press gesture
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
+        // Called when stopVideoRecording() is called and the video is finished processing
+        // Returns a URL in the temporary directory where video is stored
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
+        // Called when a user initiates a tap gesture on the preview layer
+        // Will only be called if tapToFocus = true
+        // Returns a CGPoint of the tap location on the preview layer
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didChangeZoomLevel zoom: CGFloat) {
+        // Called when a user initiates a pinch gesture on the preview layer
+        // Will only be called if pinchToZoomn = true
+        // Returns a CGFloat of the current zoom level
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
+        // Called when user switches between cameras
+        // Returns current camera selection   
+    }
 }

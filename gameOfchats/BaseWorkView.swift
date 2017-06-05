@@ -200,6 +200,10 @@ class BaseWorkView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    deinit {
+        descriptionLabel.fadeOut()
+       // descriptionLabel.isShining = NO
+           }
     
     
    }

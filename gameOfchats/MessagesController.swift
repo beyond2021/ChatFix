@@ -75,7 +75,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         fadeInMenubar()
         //darken the navbar
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = true
         
        // navigationController?.extendedLayoutIncludesOpaqueBars = true//
         
@@ -102,9 +102,6 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     deinit {
-//        NotificationCenter.default.rem(self, selector: #selector(workViewUp), name: WORK_VIEW_UP_NOTIFICATION, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(workViewDown), name: WORK_VIEW_DOWN_NOTIFICATION, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(showControllerForQuote), name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)
         NotificationCenter.removeObserver(self, forKeyPath: WORK_VIEW_UP_NOTIFICATION.rawValue)
         NotificationCenter.removeObserver(self, forKeyPath: WORK_VIEW_DOWN_NOTIFICATION.rawValue)
         NotificationCenter.removeObserver(self, forKeyPath: MENUBAR_PRESS_QUOTE_NOTIFICATION.rawValue)
@@ -120,35 +117,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         } else {
             
             fetchUserAndSetUpNavBarTitle()
-            /*
-            // here we fetch a single value for the
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            
-            FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                //
-              //  print("SINGLE SNAPSHOT IS:",snapshot)
-                /*
-                 SINGLE SNAPSHOT IS: Snap (F2J7xibI2fY8wItqk5IUoi5rwX52) {
-                 email = "Bk@gmail.com";
-                 name = "Brudda  Keev";
-                 profileImageUrl = "https://firebasestorage.googleapis.com/v0/b/peephole-6f487.appspot.com/o/profile_images%2FC69FF9E5-FF06-4C34-8BB8-23BDD20F3125.jpg?alt=media&token=aabc0213-9b77-44f0-8249-f4b3347e0dce";
-                 }
-                 //
- */
-                //when we get this value, we are not longer listening
-          //      self.navigationItem.title = ???
-                // get the name out of the snapshot dictionary
-                if let dictionary = snapshot.value as? [String:AnyObject]{
-                 // self.navigationItem.title = dictionary["name"] as? String
-                    print("Navigation title is:",dictionary["name"] as? String ?? "No Name" )
                 }
-                
-                
-                
-            }, withCancel: nil)
-            //return
- */
-        }
  
         
     }
@@ -268,7 +237,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
    
     let blueView : UIView = {
         let view = UIView()
-        view.backgroundColor = aquaBlueChatfixColor
+//        view.backgroundColor = aquaBlueChatfixColor
+        view.backgroundColor = .red
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -281,9 +252,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
        // let blueView = UIView()
        // blueView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
        // blueView.backgroundColor = aquaBlueChatfixColor
-        view.addSubview(blueView)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
+//        view.addSubview(blueView)
+//        view.addConstraintsWithFormat(format: "H:|[v0]|", views: blueView)
+//        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
         self.view.addSubview(menuBar)
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
@@ -314,6 +285,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     func scrollToMenuIndex(menuItem:Int){
         let indexPath = NSIndexPath(item: menuItem, section: 0)
         collectionView?.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
+        if menuItem == 2 {
+            print("Clear out")
+        }
         
     }
     //THIS IS HOW WE FIND OUT WHERE WE SCROLLED TO
@@ -353,7 +327,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         if indexPath.item == 0 {
             
-            resetNav()
+         //   resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
             
@@ -362,38 +336,38 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
           cell.observeUserMessages()
             
             
-            navigationController?.navigationBar.isHidden = false
+           // navigationController?.navigationBar.isHidden = false
            
             
             return cell
             
         } else if indexPath.item == 1 {
-          //  removeNav()
+          print("Work")
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: testCellId, for: indexPath)
+            
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CallingCellId, for: indexPath) as! CallingCell
             cell.messagesController = self
-            navigationController?.navigationBar.isHidden = false
-           // fadeInMenubar()
             
             return cell
             
         } else if indexPath.item == 2 {
-            resetNav()
+         //   resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FixitCellId, for: indexPath) as! FixItCell
             cell.messagesController = self
           // cell.showQuoteController()
-            navigationController?.navigationBar.isHidden = true
+        //    navigationController?.navigationBar.isHidden = false
            print("Quote")
             
             
             return cell
             
         }else if indexPath.item == 3{
-            resetNav()
+          //  resetNav()
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CheckoutCellId, for: indexPath) as! CheckoutCell
-           navigationController?.navigationBar.isHidden = false
+          // navigationController?.navigationBar.isHidden = false
            // fadeInMenubar()
             
             
@@ -411,6 +385,27 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     // Size of Cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("will display indexpath", indexPath.item)
+        if indexPath.item == 1 {
+        //  navigationController?.navigationBar.isHidden = true
+           navigationController?.navigationBar.isTranslucent = true
+            self.navigationController!.navigationBar.backgroundColor = UIColor.clear
+            navigationController?.setNavigationBarHidden(true, animated: true)
+            menuBar.isHidden = true
+            blueView.isHidden = true
+        }
+        
+        else {
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.isHidden = false
+            menuBar.isHidden = false
+            blueView.isHidden = false
+            
+            
+        }
     }
     
    /*(
@@ -736,6 +731,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
     }
     
+    /*
     func resetNav(){
         navigationController?.navigationBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -752,6 +748,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         
     }
+ */
     
     func removeNav() {
         navigationController?.navigationBar.isHidden = true

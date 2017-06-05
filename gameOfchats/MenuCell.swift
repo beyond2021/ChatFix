@@ -44,10 +44,10 @@ class MenuCell: BaseCell {
     override var isHighlighted: Bool {
         didSet{
             //  print(123)
-            //imageView.tintColor = isHighlighted ? .white : UIColor.rgb(red: 91, green: 14, blue: 13)//tenary statement / short cut if else statement
+            imageView.tintColor = isHighlighted ? .white : UIColor.rgb(red: 91, green: 14, blue: 13)//tenary statement / short cut if else statement
             //imageView.tintColor = isHighlighted ? .white : .black
             //UIColor.rgb(red: 200, green: 201, blue: 210)
-            imageView.tintColor = isHighlighted ? UIColor.rgb(red: 200, green: 201, blue: 210) : .black
+            //imageView.tintColor = isHighlighted ? UIColor.rgb(red: 200, green: 201, blue: 210) : .black
             
         }
         
@@ -56,9 +56,9 @@ class MenuCell: BaseCell {
     override var isSelected:  Bool {
         didSet{
             //print(123)
-            //imageView.tintColor = isSelected ? .white : UIColor.rgb(red: 91, green: 14, blue: 13)//tenary statement / short cut if else statement
+            imageView.tintColor = isSelected ? .white : UIColor.rgb(red: 91, green: 14, blue: 13)//tenary statement / short cut if else statement
             //imageView.tintColor = isSelected ? .white : .black
-            imageView.tintColor = isSelected ? UIColor.rgb(red: 200, green: 201, blue: 210) : .black
+            //imageView.tintColor = isSelected ? UIColor.rgb(red: 200, green: 201, blue: 210) : .black
         }
         
     }
