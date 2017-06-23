@@ -12,3 +12,5 @@ let WORK_VIEW_UP_NOTIFICATION = NSNotification.Name(rawValue: "workViewUpNotific
 let WORK_VIEW_DOWN_NOTIFICATION = NSNotification.Name(rawValue: "workViewDownNotification")
 
 let MENUBAR_PRESS_QUOTE_NOTIFICATION = NSNotification.Name(rawValue: "menubarQuoteNotification")
+
+let CAMERA_DISMISS_NOTIFICATION = NSNotification.Name(rawValue: "cameraDismissNotification")

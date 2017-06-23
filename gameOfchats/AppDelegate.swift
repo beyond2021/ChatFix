@@ -92,9 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addContraintsWithFormat(format: "V:|[v0(20)]", views: statusBarbackgroundView)
         
         //
-        UINavigationBar.appearance().shadowImage = UIImage()
+ //       UINavigationBar.appearance().shadowImage = UIImage()
         //        UINavigationBar.appearance().setBackgroundImage(UIImage().forBarMetrics: .Default)
-        UINavigationBar.appearance().setBackgroundImage(UIImage(),for: .default)
+  //      UINavigationBar.appearance().setBackgroundImage(UIImage(),for: .default)
 
         
         

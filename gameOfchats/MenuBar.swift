@@ -69,6 +69,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         addSubview(collectionView)
        // backgroundColor =  UIColor.rgb(red: 230, green: 32, blue: 31)
+        backgroundColor = aquaBlueChatfixColor
         
         //x,y,width,height
         collectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
