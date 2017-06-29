@@ -202,7 +202,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
         collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
         collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //paging snap in place
         collectionView?.isPagingEnabled = true

@@ -43,6 +43,7 @@ class WorkCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
+        backgroundColor = aquaBlueChatfixColor
       //  self.layer.borderColor = UIColor.rgb(red: 51, green: 2, blue: 129).cgColor
         self.layer.borderColor = aquaBlueChatfixColor.cgColor
         
