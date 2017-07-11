@@ -10,7 +10,7 @@ import UIKit
 
 class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let workArrayStrings = ["Structured Cabling", "Office Networking", "Entry Access Systems", "Wireless Access Points", "Alarm Systems", "Mobile App Development" ]
+    let workArrayStrings = ["Structured Cabling", "Office Networking", "Entry Access Systems", "Enterprise wireless Access Points", "Alarm Systems", "Mobile App Development" ]
     //MANUALLY LOADING ALL WORK
     var works = [Work]()
     

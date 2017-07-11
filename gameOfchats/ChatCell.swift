@@ -260,7 +260,9 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
         collectionView.showsVerticalScrollIndicator = false
         collectionView.centerXAnchor.constraint(equalTo: visualEffectView.centerXAnchor).isActive = true
         collectionView.centerYAnchor.constraint(equalTo: visualEffectView.centerYAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: visualEffectView.widthAnchor, constant: -20).isActive = true
+//        collectionView.widthAnchor.constraint(equalTo: visualEffectView.widthAnchor, constant: -20).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: visualEffectView.widthAnchor).isActive = true
+        
         collectionView.heightAnchor.constraint(equalTo: visualEffectView.heightAnchor).isActive = true
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top:50, left: 0, bottom: 0, right: 0)
@@ -354,7 +356,10 @@ class ChatCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
                
         
-        return CGSize(width: self.frame.width - 20, height: 80)
+//        return CGSize(width: self.frame.width - 20, height: 80)
+        return CGSize(width: self.frame.width , height: 80)
+        
+        
     }
     
     weak var messagesController : MessagesController?

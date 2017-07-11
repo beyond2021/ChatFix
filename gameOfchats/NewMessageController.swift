@@ -12,15 +12,10 @@ import Firebase
 class NewMessageController: UITableViewController {
     let cellId = "cellId"
     var users = [User]() // create the model. any emptyy array of type users
- //   var sortedUsers = [User]()
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
-        
-   //     self.navigationController!.navigationBar.barTintColor = UIColor(r: 61, g: 91, b: 151)
-        
-        //UINavigationBar.appearance().barTintColor = UIColor(r: 61, g: 91, b: 151)
         navigationController?.navigationBar.tintColor = .white
         navigationItem.title = "Pick A Mate"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
@@ -32,8 +27,6 @@ class NewMessageController: UITableViewController {
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         // I wann get all the users
         fetchUser()
-        
-        
     }
     
    
@@ -44,16 +37,10 @@ class NewMessageController: UITableViewController {
     func fetchUser() {
         //observe all the users
         FIRDatabase.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
-            // This fetches all of the users
-         //   print("User Found")
-            // lets add all of these users into an array
-        //    print(snapshot) // many snapshots
-            // there is a dictionay value of every snapshot
-            //Break point hre to get the list of snapshots
             if let dictionary = snapshot.value as? [String : AnyObject] {
                 
                 //here we loa d the list of users
-               
+                //       print(snapshot)
                 
                 let user = User() // a brand new user
                 
@@ -63,34 +50,28 @@ class NewMessageController: UITableViewController {
                 // IF U USE THE SETTER ABOVE YOUR APP WILL CRASH IF YOUR CLASS PROPERTIES DONT EXACTLY MATCHUP WITH THE FIREBASE DICTIONARY KEYS
                 
                 //ALTERNATE
-        //        user.name = dictionary["name"] as? String
-         //       user.email = dictionary["email"] as? String
-             
+                //        user.name = dictionary["name"] as? String
+                //       user.email = dictionary["email"] as? String
+                
+                // print(user)
+                
                 //NOW WE HAVE USER WE CAN ADD IT TO THE ARRAY
                 self.users.append(user)
-//                var sortedNamesArray = [String]()
-//                sortedNamesArray.append(user.name!)
                 
-             //   self.sortedUsers = self.users.sort { $0.compare($1, options: .numeric) == .orderedAscending }
+                //
+                self.users = self.users.sorted { $0.name! < $1.name! }
                 
-//                self.sortedUsers = self.users.sorted { _,_ in user.name!.compare(user.name!, options: .numeric) == .orderedDescending }
-                
-                
-//                self.sortedUsers = self.users.sorted(by: { (user1, user2) -> Bool in
-//                    //
-//                    return user1.name.fi > user2.name
-//                })
                 
                 
                 // this will crash because we are access the tableview from a backgropund thread, so lets use dispatch_async to fix
-                DispatchQueue.main.async(execute: { 
+                DispatchQueue.main.async(execute: {
                     self.tableView.reloadData() // here we get themain thread and reload the tableview. now we can use users.count
                 })
                 
-//                print(self.sortedUsers)
+                //                print(self.sortedUsers)
                 
                 
-        //        print(user.name ?? "There is no name", user.email ?? "there is no email")
+                //        print(user.name ?? "There is no name", user.email ?? "there is no email")
                 
             }
         }, withCancel: nil)
@@ -113,10 +94,7 @@ class NewMessageController: UITableViewController {
     //Everytime you deque a cell the init method on the custom cell is calles
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         
-        
-        // get reference to user
-      //  let user =  users[indexPath.row]
-        let user = users[indexPath.row]
+                let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
         

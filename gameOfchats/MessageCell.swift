@@ -28,7 +28,7 @@ class MessageCell: UICollectionViewCell {
         self.layer.borderColor = UIColor.lightGray.cgColor
         
         self.layer.borderWidth = 1
-        self.layer.cornerRadius = 4
+        //self.layer.cornerRadius = 4
         self.clipsToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowOpacity = 1

@@ -45,7 +45,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         mb.translatesAutoresizingMaskIntoConstraints = false
         //reference
         mb.messageController = self
-        mb.dropShadow() // my extension
+       mb.dropShadow() // my extension
         
         return mb
     }()
@@ -70,7 +70,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
       fadeInMenubar()
         //darken the navbar
- //       navigationController?.navigationBar.isTranslucent = true
+       navigationController?.navigationBar.isTranslucent = true
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.navigationBar.backgroundColor = .clear      // navigationController?.navigationBar.barTintColor = .clear
         
         // navigationController?.extendedLayoutIncludesOpaqueBars = true//
         
@@ -86,12 +88,13 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        setupCollectionView()
+       setupCollectionView()
         setupNavBarButtonsOnRight()
         //  perform(#selector(handleLogout), with: nil, afterDelay: 0)
         checkIfUserIsLoggedIn()
         
     }
+    
     
     func listenForNotifications(){
         NotificationCenter.default.addObserver(self, selector: #selector(workViewUp), name: WORK_VIEW_UP_NOTIFICATION, object: nil)
@@ -141,12 +144,10 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//         fadeInMenubar()
-//        //setupMenuBar()
-//       checkIfUserIsLoggedIn()
-//        
-//        workUpFlag = false
-        
+//        let img = UIImage()
+//        self.navigationController?.navigationBar.shadowImage = img
+//        self.navigationController?.navigationBar.setBackgroundImage(img, for: UIBarMetrics.default)
+//        fadeInMenubar()
     }
     
     var workUpFlag : Bool?
@@ -174,12 +175,22 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     func fadeInMenubar(){
         // menuBar.alpha = 0
-        UIView.animate(withDuration: 1.0, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+        /*
+        UIView.animate(withDuration: 1.0, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             //  self.menuBar.alpha = 1
             self.setupMenuBar()
         }) { (true) in
-            self.setupCollectionView()
+  // self.setupCollectionView()
         }
+        */
+        UIView.animate(withDuration: 0.1, delay: 0.5, usingSpringWithDamping: 1, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
+            //  self.menuBar.alpha = 1
+            self.setupMenuBar()
+        }) { (true) in
+            // self.setupCollectionView()
+        }
+        
+        
         
     }
     
@@ -188,6 +199,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     func setupCollectionView(){
+        collectionView?.delegate = self
         
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
@@ -202,7 +214,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
         collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
         collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //paging snap in place
         collectionView?.isPagingEnabled = true
@@ -231,7 +243,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     //Private because no other class need to access this
     func setupMenuBar(){
-        navigationController?.hidesBarsOnSwipe = true
+//        navigationController?.hidesBarsOnSwipe = true
 //        navigationController?.hidesBarsOnTap = true
         navigationController?.navigationBar.backgroundColor = aquaBlueChatfixColor
         // let blueView = UIView()
@@ -242,7 +254,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
                 view.addConstraintsWithFormat(format: "V:[v0(50)]", views: blueView)
 //        blueView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
 //         blueView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//        blueView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+//        blueView.topAnchor.constraint(equalTo: view.topAnchor, constant: -125).isActive = true
 //        blueView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         self.view.addSubview(menuBar)
@@ -251,7 +263,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
-      
+    
         menuBar.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
             //  self.menuBar.alpha = 1
@@ -259,6 +271,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         }) { (true) in
             // self.setupCollectionView()
         }
+
  
         
     }
@@ -366,6 +379,9 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
             
         }
     }
+    
+        
+    
     
     func cameraDismissed(){
  //       navigationController?.navigationBar.isTranslucent = false
@@ -480,7 +496,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-         containerView.backgroundColor = UIColor.yellow
+       //  containerView.backgroundColor = UIColor.yellow
+       //  containerView.backgroundColor = .clear
  //       containerView.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         // add profilImageView and label into this view
         titleView.addSubview(containerView)
@@ -728,6 +745,17 @@ extension MessagesController {
         let indexPath = NSIndexPath(item:Int(index) , section: 0)
         menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: true, scrollPosition: [])
     }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if targetContentOffset.pointee.y < scrollView.contentOffset.y {
+            // UP
+        } else {
+            // DOWN
+        }
+    }
+    
+    
     
 
 }

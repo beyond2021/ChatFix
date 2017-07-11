@@ -70,3 +70,26 @@ extension UIView {
     }
     
 }
+
+extension UIColor {
+    //convenient method that returns a color for me.
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat)  -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+}
+extension UIView {
+    
+    func dropShadow() {
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize(width: -1, height: 1)
+        self.layer.shadowRadius = 1
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+    }
+    
+}
+

@@ -35,7 +35,7 @@ class MenuCell: BaseCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = UIImage(named: "Home Filled-50")?.withRenderingMode(.alwaysTemplate)//changes the tintcolr of the imageview
         //iv.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13)
-        iv.tintColor = .black
+       iv.tintColor = .black
         //set the tinit color
         return iv
     }()
@@ -68,7 +68,7 @@ class MenuCell: BaseCell {
     
     override func setupViews(){
         super.setupViews()
-        // backgroundColor = .yellow
+      //   backgroundColor = .yellow
         addSubview(imageView)
         
         //x,y,width,height
