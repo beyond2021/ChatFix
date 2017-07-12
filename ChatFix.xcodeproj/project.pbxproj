@@ -159,6 +159,7 @@
 		53E8ACC31EE5B90E00EB19EC /* SwiftyCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamButton.swift; sourceTree = "<group>"; };
 		53E8ACC41EE5B90E00EB19EC /* SwiftyCamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewController.swift; sourceTree = "<group>"; };
 		53E8ACC51EE5B90E00EB19EC /* SwiftyCamViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewControllerDelegate.swift; sourceTree = "<group>"; };
+		53FAA9B01F15B51600B2419C /* ChatFix dev1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ChatFix dev1-Info.plist"; path = "/Users/kev1/Desktop/CurrentProjects/gameOfchats/ChatFix dev1-Info.plist"; sourceTree = "<absolute>"; };
 		6B57E4F9216D8059E473550E /* Pods-gameOfchats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameOfchats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gameOfchats/Pods-gameOfchats.debug.xcconfig"; sourceTree = "<group>"; };
 		72B43C16AC5C49F094B3A320 /* Pods-ChatFix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatFix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatFix/Pods-ChatFix.debug.xcconfig"; sourceTree = "<group>"; };
 		9C70DA0F42912E1583353AB6 /* Pods_gameOfchats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gameOfchats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +225,7 @@
 				531199171E9160E600070A81 /* Products */,
 				4024E444E7526475666B4398 /* Pods */,
 				1C9E033606D51DB0A47F19A6 /* Frameworks */,
+				53FAA9B01F15B51600B2419C /* ChatFix dev1-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
