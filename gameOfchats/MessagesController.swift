@@ -23,8 +23,10 @@ extension Collection where Generator.Element: Hashable {
 
 
 
-class MessagesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+//class MessagesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+class MessagesController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     
     
     let chatCellId = "chatCellId"
@@ -40,6 +42,22 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     var messagesDictionary = [String: Message]()
     
     var chatCell : ChatCell? // links
+    
+    
+   lazy var collectionView : UICollectionView = {
+                let layout = UICollectionViewFlowLayout()
+//    layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+//    layout.itemSize = CGSize(width: 111, height: 111)
+//        let cv = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+    let cv = UICollectionView(frame: CGRect(x:0, y:0, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
+    
+       // cv.collectionViewLayout = layout
+        cv.translatesAutoresizingMaskIntoConstraints = false
+       return cv
+    }()
+    
+    
+    
     lazy var  menuBar : MenuBar = {
         let mb = MenuBar()
         mb.translatesAutoresizingMaskIntoConstraints = false
@@ -68,9 +86,11 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidLoad()
         listenForNotifications()
         
-      fadeInMenubar()
+      //fadeInMenubar()
+        self.setupMenuBar()
+        
         //darken the navbar
-       navigationController?.navigationBar.isTranslucent = true
+      navigationController?.navigationBar.isTranslucent = true
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.navigationBar.backgroundColor = .clear      // navigationController?.navigationBar.barTintColor = .clear
         
@@ -162,7 +182,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     func workViewDown(){
         print("Work view down")
-        collectionView?.isScrollEnabled = true
+        collectionView.isScrollEnabled = true
         if workUpFlag == true {
             workUpFlag = false
         }
@@ -199,25 +219,35 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     
     
     func setupCollectionView(){
-        collectionView?.delegate = self
         
-        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+        
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        //Position
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor) .isActive = true
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor) .isActive = true
+        collectionView.topAnchor.constraint(equalTo: menuBar.bottomAnchor) .isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor) .isActive = true
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 0
-            flowLayout.itemSize = (self.collectionView?.frame.size)!;
+            flowLayout.itemSize = (self.collectionView.frame.size);
             
         }
-        collectionView?.backgroundColor = .clear
+        collectionView.backgroundColor = .clear
         //ChatCell
-        collectionView?.register(ChatCell.self, forCellWithReuseIdentifier: chatCellId)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: testCellId)
-        collectionView?.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
-        collectionView?.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
-        collectionView?.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        collectionView.register(ChatCell.self, forCellWithReuseIdentifier: chatCellId)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: testCellId)
+        collectionView.register(CallingCell.self, forCellWithReuseIdentifier: CallingCellId)
+        collectionView.register(CheckoutCell.self, forCellWithReuseIdentifier: CheckoutCellId)
+        collectionView.register(FixItCell.self, forCellWithReuseIdentifier: FixitCellId)
+        collectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         //paging snap in place
-        collectionView?.isPagingEnabled = true
+        collectionView.isPagingEnabled = true
         
     }
     
@@ -257,13 +287,13 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
 //        blueView.topAnchor.constraint(equalTo: view.topAnchor, constant: -125).isActive = true
 //        blueView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        self.view.addSubview(menuBar)
-        view.addSubview(menuBar)
+//       self.view.addSubview(menuBar)
+       view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
         view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
-    
+  /*
         menuBar.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 3, options: .curveEaseOut, animations: {
             //  self.menuBar.alpha = 1
@@ -271,6 +301,8 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         }) { (true) in
             // self.setupCollectionView()
         }
+ */
+
 
  
         
@@ -292,11 +324,11 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     //MARK:- COLLECTIONVIEW DATASOURCE
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: chatCellId, for: indexPath) as! ChatCell
@@ -348,9 +380,13 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         return CGSize(width: view.frame.width, height: view.frame.height)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         print("will display indexpath", indexPath.item)
         if indexPath.item == 0 {
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            
             navigationController?.navigationBar.isHidden = false
          //   checkIfUserIsLoggedIn()
            // navigationController?.navigationBar.isHidden = false
@@ -380,21 +416,26 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
+    func showNavBar(){
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        menuBar.isHidden = false
+        blueView.isHidden = false
+ 
+        
+    }
+    
         
     
     
     func cameraDismissed(){
- //       navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.isHidden = false
-//        menuBar.isHidden = false
-//        blueView.isHidden = false
+        showNavBar()
         checkIfUserIsLoggedIn()
         
     }
     
    
     func deleteRow(){
-        collectionView?.performBatchUpdates({ 
+        collectionView.performBatchUpdates({ 
             //
         }, completion: { (true) in
             //
@@ -471,7 +512,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
                 DispatchQueue.main.async(execute: {
                     //  print("WE reloaded the table") // this was called 10 times thats wyhy the images were false
                     // self.tableView.reloadData() //refresh our tableview
-                    self.collectionView?.reloadData()
+                    self.collectionView.reloadData()
                     // self.attempTedReloadOfTable()
                 })
                 
@@ -487,7 +528,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     // setting up navbar with image and text centered
     func setUpNavBarWithUser(user:User) {
         let indexPath = IndexPath(item: 0, section: 0 )
-        collectionView?.reloadItems(at: [indexPath])
+        collectionView.reloadItems(at: [indexPath])
         // self.collectionView?.reloadData()
         
         let titleView = UIView() //This is our container
@@ -631,7 +672,7 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
         if workUpFlag == true {
             let indexPath = IndexPath(item: 2, section: 0 )
             NotificationCenter.default.post(name: MENUBAR_PRESS_QUOTE_NOTIFICATION, object: nil)            
-            collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             
             
             
@@ -668,26 +709,11 @@ class MessagesController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func showControllerForQuote(){
-        let dummySettingsViewController = QuoteViewController()
+ //       let dummySettingsViewController = QuoteViewController()
         
-        self.present(dummySettingsViewController, animated: true, completion: nil)
-        
-        
-//        dummySettingsViewController.navigationItem.title = "QUOTE"
-//        
-//        
-//        
-//        
-//       // dummySettingsViewController.view.backgroundColor = .white
-//        dummySettingsViewController.view.backgroundColor = .clear
-//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white] //CHANGING
-//        navigationController?.navigationBar.tintColor = .white //setting the back button color
-        
-   //     menuBar.isHidden = true
+ //       self.present(dummySettingsViewController, animated: true, completion: nil)
         
         
-        
-   //     navigationController?.pushViewController(dummySettingsViewController, animated: true)
         
     }
     
@@ -724,20 +750,20 @@ extension MessagesController {
     //AUTOMATIC SCROLL TO MENUITEM POSITION. THIS FUNC IS USED INSIDE OF MENUBAR-EVERYTIME WE TAP ON THE ICON
     func scrollToMenuIndex(menuItem:Int){
         let indexPath = NSIndexPath(item: menuItem, section: 0)
-        collectionView?.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
+        collectionView.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
         if menuItem == 2 {
             print("Clear out")
         }
         
     }
     //THIS IS HOW WE FIND OUT WHERE WE SCROLLED TO
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //print(scrollView.contentOffset.x) //
         //moving the menubar with the pages
         menuBar.horizontalBarLeftConstraint?.constant = scrollView.contentOffset.x / 4
     }
     //HILIGHTING THE BUTTONS WITH SCROLL
-    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         //targetContentOffset.pointee.x = view.frame.width
         //print(targetContentOffset.pointee.x / view.frame.width) //1.0, 2.0, 3.0, 4.0 //positions
         //now that we have the index

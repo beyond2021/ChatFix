@@ -72,7 +72,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .clear
+       cv.backgroundColor = .clear
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.dataSource = self
         cv.delegate = self
@@ -135,7 +135,7 @@ class CallingCell: BaseFeedCell, UICollectionViewDataSource, UICollectionViewDel
             //
             self.messagesController?.menuBar.isHidden = true
             
-            self.messagesController?.menuBar.alpha = 0
+  //          self.messagesController?.menuBar.alpha = 0
             
             
             

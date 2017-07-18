@@ -102,8 +102,8 @@ class ChatLogController : UICollectionViewController, UITextFieldDelegate, UICol
         //Set up nav bar
         //navigationItem.title = "Chat Log Controller"
         //collectionView?.backgroundColor = UIColor.white
-        collectionView?.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
-        
+        //collectionView?.backgroundColor = UIColor.rgb(red: 200, green: 201, blue: 210)
+        collectionView?.backgroundColor = UIColor.rgb(red: 0, green: 87, blue: 138)
         //register cell
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         
